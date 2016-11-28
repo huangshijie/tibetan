@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huang.TibetanLibrary.mapper.InterpretationMapper">
+	
+	<resultMap type="com.huang.TibetanLibrary.domain.Interpretation" id="Interpretation">
+		<result property="ID" column="ID" />
+		<result property="RID" column="RID" />
+		<result property="languageCode" column="languageCode" />
+		<result property="languageDes" column="languageDes" />
+		<result property="interpretation" column="interpretation" />
+		<result property="interpretationExample" column="interpretationExample" />
+	</resultMap>
+
+	<select id="findInterpretationEntityById" resultMap="Interpretation">
+		SELECT 
+			t.ID,
+			t.RID,
+			t.languageCode,
+			t.languageDes,
+			t.interpretation,
+			t.interpretationExample,
+		FROM interpretation t 
+		WHERE t.id = #{id}
+	</select>
+	
+	<insert id="insertInterpretationSingle" useGeneratedKeys="true" keyProperty="ID" parameterType="Interpretation">
+		INSERT INTO interpretation(
+			RID,
+			languageCode,
+			languageDes,
+			interpretation,
+			interpretationExample
+		)
+		VALUES(
+			#{RID},
+			#{languageCode},
+			#{languageDes},
+			#{interpretation},
+			#{interpretationExample}
+		)
+	</insert>
+</mapper>

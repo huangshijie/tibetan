@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huang.TibetanLibrary.mapper.TibetanTranslateEntryMapper">
+	<resultMap type="com.huang.TibetanLibrary.domain.TibetanTranslateEntry" id="TibetanTranslateEntry">
+		<result property="ID" column="ID" />
+		<result property="representationText" column="representationText" />
+		<result property="transcriptionText" column="transcriptionText" />
+	</resultMap>
+	
+	<select id="findTibetanTranslateEntryById" resultMap="TibetanTranslateEntry">
+		SELECT 
+			t.ID,
+			t.representationText,
+			t.transcriptionText,
+		FROM tibetantranslateentry t 
+		WHERE t.id = #{id}
+	</select>
+	
+	<insert id="insertTibetanTranslateEntry" useGeneratedKeys="true" keyProperty="ID" parameterType="TibetanTranslateEntry">
+		INSERT INTO tibetantranslateentry(
+			representationText,
+			transcriptionText
+		)
+		VALUES(
+			#{representationText},
+			#{transcriptionText}
+		)
+	</insert>
+	
+	<insert id="insertTibetanTranslateEntryBatch" useGeneratedKeys="true" parameterType="java.util.List">  
+		INSERT INTO tibetantranslateentry(
+			representationText,
+			transcriptionText
+		)
+		VALUES  
+	    <foreach collection="list" item="item" index="index" separator="," >  
+	        (#{item.representationText , javaType=String, jdbcType=VARCHAR},
+			#{item.transcriptionText, javaType=String, jdbcType=VARCHAR}
+	    </foreach>  
+	</insert>  
+</mapper>

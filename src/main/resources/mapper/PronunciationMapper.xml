@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huang.TibetanLibrary.mapper.PronunciationMapper">
+	
+	<resultMap type="com.huang.TibetanLibrary.domain.Pronunciation" id="Pronunciation">
+		<result property="ID" column="ID" />
+		<result property="RID" column="RID" />
+		<result property="languagePointCode" column="languagePointCode" />
+		<result property="languagePointDes" column="languagePointDes" />
+		<result property="pronunciation" column="pronunciation" />
+		<result property="pronunciationIPA" column="pronunciationIPA" />
+	</resultMap>
+
+	<select id="findPronunciationEntityById" resultMap="Pronunciation">
+		SELECT 
+			t.ID,
+			t.RID,
+			t.languagePointCode,
+			t.languagePointDes,
+			t.pronunciation,
+			t.pronunciationIPA,
+		FROM pronunciation t 
+		WHERE t.id = #{id}
+	</select>
+	
+	<insert id="insertPronunciationSingle" useGeneratedKeys="true" keyProperty="ID" parameterType="Pronunciation">
+		INSERT INTO pronunciation(
+			RID,
+			languagePointCode,
+			languagePointDes,
+			pronunciation,
+			pronunciationIPA
+		)
+		VALUES(
+			#{RID},
+			#{languagePointCode},
+			#{languagePointDes},
+			#{pronunciation},
+			#{pronunciationIPA}
+		)
+	</insert>
+</mapper>

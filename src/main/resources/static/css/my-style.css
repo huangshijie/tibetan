@@ -1,0 +1,42 @@
+.my.url{
+	padding-top: 12px;
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.my.li{
+	text-decoration:none;
+	color:#FFFFFF;
+	font-size: 12px;
+	line-height: 24px;
+}
+
+.row.ft-top{
+	padding: 20px 0 50px;
+	text-align: left;
+}
+.row.ft-btm{
+	color: #38485a; 
+	font-size: 10px; 
+	text-align: left; 
+	padding: 22px 0 46px; 
+	border-top: 1px solid #e2e3e6;
+}
+
+.index.search.container{
+	border: 1px solid #af9a87;
+    background-color: #FFf;
+    margin-top: 10px;
+    width: 98%;
+    height: 120px;
+    overflow: hidden;
+    text-align: center;
+    margin: 20px;
+    background-color:#e4dcd5
+}
+
+.index.search.row{
+    height: 30px;
+}
