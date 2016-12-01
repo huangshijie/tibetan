@@ -20,17 +20,17 @@ public class BasewordController {
 	public String getBaseWord(@RequestParam String originalWord, Model model){
 		SyllableStructure s = basewordSerice.getWordSplit(originalWord);
 		model.addAttribute("data", s);
-		return "/index";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/indexHTML",method = RequestMethod.GET)
 	public String getIndexHTML(Model model){
-		return "/index";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/searchdetial",method = RequestMethod.GET)
 	public String getSearchDetial(Model model){
-		return "/searchdetial";
+		return "searchdetial";
 	}
 	
 }

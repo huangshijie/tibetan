@@ -6,7 +6,6 @@
 		<result property="representationText" column="representationText" />
 		<result property="transcriptionText" column="transcriptionText" />
 	</resultMap>
-	
 	<select id="findTibetanTranslateEntryById" resultMap="TibetanTranslateEntry">
 		SELECT 
 			t.ID,
@@ -16,7 +15,7 @@
 		WHERE t.id = #{id}
 	</select>
 	
-	<insert id="insertTibetanTranslateEntry" useGeneratedKeys="true" keyProperty="ID" parameterType="TibetanTranslateEntry">
+	<insert id="insertTibetanTranslateEntry" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.TibetanTranslateEntry">
 		INSERT INTO tibetantranslateentry(
 			representationText,
 			transcriptionText
