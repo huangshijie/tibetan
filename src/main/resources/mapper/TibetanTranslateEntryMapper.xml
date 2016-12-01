@@ -6,7 +6,7 @@
 		<result property="representationText" column="representationText" />
 		<result property="transcriptionText" column="transcriptionText" />
 	</resultMap>
-	
+	<!-- 
 	<select id="findTibetanTranslateEntryById" resultMap="TibetanTranslateEntry">
 		SELECT 
 			t.ID,
@@ -38,4 +38,5 @@
 			#{item.transcriptionText, javaType=String, jdbcType=VARCHAR}
 	    </foreach>  
 	</insert>  
+	-->
 </mapper>

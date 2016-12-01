@@ -10,7 +10,7 @@
 		<result property="interpretation" column="interpretation" />
 		<result property="interpretationExample" column="interpretationExample" />
 	</resultMap>
-
+<!-- 
 	<select id="findInterpretationEntityById" resultMap="Interpretation">
 		SELECT 
 			t.ID,
@@ -39,4 +39,5 @@
 			#{interpretationExample}
 		)
 	</insert>
+	-->
 </mapper>
