@@ -1,5 +1,27 @@
 package com.huang.TibetanLibrary.domain;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.huang.TibetanLibrary.util.FontUtil;
+
+/**
+ * @author Alex
+ * 
+ * @param representationText    表记 ;
+ * @param radical				基字 ;
+ * @param prefix  				前加字 ;
+ * @param suffix				后加字 ;
+ * @param postffix				再后加字 ;
+ * @param superscript			上加字 ;
+ * @param subscript				下加字 ;
+ * @param vowelMark				元音附标 ;
+ * @param anusvara				随韵点 ;
+ * @param visarga				止韵点 ;
+ * @param willieTransfer		威力转写 ;
+ */
 public class SyllableStructure {
 	
 	private long ID;
@@ -88,4 +110,91 @@ public class SyllableStructure {
 		this.willieTransfer = willieTransfer;
 	}
 	
+	public SyllableStructure(){
+		
+	}
+	
+	public SyllableStructure(String originalWord){
+		this.setRepresentationText(originalWord);
+		
+		char[] orginalChars = originalWord.toCharArray();
+		ArrayList<Character> transferChars = new ArrayList<Character>();
+		for(int i = 0; i < orginalChars.length; i++){
+			if(String.valueOf(orginalChars[i]).equals("་")||String.valueOf(orginalChars[i]).equals("།")){
+				break;
+			}
+			transferChars.add(orginalChars[i]);
+		}
+		
+	    String returnStr = "";
+	    for (int i = 0; i < transferChars.size(); i++) {
+	      returnStr += FontUtil.WILLIESET.get(String.valueOf(transferChars.get(i)));
+	    }
+	    this.setWillieTransfer(returnStr);
+	    
+		if(transferChars.size() == 1){
+			this.setRadical(String.valueOf(transferChars.get(0)));
+		}else if(transferChars.size() == 2){
+			this.setRadical(String.valueOf(transferChars.get(0)));
+		}else if(transferChars.size() >= 3){
+			
+			String combinStr = FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(0))) 
+					+ FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(1)));
+			
+			if(exitInPrefixSet(transferChars.get(0))){
+				if(findInExhaustiveSet(combinStr)){
+					
+				}else{
+					if(exitInSuperscriptSet(transferChars.get(1))){
+						this.setRadical(String.valueOf(transferChars.get(2)));
+					}else{
+						this.setRadical(String.valueOf(transferChars.get(1)));
+					}
+				}
+			}else{
+				if(exitInSuperscriptSet(transferChars.get(0))){
+					this.setRadical(String.valueOf(transferChars.get(1)));
+				}else{
+					this.setRadical(String.valueOf(transferChars.get(0)));
+				}
+			}
+		}
+	}
+	
+	/**
+	 * @author Huang
+	 * Used to find the combine String in the exhaustive set
+	 * @param combinStr
+	 * @return true/false
+	 */
+	public static boolean findInExhaustiveSet(String combinStr){
+		
+		boolean result = false;
+		String pattern = "^"+combinStr+".*";
+		Pattern r = Pattern.compile(pattern);
+		
+		Iterator<String> iterator = FontUtil.EXHAUSTIVESET.iterator();
+		while(iterator.hasNext()){
+			String tmp = iterator.next();
+			Matcher m = r.matcher(tmp);
+			if(m.find()){
+				result = true;
+				break;
+			}
+		}
+		return result;
+		
+	}
+	
+	public static boolean exitInPrefixSet(char c){
+		return FontUtil.PREFIXSET.containsKey(String.valueOf(c));
+	}
+	
+	public static boolean exitInSuperscriptSet(char c){
+		return FontUtil.SUPERSCRIPTSET.containsKey(String.valueOf(c));
+	}
+	
+	public static boolean exitInVowelSet(char c){
+		return FontUtil.VOWELSET.containsKey(String.valueOf(c));
+	}
 }

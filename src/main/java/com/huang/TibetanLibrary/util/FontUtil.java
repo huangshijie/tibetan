@@ -23,6 +23,14 @@ public class FontUtil {
 		SUPERSCRIPTSET.put("ས", "f66");
 	}
 	
+	public static Map<String, String> VOWELSET= new HashMap<String, String>();
+	static{
+		VOWELSET.put("ི", "i");
+		VOWELSET.put("ུ", "u");
+		VOWELSET.put("ེ", "e");
+		VOWELSET.put("ོ", "o");
+	}
+	
 	public static Map<String, String> INTERNATIONALPHONETICALPHABETSET = new HashMap<String, String>();
 	static{
 		INTERNATIONALPHONETICALPHABETSET.put("ཀ", "k");
