@@ -23,7 +23,7 @@ public class TibetanLibraryController {
 	
 	@RequestMapping(value = "/uploadFileHTML",method = RequestMethod.GET)
 	public String getUploadFileHTML(Model model){
-		return "/uploadFile";
+		return "uploadFile";
 	}
 	
 	@RequestMapping(value = "/uploadTibetanLibraryFile",method = RequestMethod.POST)
