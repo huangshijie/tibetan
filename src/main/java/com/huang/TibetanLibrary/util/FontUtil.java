@@ -31,6 +31,16 @@ public class FontUtil {
 		VOWELSET.put("ོ", "o");
 	}
 	
+	public static Map<String, String> SUBSCRIPTSET = new HashMap<String, String>();
+	static{
+		SUBSCRIPTSET.put("འ", "v");
+		SUBSCRIPTSET.put("ཡ", "y");
+		SUBSCRIPTSET.put("ར", "r");
+		SUBSCRIPTSET.put("ལ", "l");
+		SUBSCRIPTSET.put("ཝ", "w");
+		SUBSCRIPTSET.put("གྲྷ", "");
+	}
+	
 	public static Map<String, String> INTERNATIONALPHONETICALPHABETSET = new HashMap<String, String>();
 	static{
 		INTERNATIONALPHONETICALPHABETSET.put("ཀ", "k");

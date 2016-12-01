@@ -138,18 +138,11 @@ public class SyllableStructure {
 			this.setRadical(String.valueOf(transferChars.get(0)));
 		}else if(transferChars.size() >= 3){
 			
-			String combinStr = FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(0))) 
-					+ FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(1)));
-			
 			if(exitInPrefixSet(transferChars.get(0))){
-				if(findInExhaustiveSet(combinStr)){
-					
+				if(exitInSuperscriptSet(transferChars.get(1))){
+					this.setRadical(String.valueOf(transferChars.get(2)));
 				}else{
-					if(exitInSuperscriptSet(transferChars.get(1))){
-						this.setRadical(String.valueOf(transferChars.get(2)));
-					}else{
-						this.setRadical(String.valueOf(transferChars.get(1)));
-					}
+					this.setRadical(String.valueOf(transferChars.get(1)));
 				}
 			}else{
 				if(exitInSuperscriptSet(transferChars.get(0))){
