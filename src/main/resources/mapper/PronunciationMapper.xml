@@ -10,7 +10,7 @@
 		<result property="pronunciation" column="pronunciation" />
 		<result property="pronunciationIPA" column="pronunciationIPA" />
 	</resultMap>
-<!-- 
+	
 	<select id="findPronunciationEntityById" resultMap="Pronunciation">
 		SELECT 
 			t.ID,
@@ -23,7 +23,7 @@
 		WHERE t.id = #{id}
 	</select>
 	
-	<insert id="insertPronunciationSingle" useGeneratedKeys="true" keyProperty="ID" parameterType="Pronunciation">
+	<insert id="insertPronunciationSingle" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.Pronunciation">
 		INSERT INTO pronunciation(
 			RID,
 			languagePointCode,
@@ -39,5 +39,4 @@
 			#{pronunciationIPA}
 		)
 	</insert>
-	-->
 </mapper>

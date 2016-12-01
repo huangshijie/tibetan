@@ -10,7 +10,6 @@
 		<result property="interpretation" column="interpretation" />
 		<result property="interpretationExample" column="interpretationExample" />
 	</resultMap>
-<!-- 
 	<select id="findInterpretationEntityById" resultMap="Interpretation">
 		SELECT 
 			t.ID,
@@ -23,7 +22,7 @@
 		WHERE t.id = #{id}
 	</select>
 	
-	<insert id="insertInterpretationSingle" useGeneratedKeys="true" keyProperty="ID" parameterType="Interpretation">
+	<insert id="insertInterpretationSingle" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.Interpretation">
 		INSERT INTO interpretation(
 			RID,
 			languageCode,
@@ -39,5 +38,4 @@
 			#{interpretationExample}
 		)
 	</insert>
-	-->
 </mapper>
