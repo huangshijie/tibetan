@@ -126,6 +126,7 @@ public class SyllableStructure {
 			transferChars.add(orginalChars[i]);
 		}
 		
+		int radicalNum = 0;
 	    String returnStr = "";
 	    for (int i = 0; i < transferChars.size(); i++) {
 	      returnStr += FontUtil.WILLIESET.get(String.valueOf(transferChars.get(i)));
@@ -141,16 +142,116 @@ public class SyllableStructure {
 			if(exitInPrefixSet(transferChars.get(0))){
 				if(exitInSuperscriptSet(transferChars.get(1))){
 					this.setRadical(String.valueOf(transferChars.get(2)));
+					radicalNum = 2;
 				}else{
 					this.setRadical(String.valueOf(transferChars.get(1)));
+					radicalNum = 1;
 				}
 			}else{
 				if(exitInSuperscriptSet(transferChars.get(0))){
 					this.setRadical(String.valueOf(transferChars.get(1)));
+					radicalNum = 1;
 				}else{
 					this.setRadical(String.valueOf(transferChars.get(0)));
+					radicalNum = 0;
 				}
 			}
+		}
+		
+		int preNum = radicalNum;
+		int suNum = transferChars.size() - radicalNum - 1;
+		
+		if(suNum == 1){
+			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
+				this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+			}else{
+				if(exitInVowelSet(transferChars.get(radicalNum+1))){
+					this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
+				}else{
+					this.setSuffix(String.valueOf(transferChars.get(radicalNum+1)));
+				}
+			}
+		}
+		
+		if(suNum == 2){
+			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
+				String combinStr = FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum+1))) 
+											+ FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum+2)));
+				
+				if(findInExhaustiveSet(combinStr)){
+					if(exitInVowelSet(transferChars.get(radicalNum+2))){
+						this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+						this.setVowelMark(String.valueOf(transferChars.get(radicalNum+2)));
+					}else{
+						this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+						this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
+					}
+				}else{
+					this.setSuffix(String.valueOf(transferChars.get(radicalNum+1)));
+					this.setPostffix(String.valueOf(transferChars.get(radicalNum+2)));
+				}
+				
+			}else{
+				if(exitInVowelSet(transferChars.get(radicalNum+1))){
+					this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
+					this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
+				}else{
+					this.setSuffix(String.valueOf(transferChars.get(radicalNum+1)));
+					this.setPostffix(String.valueOf(transferChars.get(radicalNum+2)));
+				}
+			}
+		}
+		
+		if(suNum == 3){
+			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
+				String combinStr = FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum+1))) 
+						+ FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum+2)));
+				if(findInExhaustiveSet(combinStr)){
+					if(exitInVowelSet(transferChars.get(radicalNum+2))){
+						this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+						this.setVowelMark(String.valueOf(transferChars.get(radicalNum+2)));
+						this.setSuffix(String.valueOf(transferChars.get(radicalNum+3)));
+					}else{
+						this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+						this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
+						this.setPostffix(String.valueOf(transferChars.get(radicalNum+3)));
+					}
+				}else{
+					this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
+					this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
+					this.setPostffix(String.valueOf(transferChars.get(radicalNum+3)));
+				}
+			}else{
+				this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
+				this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
+				this.setPostffix(String.valueOf(transferChars.get(radicalNum+3)));
+			}
+		}
+		
+		if(suNum == 4){
+			this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+			this.setVowelMark(String.valueOf(transferChars.get(radicalNum+2)));
+			this.setSuffix(String.valueOf(transferChars.get(radicalNum+3)));
+			this.setPostffix(String.valueOf(transferChars.get(radicalNum+4)));
+		}
+		
+		if(preNum == 1){
+			if(exitInPrefixSet(transferChars.get(0))){
+				String combinStr = FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(0))) 
+						+ FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum)));
+				if(findInExhaustiveSet(combinStr)){
+					this.setPrefix(String.valueOf(transferChars.get(0)));
+				}else{
+					this.setSuperscript(String.valueOf(transferChars.get(0)));
+				}
+			}else{
+				this.setSuperscript(String.valueOf(transferChars.get(0)));
+			}
+		}
+		
+		if(preNum == 2){
+			this.setPrefix(String.valueOf(transferChars.get(0)));
+			this.setSuperscript(String.valueOf(transferChars.get(1)));
 		}
 	}
 	
@@ -189,5 +290,9 @@ public class SyllableStructure {
 	
 	public static boolean exitInVowelSet(char c){
 		return FontUtil.VOWELSET.containsKey(String.valueOf(c));
+	}
+	
+	public static boolean exitInSubscriptSet(char c){
+		return FontUtil.SUBSCRIPTSET.containsKey(String.valueOf(c));
 	}
 }

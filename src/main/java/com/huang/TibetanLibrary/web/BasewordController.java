@@ -16,16 +16,25 @@ public class BasewordController {
 	@Autowired
 	BasewordService basewordSerice;
 	
-	@RequestMapping(value = "/getBaseWord", method = {RequestMethod.POST})
-	public String getBaseWord(@RequestParam String originalWord, Model model){
-		SyllableStructure s = basewordSerice.getWordSplit(originalWord);
-		model.addAttribute("data", s);
-		return "index";
-	}
+
 	
 	@RequestMapping(value = "/indexHTML",method = RequestMethod.GET)
 	public String getIndexHTML(Model model){
 		return "index";
+	}
+	
+	@RequestMapping(value = "/transcriptionsHTML",method = RequestMethod.GET)
+	public String getTranscriptions(Model model){
+		SyllableStructure s = new SyllableStructure();
+		model.addAttribute("data", s);
+		return "transcriptions";
+	}
+	
+	@RequestMapping(value = "/getBaseWord", method = {RequestMethod.POST})
+	public String getBaseWord(@RequestParam String tibetanWord, @RequestParam String willeWord,Model model){
+		SyllableStructure s = basewordSerice.getWordSplit(tibetanWord);
+		model.addAttribute("data", s);
+		return "transcriptions";
 	}
 	
 	@RequestMapping(value = "/searchdetial",method = RequestMethod.GET)

@@ -40,3 +40,21 @@
 .index.search.row{
     height: 30px;
 }
+
+.mytable{
+    background-color: transparent;
+    box-sizing: border-box;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+    width: 400px;
+    height: 400px;
+    font-size: 50px;
+    table-layout:fixed ; 
+    margin:0 auto;
+}
