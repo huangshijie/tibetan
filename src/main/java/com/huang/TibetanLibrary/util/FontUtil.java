@@ -55,6 +55,7 @@ public class FontUtil {
 		INTERNATIONALPHONETICALPHABETSET.put("ཐ", "th");
 		INTERNATIONALPHONETICALPHABETSET.put("ད", "d");
 		INTERNATIONALPHONETICALPHABETSET.put("ན", "n");
+		INTERNATIONALPHONETICALPHABETSET.put("ྷ", "h");		
 		INTERNATIONALPHONETICALPHABETSET.put("པ", "p");
 		INTERNATIONALPHONETICALPHABETSET.put("ཕ", "ph");
 		INTERNATIONALPHONETICALPHABETSET.put("བ", "b");
@@ -94,6 +95,7 @@ public class FontUtil {
 		WILLIESET.put("ཐ", "th");
 		WILLIESET.put("ད", "d");
 		WILLIESET.put("ན", "n");
+		WILLIESET.put("ྷ", "h");
 		WILLIESET.put("པ", "p");
 		WILLIESET.put("ཕ", "ph");
 		WILLIESET.put("བ", "b");
@@ -120,6 +122,7 @@ public class FontUtil {
 		WILLIESET.put("ུ", "u");
 		WILLIESET.put("ེ", "e");
 		WILLIESET.put("ོ", "o");
+		WILLIESET.put("ྭ", "w");
 	}
 	
 	public static Set<String> EXHAUSTIVESET = new HashSet<String>();
