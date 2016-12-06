@@ -9,18 +9,18 @@ public class FontUtil {
 	
 	public static Map<String, String>  PREFIXSET = new HashMap<String, String>();
 	static{
-		PREFIXSET.put("ག", "f42");
-		PREFIXSET.put("ད", "f51");
-		PREFIXSET.put("བ", "f56");
-		PREFIXSET.put("མ", "f58");
-		PREFIXSET.put("འ", "f60");
+		PREFIXSET.put("ག", "ɡ");
+		PREFIXSET.put("ད", "d");
+		PREFIXSET.put("བ", "b");
+		PREFIXSET.put("མ", "m");
+		PREFIXSET.put("འ", "v");
 	}
 	
 	public static Map<String, String> SUPERSCRIPTSET = new HashMap<String, String>();
 	static{
-		SUPERSCRIPTSET.put("ར", "f62");
-		SUPERSCRIPTSET.put("ལ", "f63");
-		SUPERSCRIPTSET.put("ས", "f66");
+		SUPERSCRIPTSET.put("ར", "r");
+		SUPERSCRIPTSET.put("ལ", "l");
+		SUPERSCRIPTSET.put("ས", "s");
 	}
 	
 	public static Map<String, String> VOWELSET= new HashMap<String, String>();
