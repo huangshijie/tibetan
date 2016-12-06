@@ -10,6 +10,20 @@
 		<result property="interpretation" column="interpretation" />
 		<result property="interpretationExample" column="interpretationExample" />
 	</resultMap>
+	
+	<select id="findInterpretationEntityLike" resultMap="Interpretation" parameterType="java.lang.String">
+		<bind name="pattern" value="'%'+ _parameter +'%'"/>
+		SELECT 
+			t.ID,
+			t.RID,
+			t.languageCode,
+			t.languageDes,
+			t.interpretation,
+			t.interpretationExample
+		FROM interpretation t 
+		WHERE t.interpretation LIKE #{pattern};
+	</select>
+	
 	<select id="findInterpretationEntityById" resultMap="Interpretation">
 		SELECT 
 			t.ID,
@@ -17,7 +31,7 @@
 			t.languageCode,
 			t.languageDes,
 			t.interpretation,
-			t.interpretationExample,
+			t.interpretationExample
 		FROM interpretation t 
 		WHERE t.id = #{id}
 	</select>

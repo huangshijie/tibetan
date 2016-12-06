@@ -16,8 +16,6 @@ public class BasewordController {
 	@Autowired
 	BasewordService basewordSerice;
 	
-
-	
 	@RequestMapping(value = "/indexHTML",method = RequestMethod.GET)
 	public String getIndexHTML(Model model){
 		return "index";
@@ -36,10 +34,4 @@ public class BasewordController {
 		model.addAttribute("data", s);
 		return "transcriptions";
 	}
-	
-	@RequestMapping(value = "/searchdetial",method = RequestMethod.GET)
-	public String getSearchDetial(Model model){
-		return "searchdetial";
-	}
-	
 }

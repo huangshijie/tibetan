@@ -3,7 +3,6 @@ package com.huang.TibetanLibrary.web;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +29,18 @@ public class TibetanLibraryController {
 		return "uploadFile";
 	}
 	
+	@RequestMapping(value = "/searchdetialHTML",method = RequestMethod.GET)
+	public String getSearchDetialHTML(){
+		
+		return "searchdetial";
+	}
+	
+	@RequestMapping(value = "/searchdetial",method = RequestMethod.POST)
+	public String getSearchDetial(@RequestParam String searchWord, Model model){
+		model.addAttribute("data", tibeService.getTibetanTranslateEntry(searchWord));
+		return "searchdetial";
+	}
+	
 	@RequestMapping(value = "/uploadTibetanLibraryFile",method = RequestMethod.POST)
 	@ResponseBody 
 	public String uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response){
@@ -45,8 +56,6 @@ public class TibetanLibraryController {
                 }
                 
                 File uploadFile = new File(fileSourcePath, file.getOriginalFilename());
-                
-                OutputStreamWriter writerStream = new OutputStreamWriter(new FileOutputStream(uploadFile),"UTF-8");
                 
                 BufferedOutputStream stream =  new BufferedOutputStream(new FileOutputStream(uploadFile));  
                 stream.write(bytes);  

@@ -10,9 +10,19 @@
 		SELECT 
 			t.ID,
 			t.representationText,
-			t.transcriptionText,
+			t.transcriptionText
 		FROM tibetantranslateentry t 
 		WHERE t.id = #{id}
+	</select>
+	
+	<select id="findTibetanTranslateEntryLike" resultMap="TibetanTranslateEntry" parameterType="java.lang.String">
+		<bind name="pattern" value="'%'+ _parameter +'%'"/>
+		SELECT 
+			t.ID,
+			t.representationText,
+			t.transcriptionText
+		FROM tibetantranslateentry t 
+		WHERE t.representationText LIKE #{pattern};
 	</select>
 	
 	<insert id="insertTibetanTranslateEntry" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.TibetanTranslateEntry">

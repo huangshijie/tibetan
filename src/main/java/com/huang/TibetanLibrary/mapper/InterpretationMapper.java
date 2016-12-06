@@ -6,6 +6,8 @@ public interface InterpretationMapper {
 	
 	public Interpretation findInterpretationEntityById(long ID);
 	
+	public Interpretation findInterpretationEntityLike(String searchWord);
+	
 	public void insertInterpretationSingle(Interpretation interpretation);
 	
 }

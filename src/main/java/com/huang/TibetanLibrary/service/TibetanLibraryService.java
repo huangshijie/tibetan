@@ -30,6 +30,13 @@ public class TibetanLibraryService {
 	@Autowired
 	private PronunciationMapper pronunciationMapper;
 	
+	public TibetanTranslateEntry getTibetanTranslateEntry(String searchWord){
+		TibetanTranslateEntry result = new TibetanTranslateEntry();
+		System.out.println(interpretationMapper.findInterpretationEntityLike(searchWord)!=null);
+		System.out.println(tibetanTranslateEntryMapper.findTibetanTranslateEntryLike(searchWord)!=null);
+		return result;
+	}
+	
 	public void readTibetanLibraryXlsxFile(String path){
 		
 		try(
@@ -78,7 +85,7 @@ public class TibetanLibraryService {
 							 
 							 int exampleNum = ipNum+1;
 							 if(xssfRow.getCell(exampleNum) != null){
-								 tmpInterpretation.setInterpretation(xssfRow.getCell(exampleNum).toString());
+								 tmpInterpretation.setInterpretationExample(xssfRow.getCell(exampleNum).toString());
 							 }else{
 								 tmpInterpretation.setInterpretation("");
 							 }

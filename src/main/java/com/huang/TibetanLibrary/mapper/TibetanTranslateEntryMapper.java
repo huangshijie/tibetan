@@ -6,5 +6,7 @@ public interface TibetanTranslateEntryMapper{
 	
 	public TibetanTranslateEntry findTibetanTranslateEntryById(long ID);
 
+	public TibetanTranslateEntry findTibetanTranslateEntryLike(String searchWord);
+	
 	public void insertTibetanTranslateEntry(TibetanTranslateEntry tibetanTranslateEntry);
 }
