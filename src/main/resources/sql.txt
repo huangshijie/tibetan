@@ -1,8 +1,8 @@
 -- ----------------------------
 -- Table structure
 -- ----------------------------
-	DROP TABLE IF EXISTS Pronunciation;
-	CREATE TABLE Pronunciation(
+	DROP TABLE IF EXISTS pronunciation;
+	CREATE TABLE pronunciation(
 		ID BIGINT(20) NOT NULL AUTO_INCREMENT,
 		RID BIGINT(20) NOT NULL,
 	  languagePointCode VARCHAR(255),
@@ -12,8 +12,8 @@
 		PRIMARY KEY(ID, RID)
 	)AUTO_INCREMENT=1;
 	
-	DROP TABLE IF EXISTS Interpretation;
-	CREATE TABLE Interpretation(
+	DROP TABLE IF EXISTS interpretation;
+	CREATE TABLE interpretation(
 		ID BIGINT(20) NOT NULL AUTO_INCREMENT,
 		RID BIGINT(20) NOT NULL,
 	  languageCode VARCHAR(255),
