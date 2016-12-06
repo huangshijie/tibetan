@@ -129,7 +129,7 @@ public class SyllableStructure {
 		int radicalNum = 0;
 	    String returnStr = "";
 	    for (int i = 0; i < transferChars.size(); i++) {
-	      returnStr += FontUtil.WILLIESET.get(String.valueOf(transferChars.get(i)));
+	      returnStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)));
 	    }
 	    this.setWillieTransfer(returnStr);
 	    

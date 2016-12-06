@@ -43,14 +43,13 @@ public class TibetanLibraryController {
                 OutputStreamWriter writerStream = new OutputStreamWriter(new FileOutputStream(uploadFile),"UTF-8");
                 
                 BufferedOutputStream stream =  new BufferedOutputStream(new FileOutputStream(uploadFile));  
-                stream.write(bytes.toString().getBytes("UTF-8"));  
+                stream.write(bytes);  
                 stream.close();  
-                
                 tibeService.readTibetanLibraryXlsxFile(uploadFile.getAbsolutePath());
                 
                 return "You successfully uploaded " + file.getOriginalFilename() + " into " + file.getOriginalFilename() + "-uploaded !";  
             } catch (Exception e) {  
-                return "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage();  
+                return "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage();   
             }  
         } else {  
             return "You failed to upload " + file.getOriginalFilename() + " because the file was empty.";  

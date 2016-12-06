@@ -54,7 +54,7 @@ public class BasewordService {
 	      returnStr += "\\u" + Integer.toString(chars[i], 16);
 	      System.out.println(chars[i]);
 	      System.out.println(Integer.toHexString(chars[i]));
-	      System.out.println(FontUtil.WILLIESET.get(String.valueOf(chars[i])));
+	      System.out.println(FontUtil.WILLIESET.get(Integer.toHexString(chars[i])));
 	    }
 	    System.out.println(returnStr);
 		
