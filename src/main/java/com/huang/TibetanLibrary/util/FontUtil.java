@@ -31,6 +31,18 @@ public class FontUtil {
 		VOWELSET.put("ོ", "o");
 	}
 	
+	public static Map<String, String> VOWELUPSET= new HashMap<String, String>();
+	static{
+		VOWELUPSET.put("ི", "i");
+		VOWELUPSET.put("ེ", "e");
+		VOWELUPSET.put("ོ", "o");
+	}
+	
+	public static Map<String, String> VOWELDOWNSET= new HashMap<String, String>();
+	static{
+		VOWELDOWNSET.put("ུ", "u");
+	}
+	
 	public static Map<String, String> SUBSCRIPTSET = new HashMap<String, String>();
 	static{
 		SUBSCRIPTSET.put("འ", "v");

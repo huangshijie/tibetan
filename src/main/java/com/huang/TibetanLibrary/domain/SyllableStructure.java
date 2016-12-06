@@ -33,6 +33,8 @@ public class SyllableStructure {
 	private String superscript;
 	private String subscript;
 	private String vowelMark;
+	private String vowelUpMark;
+	private String vowelDownMark;
 	private String anusvara;
 	private String visarga;
 	private String willieTransfer;
@@ -109,7 +111,18 @@ public class SyllableStructure {
 	public void setWillieTransfer(String willieTransfer) {
 		this.willieTransfer = willieTransfer;
 	}
-	
+	public String getVowelUpMark() {
+		return vowelUpMark;
+	}
+	public void setVowelUpMark(String vowelUpMark) {
+		this.vowelUpMark = vowelUpMark;
+	}
+	public String getVowelDownMark() {
+		return vowelDownMark;
+	}
+	public void setVowelDownMark(String vowelDownMark) {
+		this.vowelDownMark = vowelDownMark;
+	}
 	public SyllableStructure(){
 		
 	}
@@ -126,38 +139,48 @@ public class SyllableStructure {
 			transferChars.add(orginalChars[i]);
 		}
 		
-		int radicalNum = 0;
 	    String returnStr = "";
 	    for (int i = 0; i < transferChars.size(); i++) {
 	      returnStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)));
 	    }
 	    this.setWillieTransfer(returnStr);
 	    
-		if(transferChars.size() == 1){
-			this.setRadical(String.valueOf(transferChars.get(0)));
-		}else if(transferChars.size() == 2){
-			this.setRadical(String.valueOf(transferChars.get(0)));
-		}else if(transferChars.size() >= 3){
+	    ArrayList<Character> transferCharsWithoutVOWEL = new ArrayList<Character>();
+	    for(int i = 0; i<transferChars.size(); i++){
+	    	if(!exitInVowelSet(transferChars.get(i))){
+	    		transferCharsWithoutVOWEL.add(transferChars.get(i));
+	    	}else{
+	    		if(exitInVowelUpSet(transferChars.get(i))){
+	    			this.setVowelUpMark(String.valueOf(transferChars.get(i)));
+	    		}else if(exitInVowelDownSet(transferChars.get(i))){
+	    			this.setVowelDownMark(String.valueOf(transferChars.get(i)));
+	    		}
+	    	}
+	    }
+	    
+		if(transferCharsWithoutVOWEL.size() == 1){
+			this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
+		}else if(transferCharsWithoutVOWEL.size() == 2){
+			this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
+		}else if(transferCharsWithoutVOWEL.size() >= 3){
 			
-			if(exitInPrefixSet(transferChars.get(0))){
-				if(exitInSuperscriptSet(transferChars.get(1))){
-					this.setRadical(String.valueOf(transferChars.get(2)));
-					radicalNum = 2;
+			if(exitInPrefixSet(transferCharsWithoutVOWEL.get(0))){
+				if(exitInSuperscriptSet(transferCharsWithoutVOWEL.get(1))){
+					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(2)));
 				}else{
-					this.setRadical(String.valueOf(transferChars.get(1)));
-					radicalNum = 1;
+					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(1)));
 				}
 			}else{
-				if(exitInSuperscriptSet(transferChars.get(0))){
-					this.setRadical(String.valueOf(transferChars.get(1)));
-					radicalNum = 1;
+				if(exitInSuperscriptSet(transferCharsWithoutVOWEL.get(0))){
+					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(1)));
 				}else{
-					this.setRadical(String.valueOf(transferChars.get(0)));
-					radicalNum = 0;
+					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
 				}
 			}
 		}
 		
+		char[] radicalChars = this.getRadical().toCharArray();
+		int radicalNum = transferChars.indexOf(radicalChars[0]);
 		int preNum = radicalNum;
 		int suNum = transferChars.size() - radicalNum - 1;
 		
@@ -294,5 +317,13 @@ public class SyllableStructure {
 	
 	public static boolean exitInSubscriptSet(char c){
 		return FontUtil.SUBSCRIPTSET.containsKey(String.valueOf(c));
+	}
+	
+	public static boolean exitInVowelUpSet(char c){
+		return FontUtil.VOWELUPSET.containsKey(String.valueOf(c));
+	}
+	
+	public static boolean exitInVowelDownSet(char c){
+		return FontUtil.VOWELDOWNSET.containsKey(String.valueOf(c));
 	}
 }
