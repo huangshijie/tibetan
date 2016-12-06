@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +32,12 @@ public class TibetanLibraryController {
 	
 	@RequestMapping(value = "/uploadTibetanLibraryFile",method = RequestMethod.POST)
 	@ResponseBody 
-	public String uploadFile(@RequestParam("file") MultipartFile file){
+	public String uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response){
+		
 		if (!file.isEmpty()) {  
             try {  
+            	request.setCharacterEncoding("UTF-8");
+
                 byte[] bytes = file.getBytes();  
                 File fileSourcePath = new File("C:/upload"); 
                 if (!fileSourcePath.exists()) {
