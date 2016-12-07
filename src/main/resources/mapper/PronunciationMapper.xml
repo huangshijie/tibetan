@@ -11,16 +11,28 @@
 		<result property="pronunciationIPA" column="pronunciationIPA" />
 	</resultMap>
 	
-	<select id="findPronunciationEntityById" resultMap="Pronunciation">
+	<select id="findPronunciationEntityById" resultMap="Pronunciation" parameterType="java.lang.Long">
 		SELECT 
 			t.ID,
 			t.RID,
 			t.languagePointCode,
 			t.languagePointDes,
 			t.pronunciation,
-			t.pronunciationIPA,
+			t.pronunciationIPA
 		FROM pronunciation t 
 		WHERE t.id = #{id}
+	</select>
+	
+	<select id="findPronunciationEntitysByRId" resultMap="Pronunciation" parameterType="java.lang.Long">
+		SELECT 
+			t.ID,
+			t.RID,
+			t.languagePointCode,
+			t.languagePointDes,
+			t.pronunciation,
+			t.pronunciationIPA
+		FROM pronunciation t 
+		WHERE t.RID = #{id}
 	</select>
 	
 	<insert id="insertPronunciationSingle" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.Pronunciation">

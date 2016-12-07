@@ -3,6 +3,7 @@ package com.huang.TibetanLibrary.service;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -31,9 +32,49 @@ public class TibetanLibraryService {
 	private PronunciationMapper pronunciationMapper;
 	
 	public TibetanTranslateEntry getTibetanTranslateEntry(String searchWord){
-		TibetanTranslateEntry result = new TibetanTranslateEntry();
-		System.out.println(interpretationMapper.findInterpretationEntityLike(searchWord)!=null);
-		System.out.println(tibetanTranslateEntryMapper.findTibetanTranslateEntryLike(searchWord)!=null);
+		
+		ArrayList<Interpretation> interpretationList= interpretationMapper.findInterpretationEntityLike(searchWord);
+		ArrayList<TibetanTranslateEntry> tibetanTranslateEntryList= tibetanTranslateEntryMapper.findTibetanTranslateEntryLike(searchWord);
+		ArrayList<TibetanTranslateEntry> resultList = new ArrayList<TibetanTranslateEntry>();
+		
+		for(int i = 0; i < interpretationList.size(); i++){
+			long id = interpretationList.get(i).getRID();
+			TibetanTranslateEntry tmp = tibetanTranslateEntryMapper.findTibetanTranslateEntryById(id);
+			resultList.add(getTibetanTranslateEntryByRID(id, tmp));
+		}
+		
+		for(int i = 0; i < tibetanTranslateEntryList.size(); i++){
+			long id = tibetanTranslateEntryList.get(i).getID();
+			resultList.add(getTibetanTranslateEntryByRID(id, tibetanTranslateEntryList.get(i)));
+		}
+		
+		TibetanTranslateEntry result = resultList.size()!=0?resultList.get(0):new TibetanTranslateEntry();
+		
+		return result;
+	}
+	
+	public TibetanTranslateEntry getTibetanTranslateEntryByRID(long RID, TibetanTranslateEntry tmp){
+		
+		TibetanTranslateEntry result = tmp;
+		
+		ArrayList<Interpretation> tibetanInterpretationList= interpretationMapper.findTibetanInterpretationEntityByRId(RID);
+		ArrayList<Interpretation> ChineseInterpretationList= interpretationMapper.findChineseInterpretationEntityByRId(RID);
+		
+		ArrayList<Pronunciation> pronunciationList= pronunciationMapper.findPronunciationEntitysByRId(RID);
+		result.setLanguagePoinPronunciation(pronunciationList);
+		
+		for(Interpretation entry : tibetanInterpretationList){
+			if(!(entry.getInterpretation().length()==0&&entry.getInterpretationExample().length()==0)){
+				result.getTibetanInterpretation().add(entry);
+			}
+		}
+		
+		for(Interpretation entry : ChineseInterpretationList){
+			if(!(entry.getInterpretation().length()==0&&entry.getInterpretationExample().length()==0)){
+				result.getChineseInterpretation().add(entry);
+			}
+		}
+		
 		return result;
 	}
 	

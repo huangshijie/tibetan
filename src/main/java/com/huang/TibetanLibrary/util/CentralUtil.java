@@ -8,9 +8,9 @@ public class CentralUtil {
 	
 	public static ArrayList<LanguagePoint> LANGUAGEPOINTLIST = new ArrayList<LanguagePoint>();
 	static{
-		LANGUAGEPOINTLIST.add(new LanguagePoint("AMDO", "amdo"));
-		LANGUAGEPOINTLIST.add(new LanguagePoint("KANG", "kang"));
-		LANGUAGEPOINTLIST.add(new LanguagePoint("WEIZANG", "weizang"));
+		LANGUAGEPOINTLIST.add(new LanguagePoint("AMDO", "安多"));
+		LANGUAGEPOINTLIST.add(new LanguagePoint("KANG", "康巴"));
+		LANGUAGEPOINTLIST.add(new LanguagePoint("WEIZANG", "拉萨"));
 	}
 	
 	public static void main(String[] args){
