@@ -113,8 +113,8 @@ public class FontUtil {
 		WILLIESET.put("f40", "k");
 		WILLIESET.put("f41", "kh");
 		WILLIESET.put("f42", "ɡ");
-		WILLIESET.put("f43", "gh");
-		WILLIESET.put("f44", "ng");
+		WILLIESET.put("f43", "ɡh");
+		WILLIESET.put("f44", "nɡ");
 		WILLIESET.put("f45", "c");
 		WILLIESET.put("f46", "ch");
 		WILLIESET.put("f47", "j");
@@ -154,9 +154,9 @@ public class FontUtil {
 		WILLIESET.put("f7c", "o");
 		WILLIESET.put("f90", "k");
 		WILLIESET.put("f91", "kh");
-		WILLIESET.put("f92", "g");
-		WILLIESET.put("f93", "gh");
-		WILLIESET.put("f94", "ng");
+		WILLIESET.put("f92", "ɡ");
+		WILLIESET.put("f93", "ɡh");
+		WILLIESET.put("f94", "nɡ");
 		WILLIESET.put("f95", "c");
 		WILLIESET.put("f96", "ch");
 		WILLIESET.put("f97", "j");
@@ -385,7 +385,7 @@ public class FontUtil {
 		EXHAUSTIVESET.add("bsny");
 		EXHAUSTIVESET.add("t");
 		EXHAUSTIVESET.add("tr");
-		EXHAUSTIVESET.add("gt");
+		EXHAUSTIVESET.add("ɡt");
 		EXHAUSTIVESET.add("bt");
 		EXHAUSTIVESET.add("rt");
 		EXHAUSTIVESET.add("lt");
