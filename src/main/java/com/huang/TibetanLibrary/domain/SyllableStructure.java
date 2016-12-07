@@ -198,8 +198,8 @@ public class SyllableStructure {
 		
 		if(suNum == 2){
 			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
-				String combinStr = FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum+1))) 
-											+ FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum+2)));
+				String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum))) 
+											+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum+1)));
 				
 				if(findInExhaustiveSet(combinStr)){
 					if(exitInVowelSet(transferChars.get(radicalNum+2))){
@@ -227,8 +227,10 @@ public class SyllableStructure {
 		
 		if(suNum == 3){
 			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
-				String combinStr = FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum))) 
-						+ FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum+1)));
+				
+				String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum))) 
+						+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum+1)));
+				
 				if(findInExhaustiveSet(combinStr)){
 					if(exitInVowelSet(transferChars.get(radicalNum+2))){
 						this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));

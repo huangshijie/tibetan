@@ -7,6 +7,9 @@ import java.util.Set;
 
 public class FontUtil {
 	
+	/**
+	 * 前加字
+	 */
 	public static Map<String, String>  PREFIXSET = new HashMap<String, String>();
 	static{
 		PREFIXSET.put("ག", "ɡ");
@@ -16,6 +19,9 @@ public class FontUtil {
 		PREFIXSET.put("འ", "v");
 	}
 	
+	/**
+	 * 上加字
+	 */
 	public static Map<String, String> SUPERSCRIPTSET = new HashMap<String, String>();
 	static{
 		SUPERSCRIPTSET.put("ར", "r");
@@ -23,6 +29,9 @@ public class FontUtil {
 		SUPERSCRIPTSET.put("ས", "s");
 	}
 	
+	/**
+	 * 
+	 */
 	public static Map<String, String> VOWELSET= new HashMap<String, String>();
 	static{
 		VOWELSET.put("ི", "i");
@@ -43,6 +52,9 @@ public class FontUtil {
 		VOWELDOWNSET.put("ུ", "u");
 	}
 	
+	/**
+	 * 下加字
+	 */
 	public static Map<String, String> SUBSCRIPTSET = new HashMap<String, String>();
 	static{
 		SUBSCRIPTSET.put("འ", "v");
@@ -50,6 +62,7 @@ public class FontUtil {
 		SUBSCRIPTSET.put("ར", "r");
 		SUBSCRIPTSET.put("ལ", "l");
 		SUBSCRIPTSET.put("ཝ", "w");
+		SUBSCRIPTSET.put("ྱ", "y");
 		SUBSCRIPTSET.put("གྲྷ", "");
 	}
 	
