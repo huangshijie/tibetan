@@ -151,8 +151,10 @@ public class SyllableStructure {
 	    		transferCharsWithoutVOWEL.add(transferChars.get(i));
 	    	}else{
 	    		if(exitInVowelUpSet(transferChars.get(i))){
+	    			this.setVowelMark(String.valueOf(transferChars.get(i)));
 	    			this.setVowelUpMark(String.valueOf(transferChars.get(i)));
 	    		}else if(exitInVowelDownSet(transferChars.get(i))){
+	    			this.setVowelMark(String.valueOf(transferChars.get(i)));
 	    			this.setVowelDownMark(String.valueOf(transferChars.get(i)));
 	    		}
 	    	}
@@ -197,6 +199,9 @@ public class SyllableStructure {
 		}
 		
 		if(suNum == 2){
+			
+			System.out.println(transferChars.get(radicalNum+1));
+			
 			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
 				String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum))) 
 											+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum+1)));
@@ -262,8 +267,8 @@ public class SyllableStructure {
 		
 		if(preNum == 1){
 			if(exitInPrefixSet(transferChars.get(0))){
-				String combinStr = FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(0))) 
-						+ FontUtil.INTERNATIONALPHONETICALPHABETSET.get(String.valueOf(transferChars.get(radicalNum)));
+				String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(0))) 
+						+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum)));
 				if(findInExhaustiveSet(combinStr)){
 					this.setPrefix(String.valueOf(transferChars.get(0)));
 				}else{
@@ -327,5 +332,9 @@ public class SyllableStructure {
 	
 	public static boolean exitInVowelDownSet(char c){
 		return FontUtil.VOWELDOWNSET.containsKey(String.valueOf(c));
+	}
+	
+	public static void main(String[] agrs){
+		System.out.println(findInExhaustiveSet("ɡzh"));
 	}
 }

@@ -24,7 +24,7 @@ public class BasewordService {
 		
 //		BasewordService s = new BasewordService();
 		
-		String cn = "བརྒྱུད།";
+		String cn = "གྲིབ";
 		
 //		String cn1 = "བསྒྲིགས";
 //		String cn2 = "དང་།";
