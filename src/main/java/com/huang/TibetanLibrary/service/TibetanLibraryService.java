@@ -128,7 +128,7 @@ public class TibetanLibraryService {
 							 if(xssfRow.getCell(exampleNum) != null){
 								 tmpInterpretation.setInterpretationExample(xssfRow.getCell(exampleNum).toString());
 							 }else{
-								 tmpInterpretation.setInterpretation("");
+								 tmpInterpretation.setInterpretationExample("");
 							 }
 							 
 							 interpretationMapper.insertInterpretationSingle(tmpInterpretation);
