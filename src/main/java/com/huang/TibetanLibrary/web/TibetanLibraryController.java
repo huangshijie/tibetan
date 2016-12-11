@@ -22,23 +22,60 @@ import com.huang.TibetanLibrary.service.TibetanLibraryService;
 public class TibetanLibraryController {
 	
 	@Autowired
-	TibetanLibraryService tibeService;
+	TibetanLibraryService tibetanService;
 	
 	@RequestMapping(value = "/uploadFileHTML",method = RequestMethod.GET)
 	public String getUploadFileHTML(Model model){
 		return "uploadFile";
 	}
 	
+	@RequestMapping(value = "/uploadSyllableClusterFileHTML",method = RequestMethod.GET)
+	public String getuploadSyllableClusterFileHTML(Model model){
+		return "uploadSyllableClusterFile";
+	}
+	
 	@RequestMapping(value = "/searchdetialHTML",method = RequestMethod.GET)
 	public String getSearchDetialHTML(){
-		
 		return "searchdetial";
 	}
 	
 	@RequestMapping(value = "/searchdetial",method = RequestMethod.POST)
 	public String getSearchDetial(@RequestParam String searchWord, Model model){
-		model.addAttribute("data", tibeService.getTibetanTranslateEntry(searchWord));
+		model.addAttribute("data", tibetanService.getTibetanTranslateEntry(searchWord));
 		return "searchdetial";
+	}
+	
+	@RequestMapping(value = "/uploadSyllableClusterFile",method = RequestMethod.POST)
+	public String getuploadSyllableClusterFile(@RequestParam("file") MultipartFile file, @RequestParam String locationCode, 
+			@RequestParam String locationDes, Model model,HttpServletRequest request, HttpServletResponse response){
+		
+		if (!file.isEmpty()) {  
+            try {  
+            	request.setCharacterEncoding("UTF-8");
+
+                byte[] bytes = file.getBytes();  
+                File fileSourcePath = new File("C:/upload"); 
+                if (!fileSourcePath.exists()) {
+                    fileSourcePath.mkdirs();
+                }
+                
+                File uploadFile = new File(fileSourcePath, file.getOriginalFilename());
+                
+                BufferedOutputStream stream =  new BufferedOutputStream(new FileOutputStream(uploadFile));  
+                stream.write(bytes);  
+                stream.close();  
+                tibetanService.readSyllableClusterXlsxFile(uploadFile.getAbsolutePath());
+                
+                model.addAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + " into " + file.getOriginalFilename() + "-uploaded !");  
+                return "uploadSyllableClusterFile";
+            } catch (Exception e) {  
+                model.addAttribute("message", "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());  
+                return "uploadSyllableClusterFile";
+            }  
+        } else {  
+            model.addAttribute("message", "You failed to upload " + file.getOriginalFilename() + " because the file was empty.");  
+            return "uploadSyllableClusterFile";
+        } 
 	}
 	
 	@RequestMapping(value = "/uploadTibetanLibraryFile",method = RequestMethod.POST)
@@ -60,7 +97,7 @@ public class TibetanLibraryController {
                 BufferedOutputStream stream =  new BufferedOutputStream(new FileOutputStream(uploadFile));  
                 stream.write(bytes);  
                 stream.close();  
-                tibeService.readTibetanLibraryXlsxFile(uploadFile.getAbsolutePath());
+                tibetanService.readTibetanLibraryXlsxFile(uploadFile.getAbsolutePath());
                 
                 return "You successfully uploaded " + file.getOriginalFilename() + " into " + file.getOriginalFilename() + "-uploaded !";  
             } catch (Exception e) {  

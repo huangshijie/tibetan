@@ -22,7 +22,7 @@ import com.huang.TibetanLibrary.util.FontUtil;
  * @param visarga				止韵点 ;
  * @param willieTransfer		威力转写 ;
  */
-public class SyllableStructure {
+public class TibetanWordStructure {
 	
 	private long ID;
 	private String representationText;
@@ -123,11 +123,11 @@ public class SyllableStructure {
 	public void setVowelDownMark(String vowelDownMark) {
 		this.vowelDownMark = vowelDownMark;
 	}
-	public SyllableStructure(){
+	public TibetanWordStructure(){
 		
 	}
 	
-	public SyllableStructure(String originalWord){
+	public TibetanWordStructure(String originalWord){
 		this.setRepresentationText(originalWord);
 		
 		char[] orginalChars = originalWord.toCharArray();

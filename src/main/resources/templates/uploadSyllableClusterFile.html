@@ -17,12 +17,28 @@
 				<div class="index search row">
 				</div>
 				<div class="index search row">
-					<form method="POST" enctype="multipart/form-data" action="/uploadTibetanLibraryFile"> 
-						<div class="col-md-6">
-							<p>上传藏文字典文件: <input type="file" name="file" style="float: right;"/></p>
+					<form method="POST" enctype="multipart/form-data" action="/uploadSyllableClusterFile"> 
+						<div class="row">
+							<div class="col-md-6">
+								<p>上传方言调查字表: <input type="file" name="file" style="float: right;"/></p>
+							</div>
+							
 						</div>
-						<div class="col-md-6">
-							<input type="submit" value="上传" style="float: left;"/>
+						
+						<div class="row">
+							<div class="col-md-6">
+								<p>请输入地点代号: <input type="text" name="locationCode" id="locationCode" style="float: right;"/></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<p>请输入地点详情: <input type="text" name="locationDes" id="locationDes" style="float: right;"/></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<input type="submit" value="上传" style="float: left;"/>
+							</div>
 						</div>
 					</form>
 				</div>

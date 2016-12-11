@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.huang.TibetanLibrary.domain.SyllableStructure;
+import com.huang.TibetanLibrary.domain.TibetanWordStructure;
 import com.huang.TibetanLibrary.util.FontUtil;
 
 @Service
@@ -15,8 +15,8 @@ public class BasewordService {
 //	@Autowired
 //	private BasewordMapper basewordMapper;
 	
-	public SyllableStructure getWordSplit(String originalWord){
-		SyllableStructure result = new SyllableStructure(originalWord);
+	public TibetanWordStructure getWordSplit(String originalWord){
+		TibetanWordStructure result = new TibetanWordStructure(originalWord);
 		return result;
 	}
 	

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.huang.TibetanLibrary.mapper.BasewordMapper">
 	
-	<resultMap type="com.huang.TibetanLibrary.domain.SyllableStructure" id="syllableStructure">
+	<resultMap type="com.huang.TibetanLibrary.domain.TibetanWordStructure" id="tibetanWordStructure">
 		<result property="representationText" column="representationText" />
 		<result property="radical" column="radical" />
 		<result property="prefix" column="prefix" />

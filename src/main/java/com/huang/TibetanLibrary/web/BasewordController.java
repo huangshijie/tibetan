@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.huang.TibetanLibrary.domain.SyllableStructure;
+import com.huang.TibetanLibrary.domain.TibetanWordStructure;
 import com.huang.TibetanLibrary.service.BasewordService;
 
 @Controller
@@ -23,14 +23,14 @@ public class BasewordController {
 	
 	@RequestMapping(value = "/transcriptionsHTML",method = RequestMethod.GET)
 	public String getTranscriptions(Model model){
-		SyllableStructure s = new SyllableStructure();
+		TibetanWordStructure s = new TibetanWordStructure();
 		model.addAttribute("data", s);
 		return "transcriptions";
 	}
 	
 	@RequestMapping(value = "/getBaseWord", method = {RequestMethod.POST})
 	public String getBaseWord(@RequestParam String tibetanWord, @RequestParam String willeWord,Model model){
-		SyllableStructure s = basewordSerice.getWordSplit(tibetanWord);
+		TibetanWordStructure s = basewordSerice.getWordSplit(tibetanWord);
 		model.addAttribute("data", s);
 		return "transcriptions";
 	}
