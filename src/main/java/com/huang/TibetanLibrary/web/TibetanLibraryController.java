@@ -3,6 +3,7 @@ package com.huang.TibetanLibrary.web;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.huang.TibetanLibrary.domain.DialectDetial;
 import com.huang.TibetanLibrary.service.TibetanLibraryService;
 
 @Controller
@@ -31,6 +33,8 @@ public class TibetanLibraryController {
 	
 	@RequestMapping(value = "/uploadSyllableClusterFileHTML",method = RequestMethod.GET)
 	public String getuploadSyllableClusterFileHTML(Model model){
+		ArrayList<DialectDetial> dialectDetialList= new ArrayList<DialectDetial>();
+		model.addAttribute("dialectDetialList", dialectDetialList);
 		return "uploadSyllableClusterFile";
 	}
 	

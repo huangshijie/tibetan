@@ -13,10 +13,10 @@
 	<body>
 		<div th:include="header :: header"></div>
 		<div class="wrap">
-			<div class="container index search">
-				<div class="index search row">
+			<div class="container index search" style="height: 100%;">
+				<div class="index search row" style="height: 60px;">
 				</div>
-				<div class="index search row">
+				<div class="index search row" style="height: 60px;">
 					<form method="POST" enctype="multipart/form-data" action="/uploadSyllableClusterFile"> 
 						<div class="row">
 							<div class="col-md-6">
@@ -42,8 +42,29 @@
 						</div>
 					</form>
 				</div>
-				<div class="index search row"></div>
-				<div class="index search row"></div>
+				
+				<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
+				
+				<div>
+					<table border="1" class="mytable" style=" width: 1000px; height: 50px;">
+							<tr style="font-size: 19px">
+								<td>方言ID</td>
+								<td>方言代号</td>
+								<td>方言描述</td>
+								<td>上传日期</td>
+								<td>再后加字</td>
+								<td>操作</td>
+							</tr>
+							<tr th:each="dialectDetial : ${dialectDetialList}">
+								<td th:text="${dialectDetial.ID}"> </td>
+								<td th:text="${dialectDetial.locationCode}"> </td>
+								<td th:text="${dialectDetial.locationDes}"> </td>
+								<td th:text="${dialectDetial.ddtimestamp}"> </td>
+								<td> </td>
+							</tr>
+						</table>
+				</div>
+				<div class="index search row" style="height: 60px;"></div>
 			</div>
 		</div>
 		<footer>
