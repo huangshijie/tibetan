@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huang.TibetanLibrary.mapper.DialectDetialMapper">
+	
+	<resultMap type="com.huang.TibetanLibrary.domain.DialectDetial" id="DialectDetial">
+		<result property="ID" column="ID" />
+		<result property="ddtimestamp" column="ddtimestamp" />
+		<result property="locationCode" column="locationCode" />
+		<result property="locationDes" column="locationDes" />
+	</resultMap>
+	
+	<select id="findAllDialectDetials" resultMap="DialectDetial">
+		SELECT 
+			t.ID, 
+			t.ddtimestamp, 
+			t.locationCode, 
+			t.locationDes 
+		FROM dialectdetial t
+	</select>
+	
+	<insert id="insertDialectDetial" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.DialectDetial">
+		INSERT INTO dialectdetial(
+			ddtimestamp,
+			locationCode,
+			locationDes
+		)
+		VALUES(
+			#{ddtimestamp},
+			#{locationCode},
+			#{locationDes}
+		)
+	</insert>
+</mapper>

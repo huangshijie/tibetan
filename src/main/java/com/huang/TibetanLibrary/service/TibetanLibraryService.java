@@ -11,11 +11,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.huang.TibetanLibrary.domain.DialectDetial;
 import com.huang.TibetanLibrary.domain.Interpretation;
 import com.huang.TibetanLibrary.domain.Pronunciation;
+import com.huang.TibetanLibrary.domain.SyllableCluster;
 import com.huang.TibetanLibrary.domain.TibetanTranslateEntry;
+import com.huang.TibetanLibrary.mapper.DialectDetialMapper;
 import com.huang.TibetanLibrary.mapper.InterpretationMapper;
 import com.huang.TibetanLibrary.mapper.PronunciationMapper;
+import com.huang.TibetanLibrary.mapper.SyllableClusterMapper;
 import com.huang.TibetanLibrary.mapper.TibetanTranslateEntryMapper;
 import com.huang.TibetanLibrary.util.CentralUtil;
 
@@ -30,6 +34,12 @@ public class TibetanLibraryService {
 	
 	@Autowired
 	private PronunciationMapper pronunciationMapper;
+	
+	@Autowired
+	private DialectDetialMapper dialectDetialMapper;
+	
+	@Autowired
+	private SyllableClusterMapper syllableClusterMapper;
 	
 	public TibetanTranslateEntry getTibetanTranslateEntry(String searchWord){
 		
@@ -169,11 +179,21 @@ public class TibetanLibraryService {
 		
 	}
 	
-	public void readSyllableClusterXlsxFile(String absolutePath) {
+	public void readSyllableClusterXlsxFile(String absolutePath, String locationCode, String locationDes) {
 		try(
 				InputStream is = new FileInputStream(absolutePath);
 				XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
 			){
+				long currentTimeMillis = System.currentTimeMillis();
+				DialectDetial dialectDetial= new DialectDetial();
+				
+				dialectDetial.setDdtimestamp(currentTimeMillis);
+				dialectDetial.setLocationCode(locationCode);
+				dialectDetial.setLocationDes(locationDes);
+				
+				dialectDetialMapper.insertDialectDetial(dialectDetial);
+				
+				long DID = dialectDetial.getID();
 				
 				for(int numSheet = 0; numSheet < xssfWorkbook.getNumberOfSheets(); numSheet++){
 					 XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(numSheet);
@@ -181,48 +201,23 @@ public class TibetanLibraryService {
 					 for(int numRow = 1; numRow < xssfSheet.getLastRowNum(); numRow++){
 						 XSSFRow xssfRow = xssfSheet.getRow(numRow);
 						 if (xssfRow != null) {
-							 TibetanTranslateEntry tmpEntry = new TibetanTranslateEntry();
-							 if(xssfRow.getCell(1) != null){
-								 tmpEntry.setRepresentationText(xssfRow.getCell(1).toString());
-							 }else{
-								 tmpEntry.setRepresentationText("");
-							 }
 							 
-							 if(xssfRow.getCell(2) != null){
-								 tmpEntry.setTranscriptionText(xssfRow.getCell(2).toString());
-							 }else{
-								 tmpEntry.setTranscriptionText("");
-							 }
-							 tibetanTranslateEntryMapper.insertTibetanTranslateEntry(tmpEntry);
-							 long RID = tmpEntry.getID();
+							 SyllableCluster tmpSyllableCluster = new SyllableCluster();
+							 tmpSyllableCluster.setDID(DID);
 							 
-							 for(int ipNum = 3; ipNum < 42; ipNum += 2){
-								 Interpretation tmpInterpretation= new Interpretation();
-								 tmpInterpretation.setRID(RID);
-								 
-								 if(ipNum < 22){
-									 tmpInterpretation.setLanguageCode("TI");
-									 tmpInterpretation.setLanguageDes("Tibetan");
-								 }else{
-									 tmpInterpretation.setLanguageCode("ZH");
-									 tmpInterpretation.setLanguageDes("Chinese");
-								 }
-								 
-								 if(xssfRow.getCell(ipNum) != null){
-									 tmpInterpretation.setInterpretation(xssfRow.getCell(ipNum).toString());
-								 }else{
-									 tmpInterpretation.setInterpretation("");
-								 }
-								 
-								 int exampleNum = ipNum+1;
-								 if(xssfRow.getCell(exampleNum) != null){
-									 tmpInterpretation.setInterpretationExample(xssfRow.getCell(exampleNum).toString());
-								 }else{
-									 tmpInterpretation.setInterpretationExample("");
-								 }
-								 
-								 interpretationMapper.insertInterpretationSingle(tmpInterpretation);
-							 }
+							 if(xssfRow.getCell(1) != null){tmpSyllableCluster.setTranslationText(xssfRow.getCell(1).toString());}else{tmpSyllableCluster.setTranslationText("");}
+							 if(xssfRow.getCell(2) != null){tmpSyllableCluster.setRepresentationText(xssfRow.getCell(2).toString());}else{tmpSyllableCluster.setRepresentationText("");}
+							 if(xssfRow.getCell(4) != null){tmpSyllableCluster.setTranscriptionText(xssfRow.getCell(4).toString());}else{tmpSyllableCluster.setTranscriptionText("");}							 
+							 
+							 if(xssfRow.getCell(6) != null){tmpSyllableCluster.setPrimaryStressedPosition(xssfRow.getCell(6).toString());}else{tmpSyllableCluster.setPrimaryStressedPosition("");}
+							 if(xssfRow.getCell(7) != null){tmpSyllableCluster.setSecondaryBtressedPosition(xssfRow.getCell(7).toString());}else{tmpSyllableCluster.setSecondaryBtressedPosition("");}
+							 
+							 syllableClusterMapper.insertSyllableClusterSingle(tmpSyllableCluster);
+							 
+							 long SID = tmpSyllableCluster.getID();
+							 
+							 if(xssfRow.getCell(5) != null){tmpSyllableCluster.setSyllablesCount(Integer.valueOf(xssfRow.getCell(5).toString()));}else{tmpSyllableCluster.setSyllablesCount(0);}
+							 
 						 }
 					 }
 				} 

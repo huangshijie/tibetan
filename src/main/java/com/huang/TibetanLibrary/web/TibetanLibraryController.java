@@ -64,7 +64,7 @@ public class TibetanLibraryController {
                 BufferedOutputStream stream =  new BufferedOutputStream(new FileOutputStream(uploadFile));  
                 stream.write(bytes);  
                 stream.close();  
-                tibetanService.readSyllableClusterXlsxFile(uploadFile.getAbsolutePath());
+                tibetanService.readSyllableClusterXlsxFile(uploadFile.getAbsolutePath(), locationCode, locationDes);
                 
                 model.addAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + " into " + file.getOriginalFilename() + "-uploaded !");  
                 return "uploadSyllableClusterFile";
@@ -80,7 +80,7 @@ public class TibetanLibraryController {
 	
 	@RequestMapping(value = "/uploadTibetanLibraryFile",method = RequestMethod.POST)
 	@ResponseBody 
-	public String uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response){
+	public String uploadTibetanLibraryFile(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response){
 		
 		if (!file.isEmpty()) {  
             try {  

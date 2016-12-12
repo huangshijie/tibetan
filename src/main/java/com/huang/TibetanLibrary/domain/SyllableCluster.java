@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class SyllableCluster {
 	private long ID;
-	private String locationCode;
-	private String locationDes;
+	private long DID;
+	private DialectDetial dialectDetial;
 	private String translationText;
 	private String representationText;
 	private String wltranscriptionText;
@@ -21,17 +21,17 @@ public class SyllableCluster {
 	public void setID(long iD) {
 		ID = iD;
 	}
-	public String getLocationCode() {
-		return locationCode;
+	public long getDID() {
+		return DID;
 	}
-	public void setLocationCode(String locationCode) {
-		this.locationCode = locationCode;
+	public void setDID(long dID) {
+		DID = dID;
 	}
-	public String getLocationDes() {
-		return locationDes;
+	public DialectDetial getDialectDetial() {
+		return dialectDetial;
 	}
-	public void setLocationDes(String locationDes) {
-		this.locationDes = locationDes;
+	public void setDialectDetial(DialectDetial dialectDetial) {
+		this.dialectDetial = dialectDetial;
 	}
 	public String getTranslationText() {
 		return translationText;
