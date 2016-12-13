@@ -14,6 +14,15 @@
 		<div th:include="header :: header"></div>
 		
 		<div class="wrap" style="width: 80%; margin: 30px auto;">
+		
+			<div class="container">
+				<div class="navigation-strip effect2">
+					<div class="navigation">
+							<p style="text-align: center;font-size: 33px;font-weight: normal;color: #333;">藏汉翻译详解</p>
+					</div>
+				</div>
+			</div>
+		
 			<div class="container">
 				<div class="content" style="padding:20px;border-radius: 4px; box-shadow: 0 0 30px rgba(0, 0, 0, 0.47);">
 					<div class="tab_with_slider">
@@ -25,26 +34,30 @@
 							<div class="panel-group" id="accordion">
 								<div class="panel panel-default">
 									<div class="panel-heading" style="padding-left: 50px;">
-										<h4 class="panel-title"><strong>藏文翻译：</strong></h4>
+										<h4 class="panel-title"><strong>藏语释义：</strong></h4>
 									</div>
 									<div id="collapseOne" class="panel-collapse collapse in">
-										<div class="panel-body" th:each="entry:${data.tibetanInterpretation}">
-											<p>释义：<span  th:text="${entry.interpretation}"></span>;</p>
-											<p>举例：<span th:text="${entry.interpretationExample}"></span>;</p>
-										</div>
+										<table>
+											<tr th:each="entry:${data.tibetanInterpretation}">
+												<td><p><span>释义：</span><span th:text="${entry.interpretation}"></span></p></td>
+												<td><p><span>举例：</span><span th:text="${entry.interpretationExample}"></span></p></td>
+											</tr>
+										</table>
 									</div>
 								</div>
 							</div>
 							<div class="panel-group" id="accordion" >
 								<div class="panel panel-default">
 									<div class="panel-heading" style="padding-left: 50px;">
-										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><strong>汉语翻译：</strong></a></h4>
+										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><strong>汉语释义：</strong></a></h4>
 									</div>
 									<div id="collapseTwo" class="panel-collapse collapse in">
-										<div class="panel-body" th:each="entry:${data.ChineseInterpretation}">
-											<p>释义：<span th:text="${entry.interpretation}"></span>;</p>
-											<p>举例：<span th:text="${entry.interpretationExample}"></span>;</p>
-										</div>
+										<table>
+											<tr th:each="entry:${data.ChineseInterpretation}">
+												<td><p><span>释义：</span><span th:text="${entry.interpretation}"></span></p></td>
+												<td><p><span>举例：</span><span th:text="${entry.interpretationExample}"></span></p></td>
+											</tr>
+										</table>
 									</div>
 								</div>
 							</div>

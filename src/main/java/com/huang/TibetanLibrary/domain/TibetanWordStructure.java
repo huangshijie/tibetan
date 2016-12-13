@@ -166,7 +166,11 @@ public class TibetanWordStructure {
 	    	for(int i = 0; i<transferChars.size(); i++){
 	    		if(exitInVowelSet(transferChars.get(i))){
 	    			if(!String.valueOf(transferChars.get(i-1)).equals("འ")){
-	    				this.setRadical(String.valueOf(transferChars.get(i-1)));
+	    				if(exitInSubscriptSet(transferChars.get(i-1))){
+	    					this.setRadical(String.valueOf(transferChars.get(i-2)));
+	    				}else{
+	    					this.setRadical(String.valueOf(transferChars.get(i-1)));
+	    				}
 	    			}
 	    		}
 	    	}
@@ -317,6 +321,10 @@ public class TibetanWordStructure {
 		    	}
 		    }
 		    this.setWillieTransfer(updateWilleTransferStr);
+		}
+		
+		if(vowelNums==2){
+			this.setPostffix("");
 		}
 	}
 	

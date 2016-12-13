@@ -47,6 +47,7 @@ public class TibetanLibraryController {
 	@RequestMapping(value = "/Chinesesearchdetial",method = RequestMethod.POST)
 	public String getChineseSearchDetial(@RequestParam String searchWord, Model model){
 		model.addAttribute("data", tibetanService.getTibetanTranslateEntry(searchWord));
+		model.addAttribute("Chinenseword", searchWord);
 		return "Chinesesearchdetial";
 	}
 
