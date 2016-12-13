@@ -146,6 +146,7 @@ public class TibetanWordStructure {
 	    this.setWillieTransfer(returnStr);
 	    
 	    ArrayList<Character> transferCharsWithoutVOWEL = new ArrayList<Character>();
+	    int vowelNums = 0;
 	    for(int i = 0; i<transferChars.size(); i++){
 	    	if(!exitInVowelSet(transferChars.get(i))){
 	    		transferCharsWithoutVOWEL.add(transferChars.get(i));
@@ -153,33 +154,55 @@ public class TibetanWordStructure {
 	    		if(exitInVowelUpSet(transferChars.get(i))){
 	    			this.setVowelMark(String.valueOf(transferChars.get(i)));
 	    			this.setVowelUpMark(String.valueOf(transferChars.get(i)));
+	    			vowelNums++;
 	    		}else if(exitInVowelDownSet(transferChars.get(i))){
 	    			this.setVowelMark(String.valueOf(transferChars.get(i)));
 	    			this.setVowelDownMark(String.valueOf(transferChars.get(i)));
+	    			vowelNums++;
 	    		}
 	    	}
 	    }
-	    
-		if(transferCharsWithoutVOWEL.size() == 1){
-			this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
-		}else if(transferCharsWithoutVOWEL.size() == 2){
-			this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
-		}else if(transferCharsWithoutVOWEL.size() >= 3){
-			
-			if(exitInPrefixSet(transferCharsWithoutVOWEL.get(0))){
-				if(exitInSuperscriptSet(transferCharsWithoutVOWEL.get(1))){
-					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(2)));
+	    if(vowelNums>=2){
+	    	for(int i = 0; i<transferChars.size(); i++){
+	    		if(exitInVowelSet(transferChars.get(i))){
+	    			if(!String.valueOf(transferChars.get(i-1)).equals("འ")){
+	    				this.setRadical(String.valueOf(transferChars.get(i-1)));
+	    			}
+	    		}
+	    	}
+	    }else{
+	    	if(transferCharsWithoutVOWEL.size() == 1){
+				this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
+			}else if(transferCharsWithoutVOWEL.size() == 2){
+				this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
+			}else if(transferCharsWithoutVOWEL.size() == 3){
+				if(String.valueOf(transferCharsWithoutVOWEL.get(2)).equals("ས")){
+					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
+					this.setSuffix(String.valueOf(transferCharsWithoutVOWEL.get(1)));
+					this.setPostffix(String.valueOf(transferCharsWithoutVOWEL.get(2)));
 				}else{
+					this.setPrefix(String.valueOf(transferCharsWithoutVOWEL.get(0)));
 					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(1)));
+					this.setSuffix(String.valueOf(transferCharsWithoutVOWEL.get(2)));
 				}
 			}else{
-				if(exitInSuperscriptSet(transferCharsWithoutVOWEL.get(0))){
-					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(1)));
+				
+				if(exitInPrefixSet(transferCharsWithoutVOWEL.get(0))){
+					if(exitInSuperscriptSet(transferCharsWithoutVOWEL.get(1))){
+						this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(2)));
+					}else{
+						this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(1)));
+					}
 				}else{
-					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
+					if(exitInSuperscriptSet(transferCharsWithoutVOWEL.get(0))){
+						this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(1)));
+					}else{
+						this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(0)));
+					}
 				}
 			}
-		}
+	    }
+		
 		
 		char[] radicalChars = this.getRadical().toCharArray();
 		int radicalNum = transferChars.indexOf(radicalChars[0]);
@@ -283,6 +306,18 @@ public class TibetanWordStructure {
 			this.setPrefix(String.valueOf(transferChars.get(0)));
 			this.setSuperscript(String.valueOf(transferChars.get(1)));
 		}
+		
+		if(vowelNums==0){
+		    String updateWilleTransferStr = "";
+		    for (int i = 0; i < transferChars.size(); i++) {
+		    	if(String.valueOf(transferChars.get(i)).equals(this.getRadical())){
+		    		updateWilleTransferStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)))+"a";
+		    	}else{
+		    		updateWilleTransferStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)));
+		    	}
+		    }
+		    this.setWillieTransfer(updateWilleTransferStr);
+		}
 	}
 	
 	/**
@@ -308,6 +343,18 @@ public class TibetanWordStructure {
 		}
 		return result;
 		
+	}
+	
+	public static boolean checkMutliVowels(String combinStr){
+		boolean result = false;
+		String pattern = "[i o u e]v[i o u e]";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(combinStr);
+		if(m.find()){
+			result = true;
+		}
+		
+		return result;
 	}
 	
 	public static boolean exitInPrefixSet(char c){

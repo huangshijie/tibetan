@@ -38,17 +38,18 @@ public class TibetanLibraryController {
 		return "uploadSyllableClusterFile";
 	}
 	
-	@RequestMapping(value = "/searchdetialHTML",method = RequestMethod.GET)
-	public String getSearchDetialHTML(){
-		return "searchdetial";
-	}
-	
-	@RequestMapping(value = "/searchdetial",method = RequestMethod.POST)
-	public String getSearchDetial(@RequestParam String searchWord, Model model){
+	@RequestMapping(value = "/tibetansearchdetial",method = RequestMethod.POST)
+	public String getTibetanSearchDetial(@RequestParam String searchWord, Model model){
 		model.addAttribute("data", tibetanService.getTibetanTranslateEntry(searchWord));
-		return "searchdetial";
+		return "tibetansearchdetial";
 	}
 	
+	@RequestMapping(value = "/Chinesesearchdetial",method = RequestMethod.POST)
+	public String getChineseSearchDetial(@RequestParam String searchWord, Model model){
+		model.addAttribute("data", tibetanService.getTibetanTranslateEntry(searchWord));
+		return "Chinesesearchdetial";
+	}
+
 	@RequestMapping(value = "/uploadSyllableClusterFile",method = RequestMethod.POST)
 	public String getuploadSyllableClusterFile(@RequestParam("file") MultipartFile file, @RequestParam String locationCode, 
 			@RequestParam String locationDes, Model model,HttpServletRequest request, HttpServletResponse response){

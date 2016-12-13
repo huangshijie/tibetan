@@ -10,7 +10,7 @@
 		<result property="locationDes" column="locationDes" />
 	</resultMap>
 	
-	<select id="findAllDialectDetials" resultMap="DialectDetial">
+	<select id="findAllDialectDetials" resultMap="SyllableCluster">
 		SELECT 
 			t.ID, 
 			t.ddtimestamp, 
