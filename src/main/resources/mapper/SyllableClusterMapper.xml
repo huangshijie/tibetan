@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.huang.TibetanLibrary.mapper.DialectDetialMapper">
+<mapper namespace="com.huang.TibetanLibrary.mapper.SyllableClusterMapper">
 	
-	<resultMap type="com.huang.TibetanLibrary.domain.DialectDetial" id="DialectDetial">
+	<resultMap type="com.huang.TibetanLibrary.domain.SyllableCluster" id="SyllableCluster">
 		<result property="ID" column="ID" />
+		<result property="DID" column="DID" />
 		<result property="ddtimestamp" column="ddtimestamp" />
 		<result property="locationCode" column="locationCode" />
 		<result property="locationDes" column="locationDes" />
@@ -18,7 +19,7 @@
 		FROM dialectdetial t
 	</select>
 	
-	<insert id="insertDialectDetial" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.DialectDetial">
+	<insert id="insertDialectDetial" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.SyllableCluster">
 		INSERT INTO dialectdetial(
 			ddtimestamp,
 			locationCode,
