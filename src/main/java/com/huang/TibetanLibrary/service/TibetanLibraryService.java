@@ -216,7 +216,11 @@ public class TibetanLibraryService {
 							 
 							 long SID = tmpSyllableCluster.getID();
 							 
-							 if(xssfRow.getCell(5) != null){tmpSyllableCluster.setSyllablesCount(Integer.valueOf(xssfRow.getCell(5).toString()));}else{tmpSyllableCluster.setSyllablesCount(0);}
+							 if(xssfRow.getCell(3) != null){
+								 tmpSyllableCluster.setSyllablesCount(Integer.valueOf(xssfRow.getCell(5).toString()));
+							 }else{
+								 tmpSyllableCluster.setSyllablesCount(0);
+							 }
 							 
 						 }
 					 }
