@@ -8,13 +8,13 @@
 	    
 		<script type="text/javascript" src="${request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="${request.contextPath}/static/js/bootstrap.js"></script>
-		<title>Insert title here</title>
+		<title>汉藏大辞典</title>
 	</head>
 	<body>
 		<div th:include="header :: header"></div>
 		
 		<div class="wrap" style="width: 80%; margin: 30px auto;">
-			<div class="container">
+			<div class="container" style="margin-top: 50px;">
 				<div class="navigation-strip effect2">
 					<div class="navigation">
 							<p style="text-align: center;font-size: 33px;font-weight: normal;color: #333;">汉语查询详解</p>
@@ -35,7 +35,7 @@
 										<h4 class="panel-title"><strong>藏语释义：</strong></h4>
 									</div>
 									<div id="collapseOne" class="panel-collapse collapse in">
-										<table>
+										<table class="table table-hover" style="margin: 2%;width: 95%;">
 											<tr th:each="entry:${data.tibetanInterpretation}">
 												<td><p><span>释义：</span><span th:text="${entry.interpretation}"></span></p></td>
 												<td><p><span>举例：</span><span th:text="${entry.interpretationExample}"></span></p></td>

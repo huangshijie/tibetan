@@ -8,7 +8,8 @@
 	    
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<title>Insert title here</title>
+		<script type="text/javascript" src="js/searchbar.js"></script>
+		<title>汉藏大辞典</title>
 	</head>
 	<body>
 		<div th:include="header :: header"></div>
@@ -26,10 +27,10 @@
 								提供专业的藏语翻译服务
 							</p>
 							<div class="index search row">
-								<a href='javascript:void(0)' index='0' class='tab_btn curr_btn'>藏汉翻译</a><div>|</div>
-								<a href='javascript:void(0)' index='1' class='tab_btn curr_btn'>汉藏翻译</a><div>|</div>
+								<a href='javascript:void(0)' index='0' class='tab_btn curr_btn'>藏汉翻译</a>
+								<a href='javascript:void(0)' index='1' class='tab_btn'>汉藏翻译</a>
 							</div>
-							<div class="row tab_div curr_div">
+							<div class="tab_div curr_div">
 								<div class="index search row">
 							
 								</div>
@@ -38,12 +39,12 @@
 									<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="请输入您想查询的词条" style="float:left; width: 95%; height: 50px;"/>
 									</div>
 									<div class="col-md-3">
-									<input type="submit" value="查   询" style="float: left; width: 60%;" class="btn btn-primary btn-lg"/>
+									<input type="submit" value="藏 藏 查   询" style="float: left; width: 60%;" class="btn btn-primary btn-lg"/>
 									</div>
 								</form>
 							</div>
 							
-							<div class="row tab_div curr_div">
+							<div class="tab_div">
 								<div class="index search row">
 							
 								</div>
@@ -52,7 +53,7 @@
 									<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="请输入您想查询的词条" style="float:left; width: 95%; height: 50px;"/>
 									</div>
 									<div class="col-md-3">
-									<input type="submit" value="查   询" style="float: left; width: 60%;" class="btn btn-primary btn-lg"/>
+									<input type="submit" value="汉 藏 查   询" style="float: left; width: 60%;" class="btn btn-primary btn-lg"/>
 									</div>
 								</form>
 							</div>
@@ -79,7 +80,7 @@
 									</h3>
 								</div>
 								<div class="panel-body">
-									<span>藏语方言计算机处理系统简称为TDS，是对藏语方言数据库中的数据进行存储、索引等计算机处理，并作一些初步预处理，如方言材料的导入、方言材料的比较、特征提取、听取录音、语法数据查询和词典查询等自然语言处理的一个平台。是民族语言的地方变体。它替民族地区的人民群众服务。藏语方言计算机处理系统的作用是对田野调查的一手资料通过整理、加工等处理生成表格，判断方言与方言、方言与古藏文之间相互对比关系。建设该平台的主要目的是，为藏语方言研究提供准确可靠的数据，尽量简化藏语方言处理的复杂度并提高特征提取的精确性，使其更多地依赖准确的数据，从而更具科学性。</span>
+									<span style="font-size: 16px; line-height: 200%;"><span style="font-size: x-large;">藏语方言计算机处理系统</span>简称为TDS，是对藏语方言数据库中的数据进行存储、索引等计算机处理，并作一些初步预处理，如方言材料的导入、方言材料的比较、特征提取、听取录音、语法数据查询和词典查询等自然语言处理的一个平台。是民族语言的地方变体。它替民族地区的人民群众服务。藏语方言计算机处理系统的作用是对田野调查的一手资料通过整理、加工等处理生成表格，判断方言与方言、方言与古藏文之间相互对比关系。建设该平台的主要目的是，为藏语方言研究提供准确可靠的数据，尽量简化藏语方言处理的复杂度并提高特征提取的精确性，使其更多地依赖准确的数据，从而更具科学性。</span>
 								</div>
 							</div>
 		        		</div>
@@ -94,10 +95,10 @@
 									</h3>
 								</div>
 								<div class="panel-body">
-									<span>
+									<span style="font-size: 16px; line-height: 200%;">
 												藏语方言计算机处理系统简称为TDS，是一款网页版的藏语方言处理系统，能够全自动实现方言处理的各种功能，平台支持藏文音节自动威利转写，提取各方言的声韵调，并进行对比分析，从而更直观的了解各方言间的关系和方言的音变规律。
 											</span>
-									<ul class="index-ul">
+									<ul class="index-ul" style="font-size: 16px;">
 										<li class="index-li"><a href="#" class="index-a">方言导入操作帮助</a></li>
 										<li class="index-li"><a href="#" class="index-a">方言导入操作视频</a></li>
 										<li class="index-li"><a href="#" class="index-a">方言比较操作帮助</a></li>
@@ -121,7 +122,7 @@
 									</h3>
 								</div>
 								<div class="panel-body">
-									<ul class="index-ul">
+									<ul class="index-ul" style="font-size: 16px; line-height: 200%;">
 										<li class="index-li"><a href="#" class="index-a">康方言巴塘话</a></li>
 										<li class="index-li"><a href="#" class="index-a">康方言德格话</a></li>
 										<li class="index-li"><a href="#" class="index-a">安多天峻舟群话</a></li>
@@ -141,7 +142,7 @@
 									</h3>
 								</div>
 								<div class="panel-body">
-									<ul class="index-ul">
+									<ul class="index-ul" style="font-size: 16px;">
 										<li class="index-li"><a href="#" class="index-a">[软件下载]Praat---Mac版本地址下载</a></li>
 										<li class="index-li"><a href="#" class="index-a">[软件下载]Praat---Win版本地址下载</a></li>
 										<li class="index-li"><a href="#" class="index-a">[软件下载]Elan_文本处理软件 下载</a></li>

@@ -6,16 +6,16 @@
 	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
 	    
-		<script type="text/javascript" src="${request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
-		<script type="text/javascript" src="${request.contextPath}/static/js/bootstrap.js"></script>
-		<title>Insert title here</title>
+		<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.js"></script>
+		<title>汉藏大辞典</title>
 	</head>
 	<body>
 		<div th:include="header :: header"></div>
 		
 		<div class="wrap" style="width: 80%; margin: 30px auto;">
 		
-			<div class="container">
+			<div class="container" style="margin-top: 50px;">
 				<div class="navigation-strip effect2">
 					<div class="navigation">
 							<p style="text-align: center;font-size: 33px;font-weight: normal;color: #333;">藏汉翻译详解</p>
@@ -37,10 +37,10 @@
 										<h4 class="panel-title"><strong>藏语释义：</strong></h4>
 									</div>
 									<div id="collapseOne" class="panel-collapse collapse in">
-										<table>
+										<table class="table table-hover" style="margin: 2%;width: 95%;">
 											<tr th:each="entry:${data.tibetanInterpretation}">
-												<td><p><span>释义：</span><span th:text="${entry.interpretation}"></span></p></td>
-												<td><p><span>举例：</span><span th:text="${entry.interpretationExample}"></span></p></td>
+												<td><span>释义：</span><span th:text="${entry.interpretation}"></span></td>
+												<td><span>举例：</span><span th:text="${entry.interpretationExample}"></span></td>
 											</tr>
 										</table>
 									</div>
@@ -52,10 +52,10 @@
 										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><strong>汉语释义：</strong></a></h4>
 									</div>
 									<div id="collapseTwo" class="panel-collapse collapse in">
-										<table>
+										<table class="table table-hover" style="margin: 2%;width: 95%;">
 											<tr th:each="entry:${data.ChineseInterpretation}">
-												<td><p><span>释义：</span><span th:text="${entry.interpretation}"></span></p></td>
-												<td><p><span>举例：</span><span th:text="${entry.interpretationExample}"></span></p></td>
+												<td><span>释义：</span><span th:text="${entry.interpretation}"></span></td>
+												<td><span>举例：</span><span th:text="${entry.interpretationExample}"></span></td>
 											</tr>
 										</table>
 									</div>
@@ -69,7 +69,7 @@
 									<div id="collapseThree" class="panel-collapse collapse in">
 										<div class="panel-body">
 											<ul class="list-group" th:each="entry:${data.languagePoinPronunciation}">
-												<li class="list-group-item"><p><span th:text="${entry.languagePointDes}"></span>发音：<audio controls="controls"><source src="audio/00001天.wav" type="audio/mp3"/></audio></p></li>
+												<li class="list-group-item"><p><span th:text="${entry.languagePointDes}"></span>发音：国际音标：<span th:text="${entry.pronunciationIPA}"></span>； 语音：<audio controls="controls"><source src="audio/00001天.wav" type="audio/mp3"/></audio></p></li>
 											</ul>
 										</div>
 									</div>

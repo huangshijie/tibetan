@@ -113,3 +113,57 @@
 .search_bar_item:hover{
 	
 }
+
+.curr_btn{
+	float: left;
+	display: inline-block;
+    width: 115px;
+    height: 50px;
+    background: #85b5df;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid #6d95d6;
+    text-decoration: none;
+    color: #f7f7f7 !important;
+}
+
+.tab_btn{
+	float: left;
+	display: inline-block;
+    width: 115px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    color: #534e4e;
+    font-size: large;
+}
+
+.tab_div{
+	display: none;
+}
+
+.curr_div{
+	display: block !important;
+}
+
+a.tab_btn:hover {
+text-decoration: none;
+}
+
+a.tab_btn:link {
+text-decoration: none;
+}
+a.tab_btn:visited {
+text-decoration: none;
+}
+a.tab_btn:hover {
+text-decoration: none;
+}
+a.tab_btn:active {
+text-decoration: none;
+}
+
+body{
+	font-family: Microsoft YaHei;
+}
