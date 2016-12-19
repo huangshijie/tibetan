@@ -13,7 +13,7 @@
 	<body>
 		<div th:include="header :: header"></div>
 		<div class="wrap">
-			<div class="container index search" style="height: 650px">
+			<div class="container index search" style="height: 850px">
 				<div class="index search row">
 				</div>
 				<div class="index search row" style="height: 80px">
@@ -31,7 +31,7 @@
 				</div>
 				<div class="index search row">
 					<div class="wrap">
-						<table border="1" class="mytable">
+						<table border="1" class="mytable" style="line-height: 0;">
 							<tr>
 								<td> </td>	
 								<td th:text="${data.vowelUpMark}"> </td>
@@ -64,7 +64,7 @@
 							</tr>
 						</table>
 						
-						<table border="1" class="mytable" style=" width: 1000px; height: 50px;">
+						<table border="1" class="mytable" style=" width: 95%; height: 120px;margin-top:20px;line-height: 0;">
 							<tr style="font-size: 19px">
 								<td>表记</td>
 								<td>基字</td>
@@ -76,10 +76,10 @@
 								<td>元音附标</td>
 								<td>随韵点</td>
 								<td>止韵点</td>
-								<td>威力转写</td>
+								<td>威利转写</td>
 							</tr>
 							<tr>
-								<td th:text="${data.representationText}"> </td>
+								<td><span th:text="${data.representationText}"></span></td>
 								<td th:text="${data.radical}"> </td>
 								<td th:text="${data.prefix}"> </td>
 								<td th:text="${data.suffix}"> </td>
@@ -89,7 +89,7 @@
 								<td th:text="${data.vowelMark}"> </td>
 								<td th:text="${data.anusvara}"> </td>
 								<td th:text="${data.visarga}"> </td>
-								<td th:text="${data.willieTransfer}"> </td>
+								<td th:text="${data.willieTransfer}" style="font-size: 20px;"> </td>
 							</tr>
 						</table>
 					</div>
