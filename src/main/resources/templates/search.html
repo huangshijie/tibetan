@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8"></meta>
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/nivo-slider.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/my-style.css"/>
+	    
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/searchbar.js"></script>
+		<title>汉藏大辞典</title>
+	</head>
+	<body>
+		<div th:include="header :: header"></div>
+		<div class="wrap">
+			<div class="container index search" style="height: 550px;">
+				<div class="index search row">
+				</div>
+				
+				<div class="container container-index">
+		
+					<div class="tab_with_slider">
+						<div class="jumbotron jumbotron-index" style="background-color: #e4dcd5;">
+							<h1 class="title">藏语词典搜索</h1> 
+							<p>
+								提供专业的藏语翻译服务
+							</p>
+							<div class="index search row">
+								<a href='javascript:void(0)' index='0' class='tab_btn curr_btn'>藏汉翻译</a>
+								<a href='javascript:void(0)' index='1' class='tab_btn'>汉藏翻译</a>
+							</div>
+							<div class="tab_div curr_div">
+								<div class="index search row">
+							
+								</div>
+								<form action="tibetansearchdetial" method="post">
+									<div class="col-md-9">
+									<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="请输入您想查询的词条" style="float:left; width: 95%; height: 50px;"/>
+									</div>
+									<div class="col-md-3">
+									<input type="submit" value="查   询" style="float: left; width: 60%;" class="btn btn-primary btn-lg"/>
+									</div>
+								</form>
+							</div>
+							
+							<div class="tab_div">
+								<div class="index search row">
+							
+								</div>
+								<form action="Chinesesearchdetial" method="post">
+									<div class="col-md-9">
+									<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="请输入您想查询的词条" style="float:left; width: 95%; height: 50px;"/>
+									</div>
+									<div class="col-md-3">
+									<input type="submit" value="查   询" style="float: left; width: 60%;" class="btn btn-primary btn-lg"/>
+									</div>
+								</form>
+							</div>
+							
+						</div>
+					</div>
+				</div> 
+				
+				<div class="index search row"></div>
+				<div class="index search row"></div>
+			</div>
+		</div>
+		<footer>
+			<div th:include="footer :: footer" style="background-color:#80999a"></div>	
+		</footer>
+	</body>
+</html>

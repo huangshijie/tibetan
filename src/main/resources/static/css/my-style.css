@@ -139,6 +139,22 @@
     font-size: large;
 }
 
+.front_headOne{
+	font-size:50px;
+}
+
+.front_headTwo{
+	font-size:40px;
+}
+
+.front_headThree{
+	font-size:30px;
+}
+
+.front_textOne{
+	font-size:16px;
+}
+
 .tab_div{
 	display: none;
 }

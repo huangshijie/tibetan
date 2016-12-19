@@ -26,6 +26,11 @@ public class TibetanLibraryController {
 	@Autowired
 	TibetanLibraryService tibetanService;
 	
+	@RequestMapping(value = "/searchHTML",method = RequestMethod.GET)
+	public String getSearchHTML(Model model){
+		return "search";
+	}
+	
 	@RequestMapping(value = "/uploadFileHTML",method = RequestMethod.GET)
 	public String getUploadFileHTML(Model model){
 		return "uploadFile";

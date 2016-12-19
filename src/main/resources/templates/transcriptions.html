@@ -19,13 +19,13 @@
 				<div class="index search row" style="height: 200px">
 					<form action="getBaseWord" method="post">
 						<div class="col-md-5">
-							<textarea style="height:150px;width:100%; font-size:50px;" placeholder="请输入需要转写的藏文" name="tibetanWord" id="tibetanWord" th:text="${data.representationText}"></textarea>
+							<textarea style="height:150px;width:100%;" class="front_headThree" placeholder="请输入需要转写的藏文" name="tibetanWord" id="tibetanWord" th:text="${data.representationText}"></textarea>
 						</div>
 						<div class="col-md-2">
 							<input type="submit" value="转写" style="float: none;width: 50%;" class="btn btn-primary btn-lg"/>
 						</div>	
 						<div class="col-md-5">
-							<textarea style="height:150px;width:100%;font-size: 20px;" placeholder="请输入威利转写 " name="willeWord" id="willeWord" th:text="${data.willieTransfer}"></textarea>
+							<textarea style="height:150px;width:100%;" class="front_headThree"  placeholder="请输入威利转写 " name="willeWord" id="willeWord" th:text="${data.willieTransfer}"></textarea>
 						</div>
 					</form>
 				</div>
@@ -65,7 +65,7 @@
 						</table>
 						
 						<table border="1" class="mytable" style=" width: 95%; height: 120px;margin-top:20px;line-height: 0;">
-							<tr style="font-size: 19px">
+							<tr class="front_textOne">
 								<td>表记</td>
 								<td>基字</td>
 								<td>前加字</td>
@@ -89,7 +89,7 @@
 								<td th:text="${data.vowelMark}"> </td>
 								<td th:text="${data.anusvara}"> </td>
 								<td th:text="${data.visarga}"> </td>
-								<td th:text="${data.willieTransfer}" style="font-size: 20px;"> </td>
+								<td th:text="${data.willieTransfer}" class="front_textOne"> </td>
 							</tr>
 						</table>
 					</div>
