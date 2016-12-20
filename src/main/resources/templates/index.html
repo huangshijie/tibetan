@@ -16,52 +16,38 @@
 		<div th:include="header :: header"></div>
 		<div class="wrap">
 			<div class="container index search" style="width: 80%;margin: auto;border-radius: 4px;">
-				<div class="index search row">
-				</div>
-				<div class="index search row">
-				</div>
-				<div class="container container-index" style="width:50%; height:280px">
-		
-							<span class="front_headOne">藏语词典搜索</span> 
+				<div class="container container-index" style="width:50%; height:140px">
+							<span class="front_headFour">藏语词典搜索</span> 
 							<br/>
-							<span class="front_headFour">
+							<span style="font-size: 12px;">
 								提供专业的藏语翻译服务
 							</span>
-							<div class="index search row">
-								<a href='javascript:void(0)' index='0' class='tab_btn curr_btn front_headFour'>藏汉翻译</a>
-								<a href='javascript:void(0)' index='1' class='tab_btn front_headFour'>汉藏翻译</a>
+							<div class="index search row" style="height: 40px;">
+								<a href='javascript:void(0)' index='0' class='tab_btn curr_btn front_textOne'>藏汉翻译</a>
+								<a href='javascript:void(0)' index='1' class='tab_btn front_textOne'>汉藏翻译</a>
 							</div>
 							<div class="tab_div curr_div">
-								<div class="index search row">
-							
-								</div>
 								<form action="tibetansearchdetial" method="post">
 									<div class="col-md-9">
-									<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="请输入您想查询的词条" style="float:left; width: 95%; height: 50px;"/>
+									<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="请输入您想查询的词条" style="float:left; width: 95%; height: 40px;"/>
 									</div>
 									<div class="col-md-3">
-									<input type="submit" value="查   询" style="float: left; width: 60%;" class="btn btn-primary btn-lg"/>
+									<input type="submit" value="查   询" style="float: left; width: 80%; height: 40px; line-height: 20px;" class="btn btn-primary btn-lg"/>
 									</div>
 								</form>
 							</div>
 							
 							<div class="tab_div">
-								<div class="index search row">
-							
-								</div>
 								<form action="Chinesesearchdetial" method="post">
 									<div class="col-md-9">
-									<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="请输入您想查询的词条" style="float:left; width: 95%; height: 50px;"/>
+									<input type="text" name="searchWord" id="searchWord" class="form-control" placeholder="请输入您想查询的词条" style="float:left; width: 95%; height: 40px;"/>
 									</div>
 									<div class="col-md-3">
-									<input type="submit" value="查   询" style="float: left; width: 60%;" class="btn btn-primary btn-lg"/>
+									<input type="submit" value="查   询" style="float: left; width: 80%; height: 40px; line-height: 20px;" class="btn btn-primary btn-lg"/>
 									</div>
 								</form>
 							</div>
-							
 				</div> 
-				<div class="index search row"></div>
-				<div class="index search row"></div>
 			</div>
 		</div>
 		<div class="index search row"></div>

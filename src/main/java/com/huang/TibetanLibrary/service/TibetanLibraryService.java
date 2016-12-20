@@ -209,8 +209,10 @@ public class TibetanLibraryService {
 							 if(xssfRow.getCell(2) != null){tmpSyllableCluster.setRepresentationText(xssfRow.getCell(2).toString());}else{tmpSyllableCluster.setRepresentationText("");}
 							 if(xssfRow.getCell(4) != null){tmpSyllableCluster.setTranscriptionText(xssfRow.getCell(4).toString());}else{tmpSyllableCluster.setTranscriptionText("");}							 
 							 
-							 if(xssfRow.getCell(6) != null){tmpSyllableCluster.setPrimaryStressedPosition(xssfRow.getCell(6).toString());}else{tmpSyllableCluster.setPrimaryStressedPosition("");}
-							 if(xssfRow.getCell(7) != null){tmpSyllableCluster.setSecondaryBtressedPosition(xssfRow.getCell(7).toString());}else{tmpSyllableCluster.setSecondaryBtressedPosition("");}
+							 if(xssfRow.getCell(6) != null){tmpSyllableCluster.setPronunciationText(xssfRow.getCell(6).toString());}else{tmpSyllableCluster.setTranscriptionText("");}							 
+							 if(xssfRow.getCell(7) != null){tmpSyllableCluster.setVideoText(xssfRow.getCell(7).toString());}else{tmpSyllableCluster.setTranscriptionText("");}							 
+							 if(xssfRow.getCell(8) != null){tmpSyllableCluster.setPrimaryStressedPosition(xssfRow.getCell(8).toString());}else{tmpSyllableCluster.setPrimaryStressedPosition("");}
+							 if(xssfRow.getCell(9) != null){tmpSyllableCluster.setSecondaryBtressedPosition(xssfRow.getCell(9).toString());}else{tmpSyllableCluster.setSecondaryBtressedPosition("");}
 							 
 							 syllableClusterMapper.insertSyllableClusterSingle(tmpSyllableCluster);
 							 

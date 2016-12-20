@@ -5,11 +5,12 @@ import java.util.ArrayList;
 public class SyllableCluster {
 	private long ID;
 	private long DID;
-	private DialectDetial dialectDetial;
 	private String translationText;
 	private String representationText;
 	private String wltranscriptionText;
 	private String transcriptionText;
+	private String pronunciationText;
+	private String videoText;
 	private int syllablesCount;
 	private String primaryStressedPosition;
 	private String secondaryBtressedPosition;
@@ -27,17 +28,23 @@ public class SyllableCluster {
 	public void setDID(long dID) {
 		DID = dID;
 	}
-	public DialectDetial getDialectDetial() {
-		return dialectDetial;
-	}
-	public void setDialectDetial(DialectDetial dialectDetial) {
-		this.dialectDetial = dialectDetial;
-	}
 	public String getTranslationText() {
 		return translationText;
 	}
 	public void setTranslationText(String translationText) {
 		this.translationText = translationText;
+	}
+	public String getPronunciationText() {
+		return pronunciationText;
+	}
+	public void setPronunciationText(String pronunciationText) {
+		this.pronunciationText = pronunciationText;
+	}
+	public String getVideoText() {
+		return videoText;
+	}
+	public void setVideoText(String videoText) {
+		this.videoText = videoText;
 	}
 	public String getRepresentationText() {
 		return representationText;

@@ -17,11 +17,11 @@ window.onload=function(){
 		if(btn[index].className.indexOf('curr_btn')>=0) return;
 			for(i=0;i<btn.length;i++){
 				if(index==i){
-					btn[i].className='tab_btn curr_btn front_headFour';
-					div[i].className='tab_div curr_div front_headFour';
+					btn[i].className='tab_btn curr_btn front_textOne';
+					div[i].className='tab_div curr_div front_textOne';
 				}else{
-					btn[i].className='tab_btn front_headFour';
-					div[i].className='tab_div front_headFour';
+					btn[i].className='tab_btn front_textOne';
+					div[i].className='tab_div front_textOne';
 				}
 			}
 		}
