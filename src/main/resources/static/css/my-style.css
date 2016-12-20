@@ -141,19 +141,23 @@
 }
 
 .front_headOne{
-	font-size:50px;
+	font-size:46px;
 }
 
 .front_headTwo{
-	font-size:40px;
+	font-size:36px;
 }
 
 .front_headThree{
-	font-size:30px;
+	font-size:26px;
+}
+
+.front_headFour{
+	font-size:16px;
 }
 
 .front_textOne{
-	font-size:16px;
+	font-size:14px;
 }
 
 .tab_div{

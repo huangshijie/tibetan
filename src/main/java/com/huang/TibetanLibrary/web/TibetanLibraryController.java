@@ -43,6 +43,11 @@ public class TibetanLibraryController {
 		return "uploadSyllableClusterFile";
 	}
 	
+	@RequestMapping(value = "/libraryintroduceHTML",method = RequestMethod.GET)
+	public String getlibraryintroduceHTML(Model model){
+		return "libraryintroduce";
+	}
+	
 	@RequestMapping(value = "/tibetansearchdetial",method = RequestMethod.POST)
 	public String getTibetanSearchDetial(@RequestParam String searchWord, Model model){
 		model.addAttribute("data", tibetanService.getTibetanTranslateEntry(searchWord));
