@@ -125,6 +125,7 @@
     border: 1px solid #6d95d6;
     text-decoration: none;
     color: #f7f7f7 !important;
+    border-radius: 4px;
 }
 
 .tab_btn{
