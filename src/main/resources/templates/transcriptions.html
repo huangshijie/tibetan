@@ -19,21 +19,13 @@
 				<div class="index search row" style="height: 200px">
 					<form action="getBaseWord" method="post">
 						<div class="col-md-5">
-<<<<<<< HEAD
-							<input class="front_headThree" placeholder="请输入需要转写的藏文" name="tibetanWord" id="tibetanWord" th:text="${data.representationText}"/>
-=======
-							<input style="height:150px;width:100%;" class="front_headThree" placeholder="请输入需要转写的藏文" name="tibetanWord" id="tibetanWord" th:text="${data.representationText}"/>
->>>>>>> refs/remotes/origin/master
+							<input class="front_headThree" placeholder="请输入需要转写的藏文" name="tibetanWord" id="tibetanWord" th:value="${data.representationText}"/>
 						</div>
 						<div class="col-md-2">
 							<input type="submit" value="转写" style="float: none;width: 50%;" class="btn btn-primary btn-lg"/>
 						</div>	
 						<div class="col-md-5">
-<<<<<<< HEAD
-							<input class="front_headThree"  placeholder="请输入威利转写 " name="willeWord" id="willeWord" th:text="${data.willieTransfer}"/>
-=======
-							<input style="height:150px;width:100%;" class="front_headThree"  placeholder="请输入威利转写 " name="willeWord" id="willeWord" th:text="${data.willieTransfer}"/>
->>>>>>> refs/remotes/origin/master
+							<input class="front_headThree"  placeholder="请输入威利转写 " name="willeWord" id="willeWord"  th:value="${data.willieTransfer}"/>
 						</div>
 					</form>
 				</div>
