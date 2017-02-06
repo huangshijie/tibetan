@@ -19,16 +19,30 @@
 		FROM dialectdetial t
 	</select>
 	
-	<insert id="insertDialectDetial" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.SyllableCluster">
-		INSERT INTO dialectdetial(
-			ddtimestamp,
-			locationCode,
-			locationDes
+	<insert id="insertSyllableClusterSingle" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.SyllableCluster">
+		INSERT INTO syllablecluster(
+			DID,
+			translationText,
+			representationText,
+			wltranscriptionText,
+			transcriptionText,
+			pronunciationText,
+			videoText,
+			syllablesCount,
+			primaryStressedPosition,
+			secondaryBtressedPosition
 		)
 		VALUES(
-			#{ddtimestamp},
-			#{locationCode},
-			#{locationDes}
+			#{DID},
+			#{translationText},
+			#{representationText},
+			#{wltranscriptionText},
+			#{transcriptionText},
+			#{pronunciationText},
+			#{videoText},
+			#{syllablesCount},
+			#{primaryStressedPosition},
+			#{secondaryBtressedPosition}
 		)
 	</insert>
 </mapper>

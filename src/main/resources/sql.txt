@@ -48,6 +48,8 @@
 		representationText VARCHAR(255),	
 		wltranscriptionText VARCHAR(255),
 		transcriptionText VARCHAR(255),
+		pronunciationText VARCHAR(255),
+		videoText VARCHAR(255),
 		syllablesCount BIGINT(5),
 		primaryStressedPosition VARCHAR(255),
 		secondaryBtressedPosition VARCHAR(255),
