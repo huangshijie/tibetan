@@ -190,7 +190,6 @@ public class TibetanWordStructure {
 					this.setSuffix(String.valueOf(transferCharsWithoutVOWEL.get(2)));
 				}
 			}else{
-				
 				if(exitInPrefixSet(transferCharsWithoutVOWEL.get(0))){
 					if(exitInSuperscriptSet(transferCharsWithoutVOWEL.get(1))){
 						this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(2)));
@@ -226,8 +225,6 @@ public class TibetanWordStructure {
 		}
 		
 		if(suNum == 2){
-			
-			System.out.println(transferChars.get(radicalNum+1));
 			
 			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
 				String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum))) 

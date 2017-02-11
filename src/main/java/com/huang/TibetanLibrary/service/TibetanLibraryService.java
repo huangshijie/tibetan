@@ -15,11 +15,14 @@ import com.huang.TibetanLibrary.domain.DialectDetial;
 import com.huang.TibetanLibrary.domain.Interpretation;
 import com.huang.TibetanLibrary.domain.Pronunciation;
 import com.huang.TibetanLibrary.domain.SyllableCluster;
+import com.huang.TibetanLibrary.domain.SyllableText;
 import com.huang.TibetanLibrary.domain.TibetanTranslateEntry;
+import com.huang.TibetanLibrary.domain.TibetanWordStructure;
 import com.huang.TibetanLibrary.mapper.DialectDetialMapper;
 import com.huang.TibetanLibrary.mapper.InterpretationMapper;
 import com.huang.TibetanLibrary.mapper.PronunciationMapper;
 import com.huang.TibetanLibrary.mapper.SyllableClusterMapper;
+import com.huang.TibetanLibrary.mapper.SyllableTextMapper;
 import com.huang.TibetanLibrary.mapper.TibetanTranslateEntryMapper;
 import com.huang.TibetanLibrary.util.CentralUtil;
 
@@ -40,6 +43,9 @@ public class TibetanLibraryService {
 	
 	@Autowired
 	private SyllableClusterMapper syllableClusterMapper;
+	
+	@Autowired
+	private SyllableTextMapper syllableTextMapper;
 	
 	public TibetanTranslateEntry getTibetanTranslateEntry(String searchWord){
 		
@@ -179,7 +185,8 @@ public class TibetanLibraryService {
 		
 	}
 	
-	public void readSyllableClusterXlsxFile(String absolutePath, String locationCode, String locationDes) {
+//	public static void readSyllableClusterXlsxFile(String absolutePath, String locationCode, String locationDes) {
+	public ArrayList<DialectDetial> readSyllableClusterXlsxFile(String absolutePath, String locationCode, String locationDes) {
 		try(
 				InputStream is = new FileInputStream(absolutePath);
 				XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
@@ -198,6 +205,7 @@ public class TibetanLibraryService {
 				for(int numSheet = 0; numSheet < xssfWorkbook.getNumberOfSheets(); numSheet++){
 					 XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(numSheet);
 					 
+					 //for(int numRow = 1; numRow < 2; numRow++){
 					 for(int numRow = 1; numRow < xssfSheet.getLastRowNum(); numRow++){
 						 XSSFRow xssfRow = xssfSheet.getRow(numRow);
 						 if (xssfRow != null) {
@@ -205,8 +213,53 @@ public class TibetanLibraryService {
 							 SyllableCluster tmpSyllableCluster = new SyllableCluster();
 							 tmpSyllableCluster.setDID(DID);
 							 
+							 ArrayList<SyllableText> syllableTextList = new ArrayList<SyllableText>();
+							 
+							 int syllablesCount = 0;
+							 
 							 if(xssfRow.getCell(1) != null){tmpSyllableCluster.setTranslationText(xssfRow.getCell(1).toString());}else{tmpSyllableCluster.setTranslationText("");}
-							 if(xssfRow.getCell(2) != null){tmpSyllableCluster.setRepresentationText(xssfRow.getCell(2).toString());}else{tmpSyllableCluster.setRepresentationText("");}
+							 if(xssfRow.getCell(2) != null && xssfRow.getCell(4) != null){
+								 
+								 tmpSyllableCluster.setRepresentationText(xssfRow.getCell(2).toString());
+								 
+								 char[] orginalChars = xssfRow.getCell(2).toString().toCharArray();
+								 String[] transcriptionChars = xssfRow.getCell(4).toString().split(" ");
+								 ArrayList<String> wlStringList= new ArrayList<String>();
+								 String returnStr = "";
+								 
+								 for (int i = 0; i < orginalChars.length; i++) {
+									 if(String.valueOf(orginalChars[i]).equals("་")||String.valueOf(orginalChars[i]).equals("།")){
+										 wlStringList.add(returnStr);
+										 returnStr = "";
+										 syllablesCount++;
+									 }else{
+										 returnStr += orginalChars[i];
+									 }
+								 }
+								 if(returnStr != ""){
+									 syllablesCount++;
+									 wlStringList.add(returnStr);
+								 }
+								 
+								 String wiStr = "";
+								 if(wlStringList.size() == transcriptionChars.length){
+									 for(int i = 0; i<wlStringList.size() ;i++){
+										 TibetanWordStructure tmpTWStructure = new TibetanWordStructure(wlStringList.get(i));
+										 wiStr += tmpTWStructure.getWillieTransfer() + " ";
+										 
+										 SyllableText tmp = new SyllableText();
+										 tmp.setDID(DID);
+										 tmp.setSyllableText(transcriptionChars[i]); 
+										 tmp.setWlSyllableText(tmpTWStructure.getWillieTransfer());
+										 
+										 syllableTextList.add(tmp);
+									 }
+								 }
+								 
+								 tmpSyllableCluster.setWltranscriptionText(wiStr);
+							 }else{
+								 tmpSyllableCluster.setWltranscriptionText("");
+							 }
 							 if(xssfRow.getCell(4) != null){tmpSyllableCluster.setTranscriptionText(xssfRow.getCell(4).toString());}else{tmpSyllableCluster.setTranscriptionText("");}							 
 							 
 							 if(xssfRow.getCell(6) != null){tmpSyllableCluster.setPronunciationText(xssfRow.getCell(6).toString());}else{tmpSyllableCluster.setTranscriptionText("");}							 
@@ -214,27 +267,37 @@ public class TibetanLibraryService {
 							 if(xssfRow.getCell(8) != null){tmpSyllableCluster.setPrimaryStressedPosition(xssfRow.getCell(8).toString());}else{tmpSyllableCluster.setPrimaryStressedPosition("");}
 							 if(xssfRow.getCell(9) != null){tmpSyllableCluster.setSecondaryBtressedPosition(xssfRow.getCell(9).toString());}else{tmpSyllableCluster.setSecondaryBtressedPosition("");}
 							 
-							 syllableClusterMapper.insertSyllableClusterSingle(tmpSyllableCluster);
-							 
-							 long SID = tmpSyllableCluster.getID();
-							 
-							 if(xssfRow.getCell(3) != null){
-								 tmpSyllableCluster.setSyllablesCount(Integer.valueOf(xssfRow.getCell(5).toString()));
+							 if(xssfRow.getCell(2) != null){
+								 tmpSyllableCluster.setSyllablesCount(syllablesCount);
 							 }else{
 								 tmpSyllableCluster.setSyllablesCount(0);
 							 }
 							 
+							 syllableClusterMapper.insertSyllableClusterSingle(tmpSyllableCluster);
+							 
+							 long SID = tmpSyllableCluster.getID();
+							 
+							 if(syllableTextList.size() != 0){
+								 for(int i = 0; i<syllableTextList.size(); i++){
+									 SyllableText tmp = syllableTextList.get(i);
+									 tmp.setSID(SID);
+									 syllableTextMapper.insertSingleSyllableText(tmp);
+								 }
+							 }
 						 }
 					 }
 				} 
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}		
+			}	
+		ArrayList<DialectDetial> result = dialectDetialMapper.findAllDialectDetials();
+		return result;
 	}
 	
 	public static void main(String[] args){
-//		readTibetanLibraryXlsxFile("C:\\upload\\夏河甘加地区.xlsx");
+//		readSyllableClusterXlsxFile("C:\\upload\\tianjun.xlsx", "1", "3");
 	}
 
 

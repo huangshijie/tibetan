@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huang.TibetanLibrary.mapper.SyllableTextMapper">
+	
+	<resultMap type="com.huang.TibetanLibrary.domain.SyllableText" id="SyllableText">
+		<result property="ID" column="ID" />
+		<result property="DID" column="DID" />
+		<result property="SID" column="SID" />
+		<result property="syllableText" column="syllableText" />
+		<result property="wlSyllableText" column="wlSyllableText" />
+	</resultMap>
+	
+	<select id="findAllSyllableText" resultMap="SyllableText">
+		SELECT 
+			t.ID, 
+			t.DID, 
+			t.SID, 
+			t.syllableText, 
+			t.wlSyllableText 
+		FROM syllabletext t
+	</select>
+	
+	<insert id="insertSingleSyllableText" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.SyllableText">
+		INSERT INTO syllabletext(
+			DID,
+			SID,
+			syllableText,
+			wlSyllableText
+		)
+		VALUES(
+			#{DID},
+			#{SID},
+			#{syllableText},
+			#{wlSyllableText}
+		)
+	</insert>
+</mapper>

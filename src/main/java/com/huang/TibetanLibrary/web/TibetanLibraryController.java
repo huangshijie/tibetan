@@ -80,9 +80,8 @@ public class TibetanLibraryController {
                 BufferedOutputStream stream =  new BufferedOutputStream(new FileOutputStream(uploadFile));  
                 stream.write(bytes);  
                 stream.close();  
-                tibetanService.readSyllableClusterXlsxFile(uploadFile.getAbsolutePath(), locationCode, locationDes);
                 
-                model.addAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + " into " + file.getOriginalFilename() + "-uploaded !");  
+                model.addAttribute("dialectDetialList" , tibetanService.readSyllableClusterXlsxFile(uploadFile.getAbsolutePath(), locationCode, locationDes));
                 return "uploadSyllableClusterFile";
             } catch (Exception e) {  
                 model.addAttribute("message", "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());  
