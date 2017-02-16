@@ -1,11 +1,24 @@
 package com.huang.TibetanLibrary.domain;
 
-public class SyllableText {
+public class SyllableTibet {
 	private long ID;
 	private long DID;
 	private long SID;
 	private String syllableText;
 	private String wlSyllableText;
+	
+	private String translationText; 		//汉语词条 
+	private String representationText; 		//藏语词条（表记）
+	private String wltranscriptionText; 	//表记威利转写
+	private String transcriptionText; 		//国际音标转写（读音）
+	
+	private String shellText; 				//声韵  
+	private String onsetText; 				//声母 
+	private String finalText; 				//韵母 
+	private String nuclensText; 			//韵核  
+	private String codaText; 				//韵尾  
+	private String toneText; 				//声调 
+	private String integrated; 				//是否完整的音节（true
 	
 	public long getID() {
 		return ID;

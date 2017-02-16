@@ -14,7 +14,7 @@ public class SyllableCluster {
 	private int syllablesCount;
 	private String primaryStressedPosition;
 	private String secondaryBtressedPosition;
-	private ArrayList<SyllableText> syllableTextList;
+	private ArrayList<SyllableTibet> syllableTibetList;
 	
 	public long getID() {
 		return ID;
@@ -82,11 +82,11 @@ public class SyllableCluster {
 	public void setSecondaryBtressedPosition(String secondaryBtressedPosition) {
 		this.secondaryBtressedPosition = secondaryBtressedPosition;
 	}
-	public ArrayList<SyllableText> getSyllableTextList() {
-		return syllableTextList;
+	public ArrayList<SyllableTibet> getSyllableTibetList() {
+		return syllableTibetList;
 	}
-	public void setSyllableTextList(ArrayList<SyllableText> syllableTextList) {
-		this.syllableTextList = syllableTextList;
+	public void setSyllableTibetList(ArrayList<SyllableTibet> syllableTibetList) {
+		this.syllableTibetList = syllableTibetList;
 	}
 	
 }

@@ -56,13 +56,13 @@
 		PRIMARY KEY (id, DID)
 	)AUTO_INCREMENT=1;
 
-	DROP TABLE IF EXISTS syllabletext;
-	CREATE TABLE syllabletext(
+	DROP TABLE IF EXISTS syllabletibet;
+	CREATE TABLE syllabletibet(
 		ID BIGINT(20) NOT NULL AUTO_INCREMENT,
 		DID BIGINT(20) NOT NULL,
 		SID BIGINT(20) NOT NULL,
-		syllableText VARCHAR(255),
-		wlSyllableText VARCHAR(255),	
+		syllableTibet VARCHAR(255),
+		wlSyllableTibet VARCHAR(255),	
 		PRIMARY KEY (id, DID, SID)
 	)AUTO_INCREMENT=1;
 -- ----------------------------

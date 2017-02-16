@@ -15,14 +15,14 @@ import com.huang.TibetanLibrary.domain.DialectDetial;
 import com.huang.TibetanLibrary.domain.Interpretation;
 import com.huang.TibetanLibrary.domain.Pronunciation;
 import com.huang.TibetanLibrary.domain.SyllableCluster;
-import com.huang.TibetanLibrary.domain.SyllableText;
+import com.huang.TibetanLibrary.domain.SyllableTibet;
 import com.huang.TibetanLibrary.domain.TibetanTranslateEntry;
 import com.huang.TibetanLibrary.domain.TibetanWordStructure;
 import com.huang.TibetanLibrary.mapper.DialectDetialMapper;
 import com.huang.TibetanLibrary.mapper.InterpretationMapper;
 import com.huang.TibetanLibrary.mapper.PronunciationMapper;
 import com.huang.TibetanLibrary.mapper.SyllableClusterMapper;
-import com.huang.TibetanLibrary.mapper.SyllableTextMapper;
+import com.huang.TibetanLibrary.mapper.SyllableTibetMapper;
 import com.huang.TibetanLibrary.mapper.TibetanTranslateEntryMapper;
 import com.huang.TibetanLibrary.util.CentralUtil;
 
@@ -45,7 +45,7 @@ public class TibetanLibraryService {
 	private SyllableClusterMapper syllableClusterMapper;
 	
 	@Autowired
-	private SyllableTextMapper syllableTextMapper;
+	private SyllableTibetMapper SyllableTibetMapper;
 	
 	public TibetanTranslateEntry getTibetanTranslateEntry(String searchWord){
 		
@@ -213,7 +213,7 @@ public class TibetanLibraryService {
 							 SyllableCluster tmpSyllableCluster = new SyllableCluster();
 							 tmpSyllableCluster.setDID(DID);
 							 
-							 ArrayList<SyllableText> syllableTextList = new ArrayList<SyllableText>();
+							 ArrayList<SyllableTibet> syllableTibetList = new ArrayList<SyllableTibet>();
 							 
 							 int syllablesCount = 0;
 							 
@@ -247,12 +247,12 @@ public class TibetanLibraryService {
 										 TibetanWordStructure tmpTWStructure = new TibetanWordStructure(wlStringList.get(i));
 										 wiStr += tmpTWStructure.getWillieTransfer() + " ";
 										 
-										 SyllableText tmp = new SyllableText();
+										 SyllableTibet tmp = new SyllableTibet();
 										 tmp.setDID(DID);
 										 tmp.setSyllableText(transcriptionChars[i]); 
 										 tmp.setWlSyllableText(tmpTWStructure.getWillieTransfer());
 										 
-										 syllableTextList.add(tmp);
+										 syllableTibetList.add(tmp);
 									 }
 								 }
 								 
@@ -277,11 +277,11 @@ public class TibetanLibraryService {
 							 
 							 long SID = tmpSyllableCluster.getID();
 							 
-							 if(syllableTextList.size() != 0){
-								 for(int i = 0; i<syllableTextList.size(); i++){
-									 SyllableText tmp = syllableTextList.get(i);
+							 if(syllableTibetList.size() != 0){
+								 for(int i = 0; i<syllableTibetList.size(); i++){
+									 SyllableTibet tmp = syllableTibetList.get(i);
 									 tmp.setSID(SID);
-									 syllableTextMapper.insertSingleSyllableText(tmp);
+									 SyllableTibetMapper.insertSingleSyllableTibet(tmp);
 								 }
 							 }
 						 }
