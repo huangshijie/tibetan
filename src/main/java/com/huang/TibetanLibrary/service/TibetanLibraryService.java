@@ -211,11 +211,10 @@ public class TibetanLibraryService {
 						 if (xssfRow != null) {
 							 
 							 SyllableCluster tmpSyllableCluster = new SyllableCluster();
-							 tmpSyllableCluster.setDID(DID);
-							 
 							 ArrayList<SyllableTibet> syllableTibetList = new ArrayList<SyllableTibet>();
-							 
 							 int syllablesCount = 0;
+							 
+							 tmpSyllableCluster.setDID(DID);
 							 
 							 if(xssfRow.getCell(1) != null){tmpSyllableCluster.setTranslationText(xssfRow.getCell(1).toString());}else{tmpSyllableCluster.setTranslationText("");}
 							 if(xssfRow.getCell(2) != null && xssfRow.getCell(4) != null){
@@ -249,8 +248,10 @@ public class TibetanLibraryService {
 										 
 										 SyllableTibet tmp = new SyllableTibet();
 										 tmp.setDID(DID);
-										 tmp.setSyllableText(transcriptionChars[i]); 
-										 tmp.setWlSyllableText(tmpTWStructure.getWillieTransfer());
+										 tmp.setWltranscriptionText(tmpTWStructure.getWillieTransfer());
+										 tmp.setTranscriptionText(transcriptionChars[i]);
+										 tmp.setRepresentationText(tmpTWStructure.getRepresentationText());
+										 tmp.setTranslationText(tmpSyllableCluster.getRepresentationText()); 
 										 
 										 syllableTibetList.add(tmp);
 									 }
