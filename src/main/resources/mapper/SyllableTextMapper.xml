@@ -24,14 +24,44 @@
 		INSERT INTO syllableTibet(
 			DID,
 			SID,
-			syllableTibet,
-			wlSyllableTibet
+			translationText,
+			representationText,
+			wltranscriptionText,
+			transcriptionText,
+			shellText,
+			onsetText,
+			finalText,
+			nuclensText,
+			codaText,
+			toneText,
+			shellWilleText,
+			onsetWilleText,
+			finalWilleText,
+			nuclensWilleText,
+			codaWilleText,
+			toneWilleText,
+			integrated
 		)
 		VALUES(
 			#{DID},
 			#{SID},
-			#{syllableTibet},
-			#{wlSyllableTibet}
+			#{translationText},
+			#{representationText},
+			#{wltranscriptionText},
+			#{transcriptionText},
+			#{shellText},
+			#{onsetText},
+			#{finalText},
+			#{nuclensText},
+			#{codaText},
+			#{toneText},
+			#{shellWilleText},
+			#{onsetWilleText},
+			#{finalWilleText},
+			#{nuclensWilleText},
+			#{codaWilleText},
+			#{toneWilleText},
+			#{integrated}
 		)
 	</insert>
 </mapper>
