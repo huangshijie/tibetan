@@ -223,12 +223,12 @@ public class TibetanLibraryService {
 								 
 								 char[] orginalChars = xssfRow.getCell(2).toString().toCharArray();
 								 String[] transcriptionChars = xssfRow.getCell(4).toString().split(" ");
-								 ArrayList<String> wlStringList= new ArrayList<String>();
+								 ArrayList<String> representationTextList= new ArrayList<String>();
 								 String returnStr = "";
 								 
 								 for (int i = 0; i < orginalChars.length; i++) {
 									 if(String.valueOf(orginalChars[i]).equals("་")||String.valueOf(orginalChars[i]).equals("།")){
-										 wlStringList.add(returnStr);
+										 representationTextList.add(returnStr);
 										 returnStr = "";
 										 syllablesCount++;
 									 }else{
@@ -237,13 +237,13 @@ public class TibetanLibraryService {
 								 }
 								 if(returnStr != ""){
 									 syllablesCount++;
-									 wlStringList.add(returnStr);
+									 representationTextList.add(returnStr);
 								 }
 								 
 								 String wiStr = "";
-								 if(wlStringList.size() == transcriptionChars.length){
-									 for(int i = 0; i<wlStringList.size() ;i++){
-										 TibetanWordStructure tmpTWStructure = new TibetanWordStructure(wlStringList.get(i));
+								 if(representationTextList.size() == transcriptionChars.length){
+									 for(int i = 0; i<representationTextList.size() ;i++){
+										 TibetanWordStructure tmpTWStructure = new TibetanWordStructure(representationTextList.get(i));
 										 wiStr += tmpTWStructure.getWillieTransfer() + " ";
 										 
 										 SyllableTibet tmp = new SyllableTibet();

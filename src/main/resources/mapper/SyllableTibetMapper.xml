@@ -15,8 +15,17 @@
 			t.ID, 
 			t.DID, 
 			t.SID, 
-			t.syllableTibet, 
-			t.wlSyllableTibet 
+			t.translationText, 
+			t.representationText,
+			t.wltranscriptionText,
+			t.transcriptionText,
+			t.shellText,
+			t.onsetText,
+			t.finalText,
+			t.nuclensText,
+			t.codaText,
+			t.toneText,
+			t.integrated
 		FROM syllableTibet t
 	</select>
 	
@@ -24,14 +33,32 @@
 		INSERT INTO syllableTibet(
 			DID,
 			SID,
-			syllableTibet,
-			wlSyllableTibet
+			translationText,
+			representationText,
+			wltranscriptionText,
+			transcriptionText,
+			shellText,
+			onsetText,
+			finalText,
+			nuclensText,
+			codaText,
+			toneText,
+			integrated
 		)
 		VALUES(
 			#{DID},
 			#{SID},
-			#{syllableTibet},
-			#{wlSyllableTibet}
+			#{translationText},
+			#{representationText},
+			#{wltranscriptionText},
+			#{transcriptionText},
+			#{shellText},
+			#{onsetText},
+			#{finalText},
+			#{nuclensText},
+			#{codaText},
+			#{toneText},
+			#{integrated}
 		)
 	</insert>
 </mapper>

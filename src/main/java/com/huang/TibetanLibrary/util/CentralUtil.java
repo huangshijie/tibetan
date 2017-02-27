@@ -1,6 +1,8 @@
-package com.huang.TibetanLibrary.util;
+	package com.huang.TibetanLibrary.util;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.huang.TibetanLibrary.domain.LanguagePoint;
 
@@ -14,11 +16,17 @@ public class CentralUtil {
 	}
 	
 	public static void main(String[] args){
-		int i = 0;
-		 for(int tibetanUnm = 3; tibetanUnm < 22; tibetanUnm += 2){
-			 
-			 System.out.println(i++);
-			 System.out.println(tibetanUnm);
-		 }
+	    // 要验证的字符串
+	    String str = "hnam";
+	    // 正则表达式规则
+	    String regEx = "[aeiou]";
+	    // 编译正则表达式
+	    Pattern pattern = Pattern.compile(regEx);
+	    // 忽略大小写的写法
+	    // Pattern pat = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(str);
+	    // 查找字符串中是否有匹配正则表达式的字符/字符串
+	    boolean rs = matcher.find();
+	    System.out.println(rs);
 	}
 }
