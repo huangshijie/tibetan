@@ -1,4 +1,4 @@
-	package com.huang.TibetanLibrary.util;
+package com.huang.TibetanLibrary.util;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -16,17 +16,36 @@ public class CentralUtil {
 	}
 	
 	public static void main(String[] args){
-	    // 要验证的字符串
-	    String str = "hnam";
-	    // 正则表达式规则
-	    String regEx = "[aeiou]";
-	    // 编译正则表达式
-	    Pattern pattern = Pattern.compile(regEx);
-	    // 忽略大小写的写法
-	    // Pattern pat = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
-	    Matcher matcher = pattern.matcher(str);
-	    // 查找字符串中是否有匹配正则表达式的字符/字符串
-	    boolean rs = matcher.find();
-	    System.out.println(rs);
+//		int i = 0;
+//		 for(int tibetanUnm = 3; tibetanUnm < 22; tibetanUnm += 2){
+//			 
+//			 System.out.println(i++);
+//			 System.out.println(tibetanUnm);
+//		 }
+		String str = "hinm";
+		Pattern p = Pattern.compile("(.*)[aeiou](.*)");
+        Matcher m = p.matcher(str);
+        String matchStr = "";
+		while(m.find()){
+			matchStr = m.group(1);
+		}
+		System.out.println(str.substring(0, matchStr.length()));
+		System.out.println(str.substring(matchStr.length(), matchStr.length()+1));
+		System.out.println(str.substring(matchStr.length()+1, str.length()));
+		System.out.println(matchStr.length());
+        
 	}
+	
+    private static void getStrings() {
+        String str = "rrwerqq84461376qqasfdasdfrrwerqq84461377qqasfdasdaa654645aafrrwerqq84461378qqasfdaa654646aaasdfrrwerqq84461379qqasfdasdfrrwerqq84461376qqasfdasdf";
+        Pattern p = Pattern.compile("qq(.*?)qq");
+        Matcher m = p.matcher(str);
+        ArrayList<String> strs = new ArrayList<String>();
+        while (m.find()) {
+            strs.add(m.group(1));            
+        } 
+        for (String s : strs){
+            System.out.println(s);
+        }        
+    }
 }

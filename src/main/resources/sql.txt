@@ -71,7 +71,13 @@
 		nuclensText VARCHAR(255),
 		codaText VARCHAR(255),
 		toneText VARCHAR(255),
-		integrated BIGINT(5),	
+		shellWilleText VARCHAR(255),
+		onsetWilleText VARCHAR(255),
+		finalWilleText VARCHAR(255),
+		nuclensWilleText VARCHAR(255),
+		codaWilleText VARCHAR(255),
+		toneWilleText VARCHAR(255),	
+		integrated tinyint(1),
 		PRIMARY KEY (id, DID, SID)
 	)AUTO_INCREMENT=1;
 -- ----------------------------

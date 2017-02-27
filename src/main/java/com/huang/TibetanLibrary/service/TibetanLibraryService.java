@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -252,6 +254,20 @@ public class TibetanLibraryService {
 										 tmp.setTranscriptionText(transcriptionChars[i]);
 										 tmp.setRepresentationText(tmpTWStructure.getRepresentationText());
 										 tmp.setTranslationText(tmpSyllableCluster.getRepresentationText()); 
+										 
+										 String wilStr = tmpTWStructure.getWillieTransfer();
+										 Pattern p = Pattern.compile("(.*)[aeiou](.*)");
+										 Matcher m = p.matcher(wilStr);
+										 String matchWilStr = "";
+										 while(m.find()){
+											 matchWilStr = m.group(1);
+										 }
+										 
+										 tmp.setOnsetWilleText(wilStr.substring(0, matchWilStr.length()));
+										 tmp.setFinalWilleText(wilStr.substring(matchWilStr.length(), wilStr.length()));
+										 tmp.setNuclensWilleText(wilStr.substring(matchWilStr.length(), matchWilStr.length()+1));
+										 tmp.setCodaWilleText(wilStr.substring(matchWilStr.length()+1, wilStr.length()));
+										 
 										 
 										 syllableTibetList.add(tmp);
 									 }
