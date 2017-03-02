@@ -5,21 +5,8 @@
 	    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
+	    <link rel="stylesheet" media="screen" href="../css/bootstrap-datetimepicker.min.css" />
 	    
-		<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
-		<script type="text/javascript" src="/js/bootstrap.js"></script>
-		
-		<script type="text/javascript">
-			function readyToUplaod() {
-				var languangePoint = document.getElementById("languangePoint").value;
-				var coPersonName = document.getElementById("collected-person-name").value;;
-					
-				console.log(languangePoint);
-					
-			}
-			
-		</script>
-		
 		<title>汉藏大辞典</title>
 	</head>
 	<body>
@@ -179,4 +166,28 @@
 			<div th:include="footer :: footer" style="background-color:#80999a"></div>	
 		</footer>
 	</body>
+	<script type="text/javascript" src="../js/jquery-3.1.1.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+	
+		function readyToUplaod() {
+			var languangePoint = document.getElementById("languangePoint").value;
+			var coPersonName = document.getElementById("collected-person-name").value;;
+				
+			console.log(languangePoint);
+				
+		}
+		$('.form_date').datetimepicker({
+	        language:  'fr',
+	        weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+	    });
+	</script>
 </html>
