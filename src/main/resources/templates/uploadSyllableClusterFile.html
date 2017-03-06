@@ -5,12 +5,14 @@
 	    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
+	    <link rel="stylesheet" type="text/css" href="/css/bootstrap-select.css"/>
 	    <link rel="stylesheet" media="screen" href="../css/bootstrap-datetimepicker.min.css" />
 	    
 		<title>汉藏大辞典</title>
 	</head>
 	<body>
 		<div th:include="header :: header"></div>
+		
 		<div class="wrap">
 			<div class="container index search" style="height: 100%;">
 				<div class="index search row" style="height: 60px;">
@@ -59,50 +61,104 @@
 					<div class="row">
 						<div class="well well-white clearfix" style="padding:10px">
 							<div class="row" style="padding:10px">
-								<div class="col-md-1" style="text-align:center"><p><strong>姓名：</strong></p></div>
-								<div class="col-md-3" style="text-align:center"><input type="text" class="form-control" id="collected-person-name"></input></div>
+								<div class="col-md-2" style="text-align:center"><p><strong>姓名：</strong></p></div>
+								<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-name"></input></div>
 								<div class="col-md-2" style="text-align:center"><p><strong>出生日期：</strong></p></div>
-								<div class="col-md-3" style="text-align:center">
+								<div class="col-md-4" style="text-align:center">
 									<div class="form-group">
-										<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-											<input class="form-control" size="16" type="text" value=""></input>
+										<div class="input-group date form_date" data-date="" data-date-format="yyyy年MM月dd日" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+											<input class="form-control" size="16" type="text" value="" id="collected-person-birthday"></input>
 											<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 										</div>
 										<input type="hidden" id="dtp_input2" value="" /><br/>
 									</div>
 								</div>
-								<div class="col-md-1"></div>
-								<div class="col-md-2">
-									<select class="myselect">
-										<option value="性别" id="collected-person-sex">性别</option>
-										<option value="某市/区3">男</option>
-										<option value="某市/区4">女</option>
+							</div>
+							<div class="row" style="padding:10px">
+								<div class="col-md-2" style="text-align:center"><p><strong>性别：</strong></p></div>
+								<div class="col-md-2" style="text-align:center">
+									<select class="selectpicker show-tick form-control" id="collected-person-sex">
+										<option value="男">男</option>
+										<option value="女">女</option>
+									</select>
+								</div>
+								<div class="col-md-2" style="text-align:center"><p><strong>文化程度：</strong></p></div>
+								<div class="col-md-2" style="text-align:center">
+									<select class="selectpicker show-tick form-control" id="collected-person-education">
+										<option value="小学以下">小学及以下</option>
+										<option value="初中">初中</option>
+										<option value="高中">高中</option>
+										<option value="大学">大学</option>
+										<option value="研究生及以上">研究生及以上</option>
+									</select>
+								</div>
+								<div class="col-md-2" style="text-align:center"><p><strong>使用语言：</strong></p></div>
+								<div class="col-md-2" style="text-align:center">
+									<select class="selectpicker show-tick form-control" id="collected-person-language">
+										<option value="语言1">语言1</option>
+										<option value="语言2">语言2</option>
 									</select>
 								</div>
 							</div>
 							<div class="row" style="padding:10px">
-								<div class="col-md-1" style="text-align:center"><p><strong>联系电话：</strong></p></div>
+								<div class="col-md-2" style="text-align:center"><p><strong>联系电话：</strong></p></div>
 								<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-phone"/></div>
-								<div class="col-md-2"></div>
-								<div class="col-md-1" style="text-align:center"><p><strong>职业：</strong></p></div>
+								<div class="col-md-2" style="text-align:center"><p><strong>职业：</strong></p></div>
 								<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-occupation"/></div>
 							</div>
 							<div class="row" style="padding:10px">
-								<div class="col-md-1" style="text-align:center"><p><strong>联系地址：</strong></p></div>
+								<div class="col-md-2" style="text-align:center"><p><strong>联系地址：</strong></p></div>
 								<div class="col-md-8" style="text-align:center"><input type="text" class="form-control" id="collected-person-address"/></div>
 							</div>
 							<div class="row" style="padding:10px">
-								<div class="col-md-1" style="text-align:center"><p><strong>文化程度：</strong></p></div>
-								<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-education"/></div>
-								<div class="col-md-2"></div>
-								<div class="col-md-1" style="text-align:center"><p><strong>使用语言：</strong></p></div>
-								<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-language"/></div>
-							</div>
-							<div class="row" style="padding:10px">
-								<div class="col-md-1" style="text-align:center"><p><strong>备注：</strong></p></div>
+								<div class="col-md-2" style="text-align:center"><p><strong>备注：</strong></p></div>
 								<div class="col-md-8" style="text-align:center"><textarea class="form-control" rows="3" id="collected-person-more"></textarea></div>
 							</div>
+						</div>
+						<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
+							<form method="POST" enctype="multipart/form-data" action="/uploadSyllableClusterFile"> 
+								<div class="well well-white clearfix" style="padding:10px">
+									<div class="index search row" style="height: 60px;">
+										<div class="row">
+											<div class="col-md-3" style="text-align:center"><p><strong>上传方言调查字表: </strong></p></div>
+											<div class="col-md-6" style="text-align:center"><input type="file" name="file" style="float: right;" class="file"/></div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<p>请输入地点详情: <input type="text" name="locationDes" id="locationDes" style="float: right;"/></p>
+											</div>
+										</div>
+										<div class="row"></div>
+										
+									</div>
+									<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
+									<div>
+										<table border="1" class="mytable" style=" width: 1000px; height: 50px;">
+											<tr class="front_textOne">
+												<td>方言ID</td>
+												<td>方言代号</td>
+												<td>方言描述</td>
+												<td>上传日期</td>
+												<td>操作</td>
+											</tr>
+											<tr th:each="dialectDetial : ${dialectDetialList}" style="font-size: 14px;">
+												<td th:text="${dialectDetial.ID}"> </td>
+												<td th:text="${dialectDetial.locationCode}"> </td>
+												<td th:text="${dialectDetial.locationDes}"> </td>
+												<td th:text="${dialectDetial.ddtimestamp}"> </td>
+												<td> </td>
+											</tr>
+										</table>
+									</div>
+									<div class="index search row" style="height: 60px;">
+										<div class="col-md-6"></div>
+										<div class="col-md-6">
+											<input type="submit" value="上传" style="float: left;" class="btn btn-primary btn-lg"/>
+										</div>
+									</div>
+								</div>
+							</form>
 						</div>
 						<div class="row" style="padding:10px; text-align:center">
 							<div class="col-md-6"><button type="button" class="btn btn-primary btn-lg">取消</button></div>
@@ -111,55 +167,6 @@
 					</div>
 				</div>
 			</div>
-				
-				<div class="index search row" style="height: 60px;">
-					<form method="POST" enctype="multipart/form-data" action="/uploadSyllableClusterFile"> 
-						<div class="row">
-							<div class="col-md-6">
-								<p>上传方言调查字表: <input type="file" name="file" style="float: right;"/></p>
-							</div>
-							
-						</div>
-						
-						<div class="row">
-							<div class="col-md-6">
-								<p>请输入地点代号: <input type="text" name="locationCode" id="locationCode" style="float: right;"/></p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<p>请输入地点详情: <input type="text" name="locationDes" id="locationDes" style="float: right;"/></p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<input type="submit" value="上传" style="float: left;"/>
-							</div>
-						</div>
-					</form>
-				</div>
-				
-				<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
-				
-				<div>
-					<table border="1" class="mytable" style=" width: 1000px; height: 50px;">
-							<tr class="front_textOne">
-								<td>方言ID</td>
-								<td>方言代号</td>
-								<td>方言描述</td>
-								<td>上传日期</td>
-								<td>操作</td>
-							</tr>
-							<tr th:each="dialectDetial : ${dialectDetialList}" style="font-size: 14px;">
-								<td th:text="${dialectDetial.ID}"> </td>
-								<td th:text="${dialectDetial.locationCode}"> </td>
-								<td th:text="${dialectDetial.locationDes}"> </td>
-								<td th:text="${dialectDetial.ddtimestamp}"> </td>
-								<td> </td>
-							</tr>
-						</table>
-				</div>
-				<div class="index search row" style="height: 60px;"></div>
 			</div>
 		</div>
 		<footer>
@@ -168,19 +175,90 @@
 	</body>
 	<script type="text/javascript" src="../js/jquery-3.1.1.min.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<script type="text/javascript" src="../js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="../js/bootstrap-select.js" charset="UTF-8"></script>
 	<script type="text/javascript">
 	
 		function readyToUplaod() {
-			var languangePoint = document.getElementById("languangePoint").value;
-			var coPersonName = document.getElementById("collected-person-name").value;;
+			var languagePoint = document.getElementById("languangePoint").value;
+			var locationProvince = document.getElementById("province").value;
+			var locationCity = document.getElementById("city").value;
+			var locationCounty = document.getElementById("county").value;
+			var locationTown = document.getElementById("town").value;
+			var locationVillage = document.getElementById("village").value;
+			var locationDetial = document.getElementById("detial-location").value;
+			var coPersonName = document.getElementById("collected-person-name").value;
+			var coPersonBirthday = document.getElementById("collected-person-birthday").value;
+			var coPersonSex = document.getElementById("collected-person-sex").value;
+			var coPersonEducation = document.getElementById("collected-person-education").value;
+			var coPersonUsedLanguage = document.getElementById("collected-person-language").value;
+			var coPersonTel = document.getElementById("collected-person-phone").value;
+			var coPersonProfession = document.getElementById("collected-person-occupation").value;
+			var coPersonContactAddress = document.getElementById("collected-person-address").value;
+			var coPersonRemarks = document.getElementById("collected-person-more").value;
+			
+			var result = new Object();
+			var alertStr = "";
+			
+			if(languagePoint == ""){alertStr += "语言点 ";}
+			if(locationProvince == ""){
+				alertStr += "、地理位置";
+			}
+			if(coPersonName == ""){alertStr += "、姓名";}
+			if(coPersonBirthday == ""){alertStr += "、出生日期";}
+			if(coPersonTel == ""){alertStr += "、联系电话";}
+			if(coPersonProfession == ""){alertStr += "、职业";}
+			if(coPersonContactAddress == ""){alertStr += "、联系地址";}
+			
+			if(alertStr != ""){
+				var alertMessage = document.getElementById("detail-message-alert");
+				var warningBlock = document.createElement("div");
+				warningBlock.setAttribute("class", "alert alert-danger alert-dismissible fade in");
+				warningBlock.setAttribute("id", "warning-block");
+				warningBlock.setAttribute("role", "alert");
 				
-			console.log(languangePoint);
+				var button = document.createElement("button");
+				button.setAttribute("class", "close");
+				button.setAttribute("data-dismiss", "alert");
+				button.setAttribute("aria-label", "Close");
 				
-		}
+				var span = document.createElement("span");
+				span.setAttribute("aria-hidden", "true");
+				span.innerHTML = "x";
+				
+				var p = document.createElement("p");
+				p.innerHTML = "请检查一下信息："+alertStr+"，是否填写完毕。";
+				
+				button.appendChild(span);
+				warningBlock.appendChild(button);
+				warningBlock.appendChild(p);
+				alertMessage.appendChild(warningBlock);
+			}else{
+				result.languagePoint = languagePoint;
+				result.locationProvince = locationProvince;
+				result.locationCity = locationCity;
+				result.locationCounty = locationCounty;
+				result.locationTown = locationTown;
+				result.locationVillage = locationVillage;
+				result.locationDetial = locationDetial;
+				result.name = coPersonName;
+				result.birthday = coPersonBirthday;
+				result.sex = coPersonSex;
+				result.education = coPersonEducation;
+				result.usedLanguage = coPersonUsedLanguage;
+				result.tel = coPersonTel;
+				result.profession = coPersonProfession;
+				result.contactAddress = coPersonContactAddress;
+				result.remarks = coPersonRemarks;
+			}
+			var locationDes = document.getElementById("locationDes");
+			locationDes.value = JSON.stringify(result);
+			console.log(JSON.stringify(result));
+		};
+		
 		$('.form_date').datetimepicker({
-	        language:  'fr',
+	        language:  'zh-CN',
 	        weekStart: 1,
 	        todayBtn:  1,
 			autoclose: 1,
