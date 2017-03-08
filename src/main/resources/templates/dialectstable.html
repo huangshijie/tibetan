@@ -33,11 +33,11 @@
 													<td>上传日期</td>
 													<td>操作</td>
 												</tr>
-												<tr th:each="dialectDetial : ${dialectDetialList}" style="font-size: 14px;">
-													<td th:text="${dialectDetial.ID}"> </td>
-													<td th:text="${dialectDetial.languagePoint}"> </td>
-													<td th:text="${dialectDetial.ddtimestamp}"> </td>
-													<td> <a th:href="@{/getDialectDetialByid(id=${dialectDetial.ID})}">查看详情</a></td>
+												<tr th:each="dialectRoughly: ${dialectRoughlyList}" style="font-size: 14px;">
+													<td th:text="${dialectRoughly.ID}"> </td>
+													<td th:text="${dialectRoughly.languagePoint}"> </td>
+													<td th:text="${dialectRoughly.ddtimestamp}"> </td>
+													<td> <a th:href="@{/getDialectDetialByid(id=${dialectRoughly.ID})}">查看详情</a></td>
 													
 												</tr>
 											</table>

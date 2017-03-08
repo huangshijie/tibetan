@@ -22,31 +22,46 @@
 				<div class="container">
 					<div class="row">
 						<div class="well well-white clearfix" style="padding:10px" >
-							<div class="row" style="padding:10px; text-align:center;" id="sylable-file-upload">
-									<div class="well well-white clearfix" style="padding:10px">
-										<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
-										<div>
-											<table border="1" class="mytable" style=" width: 1000px; height: 50px;">
-												<tr class="front_textOne">
-													<td>方言ID</td>
-													<td>语言点</td>
-													<td>上传日期</td>
-													<td>操作</td>
-												</tr>
-												<tr th:each="dialectDetial : ${dialectDetialList}" style="font-size: 14px;">
-													<td th:text="${dialectDetial.ID}"> </td>
-													<td th:text="${dialectDetial.languagePoint}"> </td>
-													<td th:text="${dialectDetial.ddtimestamp}"> </td>
-													<td> <a th:href="@{/getDialectDetialByid(id=${dialectDetial.ID})}">查看详情</a></td>
-													
-												</tr>
-											</table>
-										</div>
-									</div>
+							<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
+							<div>
+								<table border="1" class="mytable" style=" width: 1000px; height: 50px;">
+									<tr class="front_textOne">
+										<td>方言ID</td>
+										<td>藏语词条</td>
+										<td>汉语词条</td>
+										<td>表记威利转写</td>
+										<td>国际音标转写</td>
+										<td>发音</td>
+										<td>视频</td>
+										<td>音节个数</td>
+										<td>主重音位置</td>
+										<td>次重音位置</td>
+									</tr>
+									<tr th:each="dialectDetial : ${dialectDetialList}" style="font-size: 14px;">
+										<td th:text="${dialectDetial.ID}"> </td>
+										<td th:text="${dialectDetial.representationText}"> </td>
+										<td th:text="${dialectDetial.translationText}"> </td>
+										<td th:text="${dialectDetial.wltranscriptionText}"> </td>
+										<td th:text="${dialectDetial.transcriptionText}"> </td>
+										<td th:text="${dialectDetial.pronunciationText}"> </td>
+										<td th:text="${dialectDetial.videoText}"> </td>
+										<td th:text="${dialectDetial.syllablesCount}"> </td>
+										<td th:text="${dialectDetial.primaryStressedPosition}"> </td>
+										<td th:text="${dialectDetial.secondaryBtressedPosition}"> </td>
+									</tr>
+								</table>
 							</div>
-							<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
+							<div class="row" style="padding:10px; text-align:center" id="detail-collected-button">
+								<div class="col-md-2"><button type="button" class="btn btn-primary btn-lg">方言声母提取</button></div>
+								<div class="col-md-2"><button type="button" class="btn btn-primary btn-lg">方言韵母提取</button></div>
+								<div class="col-md-2"><button type="button" class="btn btn-primary btn-lg">方言韵核提取</button></div>
+								<div class="col-md-2"><button type="button" class="btn btn-primary btn-lg">方言韵尾提取</button></div>
+								<div class="col-md-2"><button type="button" class="btn btn-primary btn-lg" id="upload-syllableClusterFile-next-button" onclick="readyToUplaod()">方言声调提取</button></div>
 							</div>
 						</div>
+=						<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
+						</div>
+
 					</div>
 				</div>
 			</div>

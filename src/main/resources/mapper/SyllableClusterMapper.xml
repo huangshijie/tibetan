@@ -5,18 +5,31 @@
 	<resultMap type="com.huang.TibetanLibrary.domain.SyllableCluster" id="SyllableCluster">
 		<result property="ID" column="ID" />
 		<result property="DID" column="DID" />
-		<result property="ddtimestamp" column="ddtimestamp" />
-		<result property="locationCode" column="locationCode" />
-		<result property="locationDes" column="locationDes" />
+		<result property="translationText" column="translationText" />
+		<result property="representationText" column="representationText" />
+		<result property="wltranscriptionText" column="wltranscriptionText" />
+		<result property="transcriptionText" column="transcriptionText" />
+		<result property="pronunciationText" column="pronunciationText" />
+		<result property="videoText" column="videoText" />
+		<result property="syllablesCount" column="syllablesCount" />
+		<result property="primaryStressedPosition" column="primaryStressedPosition" />
+		<result property="secondaryBtressedPosition" column="secondaryBtressedPosition" />
 	</resultMap>
 	
-	<select id="findAllDialectDetials" resultMap="SyllableCluster">
+	<select id="findAllDialectDetials" parameterType="java.lang.String"   resultMap="SyllableCluster">
 		SELECT 
 			t.ID, 
-			t.ddtimestamp, 
-			t.locationCode, 
-			t.locationDes 
-		FROM dialectdetial t
+			t.translationText,
+			t.representationText,
+			t.wltranscriptionText,
+			t.transcriptionText,
+			t.pronunciationText,
+			t.videoText,
+			t.syllablesCount,
+			t.primaryStressedPosition,
+			t.secondaryBtressedPosition
+		FROM syllablecluster t
+		WHERE t.DID = #{id}
 	</select>
 	
 	<insert id="insertSyllableClusterSingle" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.SyllableCluster">
