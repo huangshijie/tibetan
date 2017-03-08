@@ -35,8 +35,22 @@
 	CREATE TABLE dialectdetial(
 		ID BIGINT(20) NOT NULL AUTO_INCREMENT,
 		ddtimestamp BIGINT(20) NOT NULL,
-		locationCode VARCHAR(255) NOT NULL,
-		locationDes VARCHAR(255),
+		languagePoint VARCHAR(255),
+		locationProvince VARCHAR(255),
+		locationCity VARCHAR(255),
+		locationCounty VARCHAR(255),
+		locationTown VARCHAR(255),
+		locationVillage VARCHAR(255),
+		locationDetial VARCHAR(255),
+		name VARCHAR(255),
+		birthday VARCHAR(255),
+		sex VARCHAR(255),
+		education VARCHAR(255),
+		usedLanguage VARCHAR(255),
+		tel VARCHAR(255),
+		profession VARCHAR(255),
+		contactAddress VARCHAR(255),
+		remarks VARCHAR(255),
 		PRIMARY KEY (id)
 	)AUTO_INCREMENT=1;
 
@@ -70,13 +84,12 @@
 		finalText VARCHAR(255),
 		nuclensText VARCHAR(255),
 		codaText VARCHAR(255),
-		toneText VARCHAR(255),
+		toneText BIGINT(20),
 		shellWilleText VARCHAR(255),
 		onsetWilleText VARCHAR(255),
 		finalWilleText VARCHAR(255),
 		nuclensWilleText VARCHAR(255),
 		codaWilleText VARCHAR(255),
-		toneWilleText VARCHAR(255),	
 		integrated tinyint(1),
 		PRIMARY KEY (id, DID, SID)
 	)AUTO_INCREMENT=1;

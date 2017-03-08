@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -188,7 +189,7 @@ public class TibetanLibraryService {
 	}
 	
 //	public static void readSyllableClusterXlsxFile(String absolutePath, String locationCode, String locationDes) {
-	public ArrayList<DialectDetial> readSyllableClusterXlsxFile(String absolutePath, String locationCode, String locationDes) {
+	public ArrayList<DialectDetial> readSyllableClusterXlsxFile(String absolutePath, String locationDes) {
 		try(
 				InputStream is = new FileInputStream(absolutePath);
 				XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
@@ -196,9 +197,25 @@ public class TibetanLibraryService {
 				long currentTimeMillis = System.currentTimeMillis();
 				DialectDetial dialectDetial= new DialectDetial();
 				
+				JSONObject locationDesJSON = new JSONObject(locationDes);
 				dialectDetial.setDdtimestamp(currentTimeMillis);
-				dialectDetial.setLocationCode(locationCode);
-				dialectDetial.setLocationDes(locationDes);
+
+				dialectDetial.setLanguagePoint(locationDesJSON.get("languagePoint").toString());
+				dialectDetial.setLocationProvince(locationDesJSON.get("locationProvince").toString());
+				dialectDetial.setLocationCity(locationDesJSON.get("locationCity").toString());
+				dialectDetial.setLocationCounty(locationDesJSON.get("locationCounty").toString());
+				dialectDetial.setLocationTown(locationDesJSON.get("locationTown").toString());
+				dialectDetial.setLocationVillage(locationDesJSON.get("locationVillage").toString());
+				dialectDetial.setLocationDetial(locationDesJSON.get("locationDetial").toString());
+				dialectDetial.setName(locationDesJSON.get("name").toString());
+				dialectDetial.setBirthday(locationDesJSON.get("birthday").toString());
+				dialectDetial.setSex(locationDesJSON.get("sex").toString());
+				dialectDetial.setEducation(locationDesJSON.get("education").toString());
+				dialectDetial.setUsedLanguage(locationDesJSON.get("usedLanguage").toString());
+				dialectDetial.setTel(locationDesJSON.get("tel").toString());
+				dialectDetial.setProfession(locationDesJSON.get("profession").toString());
+				dialectDetial.setContactAddress(locationDesJSON.get("contactAddress").toString());
+				dialectDetial.setRemarks(locationDesJSON.get("remarks").toString());
 				
 				dialectDetialMapper.insertDialectDetial(dialectDetial);
 				

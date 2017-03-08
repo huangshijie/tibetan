@@ -127,25 +127,7 @@
 											</div>
 										</div>
 										<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
-										<div class="row"><input type="text" name="locationDes" id="locationDes" style="float: right"/></div>
-										<div>
-											<table border="1" class="mytable" style=" width: 1000px; height: 50px;">
-												<tr class="front_textOne">
-													<td>方言ID</td>
-													<td>方言代号</td>
-													<td>方言描述</td>
-													<td>上传日期</td>
-													<td>操作</td>
-												</tr>
-												<tr th:each="dialectDetial : ${dialectDetialList}" style="font-size: 14px;">
-													<td th:text="${dialectDetial.ID}"> </td>
-													<td th:text="${dialectDetial.locationCode}"> </td>
-													<td th:text="${dialectDetial.locationDes}"> </td>
-													<td th:text="${dialectDetial.ddtimestamp}"> </td>
-													<td> </td>
-												</tr>
-											</table>
-										</div>
+										<div class="row"><input type="text" name="locationDes" id="locationDes" style="float: right; visibility: hidden;"/></div>
 										<div class="index search row" style="height: 60px;">
 											<div class="col-md-6"></div>
 											<div class="col-md-6">
@@ -157,7 +139,7 @@
 							</div>
 							<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
 							</div>
-							<div class="row" style="padding:10px; text-align:center">
+							<div class="row" style="padding:10px; text-align:center" id="detail-collected-button">
 								<div class="col-md-6"><button type="button" class="btn btn-primary btn-lg">取消</button></div>
 								<div class="col-md-6"><button type="button" class="btn btn-primary btn-lg" id="upload-syllableClusterFile-next-button" onclick="readyToUplaod()">下一步</button></div>
 							</div>
@@ -259,6 +241,9 @@
 				
 				var collectedPersionDetialsDiv = document.getElementById("collected-person-detials");
 				collectedPersionDetialsDiv.style.display = "none";
+				
+				var buttonList = document.getElementById("detail-collected-button");
+				buttonList.style.display = "none";
 			}
 			
 		};

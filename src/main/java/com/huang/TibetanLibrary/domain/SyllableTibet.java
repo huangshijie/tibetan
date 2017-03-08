@@ -15,14 +15,13 @@ public class SyllableTibet {
 	private String finalText; 				//韵母 
 	private String nuclensText; 			//韵核  
 	private String codaText; 				//韵尾  
-	private String toneText; 				//声调 
+	private long toneText; 					//声调 
 	
 	private String shellWilleText; 			//声韵  
 	private String onsetWilleText; 			//声母 
 	private String finalWilleText; 			//韵母 
 	private String nuclensWilleText; 		//韵核  
 	private String codaWilleText; 			//韵尾  
-	private String toneWilleText; 			//声调 
 	
 	private boolean integrated; 			//是否完整的音节（true
 	
@@ -98,12 +97,6 @@ public class SyllableTibet {
 	public void setCodaText(String codaText) {
 		this.codaText = codaText;
 	}
-	public String getToneText() {
-		return toneText;
-	}
-	public void setToneText(String toneText) {
-		this.toneText = toneText;
-	}
 	public String getShellWilleText() {
 		return shellWilleText;
 	}
@@ -134,17 +127,17 @@ public class SyllableTibet {
 	public void setCodaWilleText(String codaWilleText) {
 		this.codaWilleText = codaWilleText;
 	}
-	public String getToneWilleText() {
-		return toneWilleText;
-	}
-	public void setToneWilleText(String toneWilleText) {
-		this.toneWilleText = toneWilleText;
-	}
 	public boolean getIntegrated() {
 		return integrated;
 	}
 	public void setIntegrated(boolean integrated) {
 		this.integrated = integrated;
+	}
+	public long getToneText() {
+		return toneText;
+	}
+	public void setToneText(long toneText) {
+		this.toneText = toneText;
 	}
 	
 }

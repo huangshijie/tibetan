@@ -62,7 +62,7 @@ public class TibetanLibraryController {
 	}
 
 	@RequestMapping(value = "/uploadSyllableClusterFile",method = RequestMethod.POST)
-	public String getuploadSyllableClusterFile(@RequestParam("file") MultipartFile file, @RequestParam String locationCode, 
+	public String getuploadSyllableClusterFile(@RequestParam("file") MultipartFile file,
 			@RequestParam String locationDes, Model model,HttpServletRequest request, HttpServletResponse response){
 		
 		if (!file.isEmpty()) {  
@@ -81,15 +81,15 @@ public class TibetanLibraryController {
                 stream.write(bytes);  
                 stream.close();  
                 
-                model.addAttribute("dialectDetialList" , tibetanService.readSyllableClusterXlsxFile(uploadFile.getAbsolutePath(), locationCode, locationDes));
-                return "uploadSyllableClusterFile";
+                model.addAttribute("dialectDetialList" , tibetanService.readSyllableClusterXlsxFile(uploadFile.getAbsolutePath(), locationDes));
+                return "dialectstable";
             } catch (Exception e) {  
                 model.addAttribute("message", "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());  
-                return "uploadSyllableClusterFile";
+                return "dialectstable";
             }  
         } else {  
             model.addAttribute("message", "You failed to upload " + file.getOriginalFilename() + " because the file was empty.");  
-            return "uploadSyllableClusterFile";
+            return "dialectstable";
         } 
 	}
 	
@@ -122,4 +122,10 @@ public class TibetanLibraryController {
             return "You failed to upload " + file.getOriginalFilename() + " because the file was empty.";  
         }  
     }  
+	
+	@RequestMapping(value = "/getDialectDetialByid",method = RequestMethod.GET)
+	@ResponseBody 
+	public String getDialectDetialByid(@RequestParam String id, HttpServletRequest request, HttpServletResponse response){
+		 return "You click " + id+ " because the file was empty."; 
+    } 
 }
