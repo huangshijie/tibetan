@@ -6,31 +6,52 @@
 		<result property="ID" column="ID" />
 		<result property="DID" column="DID" />
 		<result property="SID" column="SID" />
-		<result property="syllableTibet" column="syllableTibet" />
-		<result property="wlSyllableTibet" column="wlSyllableTibet" />
+		<result property="translationText" column="translationText" />
+		<result property="representationText" column="representationText" />
+		<result property="wltranscriptionText" column="wltranscriptionText" />
+		<result property="transcriptionText" column="transcriptionText" />
+		<result property="shellText" column="shellText" />
+		<result property="onsetText" column="onsetText" />
+		<result property="finalText" column="finalText" /> 
+		<result property="nuclensText" column="nuclensText" />
+		<result property="codaText" column="codaText" /> 
+		<result property="toneText" column="toneText" /> 
+		<result property="shellWilleText" column="shellWilleText" />
+		<result property="onsetWilleText" column="onsetWilleText" /> 
+		<result property="finalWilleText" column="finalWilleText" /> 
+		<result property="nuclensWilleText" column="nuclensWilleText" />
+		<result property="codaWilleText" column="codaWilleText" />
+		<result property="integrated" column="integrated" />
 	</resultMap>
 	
-	<select id="findAllSyllableTibet" resultMap="SyllableTibet">
+	<select id="findAllSyllableTibetById" parameterType="java.lang.String" resultMap="SyllableTibet">
 		SELECT 
-			t.ID, 
-			t.DID, 
-			t.SID, 
-			t.translationText, 
+			t.ID,
+			t.DID,
+			t.SID,
+			t.translationText,
 			t.representationText,
 			t.wltranscriptionText,
 			t.transcriptionText,
 			t.shellText,
 			t.onsetText,
-			t.finalText,
+			t.finalText, 
 			t.nuclensText,
-			t.codaText,
-			t.toneText,
+			t.codaText,  
+			t.toneText, 
+			t.shellWilleText,
+			t.onsetWilleText,  
+			t.finalWilleText,  
+			t.nuclensWilleText,
+			t.codaWilleText,
 			t.integrated
 		FROM syllableTibet t
+		WHERE t.DID = #{id}
 	</select>
 	
 	<insert id="insertSingleSyllableTibet" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.SyllableTibet">
 		INSERT INTO syllableTibet(
+			ID,
 			DID,
 			SID,
 			translationText,
@@ -39,13 +60,19 @@
 			transcriptionText,
 			shellText,
 			onsetText,
-			finalText,
+			finalText, 
 			nuclensText,
-			codaText,
-			toneText,
+			codaText,  
+			toneText, 
+			shellWilleText,
+			onsetWilleText,  
+			finalWilleText,  
+			nuclensWilleText,
+			codaWilleText,
 			integrated
 		)
 		VALUES(
+			#{ID},
 			#{DID},
 			#{SID},
 			#{translationText},
@@ -54,10 +81,15 @@
 			#{transcriptionText},
 			#{shellText},
 			#{onsetText},
-			#{finalText},
+			#{finalText}, 
 			#{nuclensText},
-			#{codaText},
-			#{toneText},
+			#{codaText}, 
+			#{toneText}, 
+			#{shellWilleText},
+			#{onsetWilleText}, 
+			#{finalWilleText}, 
+			#{nuclensWilleText},
+			#{codaWilleText},
 			#{integrated}
 		)
 	</insert>

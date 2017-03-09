@@ -67,6 +67,14 @@ public class DialectController {
 	@RequestMapping(value = "/getDialectDetialByid",method = RequestMethod.GET)
 	public String getDialectDetialByid(@RequestParam String id, HttpServletRequest request, HttpServletResponse response, Model model){
 		model.addAttribute("dialectDetialList",dialectService.getSyllableClusterListByid(id));
+		model.addAttribute("id",id);
 		return "dialectsdetial"; 
+    } 
+	
+	@RequestMapping(value = "/getDialectDetialDrawedBydid",method = RequestMethod.GET)
+	public String getDialectDetialDrawedBydid(@RequestParam String id, @RequestParam String drawtype, 
+			HttpServletRequest request, HttpServletResponse response, Model model){
+		model.addAttribute("dialectDetialDrawedList",dialectService.getSyllableTibetDrawedListByid(id));
+		return drawtype; 
     } 
 }

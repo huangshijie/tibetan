@@ -32,11 +32,17 @@ public class DialectService {
 	private SyllableClusterMapper syllableClusterMapper;
 	
 	@Autowired
-	private SyllableTibetMapper SyllableTibetMapper;
+	private SyllableTibetMapper syllableTibetMapper;
 	
 	public ArrayList<SyllableCluster> getSyllableClusterListByid(String id){
 		ArrayList<SyllableCluster> result = new ArrayList<SyllableCluster>();
 		result = syllableClusterMapper.findAllDialectDetials(id);
+		return result;
+	}
+	
+	public Object getSyllableTibetDrawedListByid(String id) {
+		ArrayList<SyllableTibet> result = new ArrayList<SyllableTibet>();
+		result = syllableTibetMapper.findAllSyllableTibetById(id);
 		return result;
 	}
 	
@@ -121,7 +127,7 @@ public class DialectService {
 										 tmp.setWltranscriptionText(tmpTWStructure.getWillieTransfer());
 										 tmp.setTranscriptionText(transcriptionChars[i]);
 										 tmp.setRepresentationText(tmpTWStructure.getRepresentationText());
-										 tmp.setTranslationText(tmpSyllableCluster.getRepresentationText()); 
+										 tmp.setTranslationText(tmpSyllableCluster.getTranslationText()); 
 										 
 										 String wilStr = tmpTWStructure.getWillieTransfer();
 										 Pattern p = Pattern.compile("(.*)[aeiou](.*)");
@@ -136,6 +142,16 @@ public class DialectService {
 										 tmp.setNuclensWilleText(wilStr.substring(matchWilStr.length(), matchWilStr.length()+1));
 										 tmp.setCodaWilleText(wilStr.substring(matchWilStr.length()+1, wilStr.length()));
 										 
+										 String transcriptionStr = transcriptionChars[i];
+										 Matcher mTran = p.matcher(transcriptionStr);
+										 String matchTran = "";
+										 while(mTran.find()){
+											 matchTran = mTran.group(1);
+										 }
+										 tmp.setOnsetText(transcriptionStr.substring(0, matchTran.length()));
+										 tmp.setFinalText(transcriptionStr.substring(matchTran.length(), transcriptionStr.length()));
+										 tmp.setNuclensText(transcriptionStr.substring(matchTran.length(), matchTran.length()+1));
+										 tmp.setCodaText(transcriptionStr.substring(matchTran.length()+1, transcriptionStr.length()));
 										 
 										 syllableTibetList.add(tmp);
 									 }
@@ -147,8 +163,8 @@ public class DialectService {
 							 }
 							 if(xssfRow.getCell(4) != null){tmpSyllableCluster.setTranscriptionText(xssfRow.getCell(4).toString());}else{tmpSyllableCluster.setTranscriptionText("");}							 
 							 
-							 if(xssfRow.getCell(6) != null){tmpSyllableCluster.setPronunciationText(xssfRow.getCell(6).toString());}else{tmpSyllableCluster.setTranscriptionText("");}							 
-							 if(xssfRow.getCell(7) != null){tmpSyllableCluster.setVideoText(xssfRow.getCell(7).toString());}else{tmpSyllableCluster.setTranscriptionText("");}							 
+							 if(xssfRow.getCell(6) != null){tmpSyllableCluster.setPronunciationText(xssfRow.getCell(6).toString());}else{tmpSyllableCluster.setPronunciationText("");}							 
+							 if(xssfRow.getCell(7) != null){tmpSyllableCluster.setVideoText(xssfRow.getCell(7).toString());}else{tmpSyllableCluster.setVideoText("");}							 
 							 if(xssfRow.getCell(8) != null){tmpSyllableCluster.setPrimaryStressedPosition(xssfRow.getCell(8).toString());}else{tmpSyllableCluster.setPrimaryStressedPosition("");}
 							 if(xssfRow.getCell(9) != null){tmpSyllableCluster.setSecondaryBtressedPosition(xssfRow.getCell(9).toString());}else{tmpSyllableCluster.setSecondaryBtressedPosition("");}
 							 
@@ -166,7 +182,7 @@ public class DialectService {
 								 for(int i = 0; i<syllableTibetList.size(); i++){
 									 SyllableTibet tmp = syllableTibetList.get(i);
 									 tmp.setSID(SID);
-									 SyllableTibetMapper.insertSingleSyllableTibet(tmp);
+									 syllableTibetMapper.insertSingleSyllableTibet(tmp);
 								 }
 							 }
 						 }
@@ -180,4 +196,5 @@ public class DialectService {
 		ArrayList<DialectDetial> result = dialectDetialMapper.findAllDialectDetials();
 		return result;
 	}
+
 }

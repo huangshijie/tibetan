@@ -31,36 +31,27 @@
 										<td>汉语词条</td>
 										<td>表记威利转写</td>
 										<td>国际音标转写</td>
-										<td>发音</td>
-										<td>视频</td>
-										<td>音节个数</td>
-										<td>主重音位置</td>
-										<td>次重音位置</td>
+										<td>韵尾音标转写</td>
+										<td>韵尾威利转写</td>
 									</tr>
-									<tr th:each="dialectDetial : ${dialectDetialList}" style="font-size: 14px;">
+									<tr th:each="dialectDetial : ${dialectDetialDrawedList}" style="font-size: 14px;">
 										<td th:text="${dialectDetial.ID}"> </td>
 										<td th:text="${dialectDetial.representationText}"> </td>
 										<td th:text="${dialectDetial.translationText}"> </td>
 										<td th:text="${dialectDetial.wltranscriptionText}"> </td>
 										<td th:text="${dialectDetial.transcriptionText}"> </td>
-										<td th:text="${dialectDetial.pronunciationText}"> </td>
-										<td th:text="${dialectDetial.videoText}"> </td>
-										<td th:text="${dialectDetial.syllablesCount}"> </td>
-										<td th:text="${dialectDetial.primaryStressedPosition}"> </td>
-										<td th:text="${dialectDetial.secondaryBtressedPosition}"> </td>
+										<td th:text="${dialectDetial.codaText}"> </td>
+										<td th:text="${dialectDetial.codaWilleText}"> </td>
 									</tr>
 								</table>
 							</div>
 							<div class="row" style="padding:10px; text-align:center" id="detail-collected-button">
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawonsetdialectsdetial')}">方言声母提取</a></div>
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawfinaldialectsdetial')}">方言韵母提取</a></div>
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawnuclensdialectsdetial')}">方言韵核提取</a></div>
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawcodadialectsdetial')}">方言韵尾提取</a></div>
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawtonedialectsdetial')}">方言声调提取</a></div>
+								<div class="col-md-2"><button type="button" class="btn btn-primary btn-lg" id="dialects-tone-draw-btn" onclick="readyToUplaod()">导出到excel</button></div>
 							</div>
 						</div>
 						<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -75,21 +66,4 @@
 	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/bootstrap-select.js" charset="UTF-8"></script>
-	<script th:inline="javascript">  
-		
-		function readyToUplaod(drawtype){
-			var id = [[${id}]];
-			var type = drawtype;
-			var url = 'getDialectDetialDrawedBydid';
-			console.log(id + type);
-			$.ajax({
-				  url: url,
-				  type: 'GET',
-				  data: {id: id, drawtype: type}
-			});
-
-
-		};
-		
-	</script>  
 </html>
