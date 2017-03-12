@@ -5,8 +5,7 @@
 	    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
-	    <link rel="stylesheet" type="text/css" href="/css/bootstrap-select.css"/>
-	    <link rel="stylesheet" media="screen" href="../css/bootstrap-datetimepicker.min.css" />
+	    <link rel="stylesheet" type="text/css" href="/css/bootstrap-table.css"/>
 	    
 		<title>汉藏大辞典</title>
 	</head>
@@ -22,34 +21,8 @@
 				<div class="container">
 					<div class="row">
 						<div class="well well-white clearfix" style="padding:10px" >
-							<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
 							<div>
-								<table border="1" class="mytable" style=" width: 1000px; height: 50px;">
-									<tr class="front_textOne">
-										<td>方言ID</td>
-										<td>藏语词条</td>
-										<td>汉语词条</td>
-										<td>表记威利转写</td>
-										<td>国际音标转写</td>
-										<td>发音</td>
-										<td>视频</td>
-										<td>音节个数</td>
-										<td>主重音位置</td>
-										<td>次重音位置</td>
-									</tr>
-									<tr th:each="dialectDetial : ${dialectDetialList}" style="font-size: 14px;">
-										<td th:text="${dialectDetial.ID}"> </td>
-										<td th:text="${dialectDetial.representationText}"> </td>
-										<td th:text="${dialectDetial.translationText}"> </td>
-										<td th:text="${dialectDetial.wltranscriptionText}"> </td>
-										<td th:text="${dialectDetial.transcriptionText}"> </td>
-										<td th:text="${dialectDetial.pronunciationText}"> </td>
-										<td th:text="${dialectDetial.videoText}"> </td>
-										<td th:text="${dialectDetial.syllablesCount}"> </td>
-										<td th:text="${dialectDetial.primaryStressedPosition}"> </td>
-										<td th:text="${dialectDetial.secondaryBtressedPosition}"> </td>
-									</tr>
-								</table>
+								<table id="dialectstable"></table>
 							</div>
 							<div class="row" style="padding:10px; text-align:center" id="detail-collected-button">
 								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawonsetdialectsdetial')}">方言声母提取</a></div>
@@ -72,24 +45,66 @@
 	</body>
 	<script type="text/javascript" src="../js/jquery-3.1.1.min.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-	<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-	<script type="text/javascript" src="../js/bootstrap-select.js" charset="UTF-8"></script>
-	<script th:inline="javascript">  
-		
-		function readyToUplaod(drawtype){
-			var id = [[${id}]];
-			var type = drawtype;
-			var url = 'getDialectDetialDrawedBydid';
-			console.log(id + type);
-			$.ajax({
-				  url: url,
-				  type: 'GET',
-				  data: {id: id, drawtype: type}
-			});
-
-
-		};
-		
-	</script>  
+	<script type="text/javascript" src="../js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../js/locales/bootstrap-table-zh-CN.js"></script>
+	<script type="text/javascript" src="../table-extensions/bootstrap-table-export.js"></script>
+	<script th:inline="javascript">
+		var $table = $('#dialectstable');
+		var roughList = [[${dialectDetialList}]];
+		$table.bootstrapTable({
+			data: roughList,
+			dataType: "json",
+			toolbar: '#toolbar',                //工具按钮用哪个容器
+			striped: true,                      //是否显示行间隔色
+			singleSelect: false,
+			pagination: true, 					//分页
+			pageNumber:1,                       //初始化加载第一页，默认第一页
+			pageSize: 10,                       //每页的记录行数（*）
+			pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+			search: false, 						//显示搜索框
+			sidePagination: "server", 			//服务端处理分页
+			columns: [{
+					field: 'ID',
+					title: '方言ID',
+					align: 'center'
+				}, {
+					field: 'representationText',
+					title: '藏语词条',
+					align: 'center'
+				}, {
+					field: 'translationText',
+					title: '汉语词条',
+					align: 'center'
+				}, {
+					field: 'wltranscriptionText',
+					title: '表记威利转写',
+					align: 'center'
+				}, {
+					field: 'transcriptionText',
+					title: '国际音标转写',
+					align: 'center'
+				}, {
+					field: 'pronunciationText',
+					title: '发音',
+					align: 'center'
+				}, {
+					field: 'videoText',
+					title: '视频',
+					align: 'center'
+				}, {
+					field: 'syllablesCount',
+					title: '音节个数',
+					align: 'center'
+				}, {
+					field: 'primaryStressedPosition',
+					title: '主重音位置',
+					align: 'center'
+				}, {
+					field: 'secondaryBtressedPosition',
+					title: '次重音位置',
+					align: 'center'
+				}
+			]
+		});
+	</script> 
 </html>

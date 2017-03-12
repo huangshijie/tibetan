@@ -25,6 +25,12 @@ public class DialectController {
 	@Autowired
 	DialectService dialectService;
 	
+	@RequestMapping(value = "/getCurrentDialectsTable",method = RequestMethod.GET)
+	public String getDialectsTableHTML(Model model){
+		model.addAttribute("dialectRoughlyList" , dialectService.getAllDialectDetialsList());
+        return "dialectstable";
+	}
+	
 	@RequestMapping(value = "/uploadSyllableClusterFileHTML",method = RequestMethod.GET)
 	public String getuploadSyllableClusterFileHTML(Model model){
 		ArrayList<DialectDetial> dialectDetialList= new ArrayList<DialectDetial>();
@@ -75,6 +81,9 @@ public class DialectController {
 	public String getDialectDetialDrawedBydid(@RequestParam String id, @RequestParam String drawtype, 
 			HttpServletRequest request, HttpServletResponse response, Model model){
 		model.addAttribute("dialectDetialDrawedList",dialectService.getSyllableTibetDrawedListByid(id));
-		return drawtype; 
+		model.addAttribute("id", id);
+		model.addAttribute("drawtype", drawtype);
+//		return drawtype; 
+		return "drawdialectsdetial";
     } 
 }

@@ -40,10 +40,14 @@ public class DialectService {
 		return result;
 	}
 	
-	public Object getSyllableTibetDrawedListByid(String id) {
+	public ArrayList<SyllableTibet> getSyllableTibetDrawedListByid(String id) {
 		ArrayList<SyllableTibet> result = new ArrayList<SyllableTibet>();
 		result = syllableTibetMapper.findAllSyllableTibetById(id);
 		return result;
+	}
+	
+	public ArrayList<DialectDetial> getAllDialectDetialsList(){
+		return dialectDetialMapper.findAllDialectDetials();
 	}
 	
 	public ArrayList<DialectDetial> readSyllableClusterXlsxFile(String absolutePath, String locationDes) {
@@ -143,7 +147,8 @@ public class DialectService {
 										 tmp.setCodaWilleText(wilStr.substring(matchWilStr.length()+1, wilStr.length()));
 										 
 										 String transcriptionStr = transcriptionChars[i];
-										 Matcher mTran = p.matcher(transcriptionStr);
+										 Pattern pTran = Pattern.compile("(.*)[yɨʉɯuIʏʊeøəɵɤoɛœɜɞʌɔæɐaɶɑɒ](.*)");
+										 Matcher mTran = pTran.matcher(transcriptionStr);
 										 String matchTran = "";
 										 while(mTran.find()){
 											 matchTran = mTran.group(1);
@@ -196,5 +201,5 @@ public class DialectService {
 		ArrayList<DialectDetial> result = dialectDetialMapper.findAllDialectDetials();
 		return result;
 	}
-
+	
 }

@@ -5,8 +5,7 @@
 	    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
-	    <link rel="stylesheet" type="text/css" href="/css/bootstrap-select.css"/>
-	    <link rel="stylesheet" media="screen" href="../css/bootstrap-datetimepicker.min.css" />
+	    <link rel="stylesheet" type="text/css" href="/css/bootstrap-table.css"/>
 	    
 		<title>汉藏大辞典</title>
 	</head>
@@ -41,6 +40,7 @@
 													
 												</tr>
 											</table>
+											<table id="dialectstable"></table>
 										</div>
 									</div>
 							</div>
@@ -58,7 +58,46 @@
 	</body>
 	<script type="text/javascript" src="../js/jquery-3.1.1.min.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-	<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-	<script type="text/javascript" src="../js/bootstrap-select.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="../js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../js/locales/bootstrap-table-zh-CN.js"></script>
+	<script type="text/javascript" src="../table-extensions/bootstrap-table-export.js"></script>
+	<script th:inline="javascript">
+		var $table = $('#dialectstable');
+		var roughList = [[${dialectRoughlyList}]];
+		$table.bootstrapTable({
+			data: roughList,
+			dataType: "json",
+			toolbar: '#toolbar',                //工具按钮用哪个容器
+			striped: true,                      //是否显示行间隔色
+			singleSelect: false,
+			pagination: true, 					//分页
+			pageNumber:1,                       //初始化加载第一页，默认第一页
+			pageSize: 10,                       //每页的记录行数（*）
+			pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+			search: false, 						//显示搜索框
+			sidePagination: "server", 			//服务端处理分页
+			columns: [{
+					field: 'ID',
+					title: '方言ID',
+					align: 'center'
+				}, {
+					field: 'languagePoint',
+					align: 'center',
+					title: '语言点'
+				}, {
+					field: 'ddtimestamp',
+					align: 'center',
+					title: '上传日期'
+				}, {
+					title: '操作',
+					field: 'id',
+					align: 'center',
+					formatter:function(value,row,index){  
+						var e = '<a href="/getDialectDetialByid?id='+ row.ID +'">查看详情</a> ';  
+						var d = '<a href="#" mce_href="#" onclick="del(\''+ row.id +'\')">删除</a> ';  
+						return e+d;  
+					}
+				}]
+			});
+	</script>
 </html>
