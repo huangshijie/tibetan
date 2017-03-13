@@ -21,15 +21,16 @@
 				<div class="container">
 					<div class="row">
 						<div class="well well-white clearfix" style="padding:10px" >
+							<h3>方言语言点-<span th:text="${languagePoint}"></span></h3>
 							<div>
 								<table id="dialectstable"></table>
 							</div>
 							<div class="row" style="padding:10px; text-align:center" id="detail-collected-button">
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawonsetdialectsdetial')}">方言声母提取</a></div>
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawfinaldialectsdetial')}">方言韵母提取</a></div>
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawnuclensdialectsdetial')}">方言韵核提取</a></div>
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawcodadialectsdetial')}">方言韵尾提取</a></div>
-								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawtonedialectsdetial')}">方言声调提取</a></div>
+								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawonsetdialectsdetial',languagePoint = ${languagePoint})}">方言声母提取</a></div>
+								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawfinaldialectsdetial',languagePoint = ${languagePoint})}">方言韵母提取</a></div>
+								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawnuclensdialectsdetial',languagePoint = ${languagePoint})}">方言韵核提取</a></div>
+								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawcodadialectsdetial',languagePoint = ${languagePoint})}">方言韵尾提取</a></div>
+								<div class="col-md-2"><a th:href="@{/getDialectDetialDrawedBydid(id=${id},drawtype='drawtonedialectsdetial',languagePoint = ${languagePoint})}">方言声调提取</a></div>
 							</div>
 						</div>
 						<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
@@ -62,7 +63,7 @@
 			pageSize: 10,                       //每页的记录行数（*）
 			pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 			search: false, 						//显示搜索框
-			sidePagination: "server", 			//服务端处理分页
+			sidePagination: "client", 			//服务端处理分页
 			columns: [{
 					field: 'ID',
 					title: '方言ID',

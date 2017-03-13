@@ -387,6 +387,7 @@ public class TibetanWordStructure {
 	}
 	
 	public static void main(String[] agrs){
-		System.out.println(findInExhaustiveSet("ɡzh"));
+		TibetanWordStructure test= new TibetanWordStructure("སྐར");
+		System.out.println(test.getWillieTransfer());
 	}
 }

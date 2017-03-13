@@ -203,3 +203,13 @@ body{
   line-height: 30px;
   height: 30px;
 }
+
+.representationTextClass{
+	font-size: 25px;
+    padding: 0px !important;
+    font-weight: 600;
+}
+
+.th-inner {
+	font-size: 14px !important;
+}

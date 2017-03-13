@@ -71,19 +71,21 @@ public class DialectController {
 	}
 	
 	@RequestMapping(value = "/getDialectDetialByid",method = RequestMethod.GET)
-	public String getDialectDetialByid(@RequestParam String id, HttpServletRequest request, HttpServletResponse response, Model model){
+	public String getDialectDetialByid(@RequestParam String id, @RequestParam String languagePoint, HttpServletRequest request, HttpServletResponse response, Model model){
 		model.addAttribute("dialectDetialList",dialectService.getSyllableClusterListByid(id));
 		model.addAttribute("id",id);
+		model.addAttribute("languagePoint",languagePoint);
 		return "dialectsdetial"; 
     } 
 	
 	@RequestMapping(value = "/getDialectDetialDrawedBydid",method = RequestMethod.GET)
-	public String getDialectDetialDrawedBydid(@RequestParam String id, @RequestParam String drawtype, 
+	public String getDialectDetialDrawedBydid(@RequestParam String id, @RequestParam String drawtype, @RequestParam String languagePoint, 
 			HttpServletRequest request, HttpServletResponse response, Model model){
 		model.addAttribute("dialectDetialDrawedList",dialectService.getSyllableTibetDrawedListByid(id));
 		model.addAttribute("id", id);
 		model.addAttribute("drawtype", drawtype);
-//		return drawtype; 
+		model.addAttribute("languagePoint", languagePoint);
+		
 		return "drawdialectsdetial";
     } 
 }

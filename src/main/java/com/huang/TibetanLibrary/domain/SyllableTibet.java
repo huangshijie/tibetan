@@ -15,7 +15,7 @@ public class SyllableTibet {
 	private String finalText; 				//韵母 
 	private String nuclensText; 			//韵核  
 	private String codaText; 				//韵尾  
-	private long toneText; 					//声调 
+	private String toneText; 				//声调 
 	
 	private String shellWilleText; 			//声韵  
 	private String onsetWilleText; 			//声母 
@@ -133,10 +133,10 @@ public class SyllableTibet {
 	public void setIntegrated(boolean integrated) {
 		this.integrated = integrated;
 	}
-	public long getToneText() {
+	public String getToneText() {
 		return toneText;
 	}
-	public void setToneText(long toneText) {
+	public void setToneText(String toneText) {
 		this.toneText = toneText;
 	}
 	

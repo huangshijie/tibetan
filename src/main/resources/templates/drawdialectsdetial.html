@@ -17,10 +17,11 @@
 				</div>
 				<div class="container">
 					<div class="well well-white clearfix" style="padding:10px" >
+						<h3>方言语言点-<span th:text="${languagePoint}"></span></h3>
 						<div>
 							<table id="dialectstable"></table>
 							</div>
-						<div class="row"><a th:href="@{/getDialectDetialByid(id=${id})}">返回上一层</a></div>
+						<div class="row"><a th:href="@{/getDialectDetialByid(id=${id}, languagePoint=${languagePoint})}">返回上一层</a></div>
 					</div>
 				</div>
 			</div>
@@ -34,6 +35,7 @@
 	<script type="text/javascript" src="../js/bootstrap-table.js"></script>
 	<script type="text/javascript" src="../js/locales/bootstrap-table-zh-CN.js"></script>
 	<script type="text/javascript" src="../table-extensions/bootstrap-table-export.js"></script>
+	<script type="text/javascript" src="../table-extensions/tableExport.js"></script>
 	<script th:inline="javascript">
 		var $table = $('#dialectstable');
 		var roughList = [[${dialectDetialDrawedList}]];
@@ -50,28 +52,31 @@
 				pageSize: 10,                       //每页的记录行数（*）
 				pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 				search: false, 						//显示搜索框
-				sidePagination: "server", 			//服务端处理分页
+				sidePagination: "client", 			//服务端处理分页
+				showExport: true,
+				exportDataType: "all",
 				columns: [{
 						field: 'ID',
 						title: '方言ID',
 						align: 'center'
 					}, {
-						field: 'representationTex',
+						field: 'representationText',
 						title: '藏语词条',
-						align: 'center'
+						align: 'center',
+						class: 'representationTextClass'
 					}, {
 						field: 'translationText',
 						title: '汉语词条',
 						align: 'center'
 					}, {
-						field: 'wltranscriptionText',
-						title: '表记威利转写',
-						align: 'center'
-					},{
 						field: 'transcriptionText',
 						title: '国际音标转写',
 						align: 'center'
 						
+					},{
+						field: 'wltranscriptionText',
+						title: '表记威利转写',
+						align: 'center'
 					},{
 						field: 'onsetText',
 						title: '声母音标转写',
@@ -97,13 +102,15 @@
 				pageSize: 10,                       //每页的记录行数（*）
 				pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 				search: false, 						//显示搜索框
-				sidePagination: "server", 			//服务端处理分页
+				sidePagination: "client", 			//服务端处理分页
+				showExport: true,
+				exportDataType: "all",
 				columns: [{
 						field: 'ID',
 						title: '方言ID',
 						align: 'center'
 					}, {
-						field: 'representationTex',
+						field: 'representationText',
 						title: '藏语词条',
 						align: 'center'
 					}, {
@@ -111,14 +118,14 @@
 						title: '汉语词条',
 						align: 'center'
 					}, {
-						field: 'wltranscriptionText',
-						title: '表记威利转写',
-						align: 'center'
-					},{
 						field: 'transcriptionText',
 						title: '国际音标转写',
 						align: 'center'
 						
+					},{
+						field: 'wltranscriptionText',
+						title: '表记威利转写',
+						align: 'center'
 					},{
 						field: 'nuclensText',
 						title: '韵核音标转写',
@@ -132,7 +139,7 @@
 				]
 			});
 		}
-		if(drawtype==='drawshelldialectsdetial'){
+		if(drawtype==='drawfinaldialectsdetial'){
 			$table.bootstrapTable({
 				data: roughList,
 				dataType: "json",
@@ -144,13 +151,15 @@
 				pageSize: 10,                       //每页的记录行数（*）
 				pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 				search: false, 						//显示搜索框
-				sidePagination: "server", 			//服务端处理分页
+				sidePagination: "client", 			//服务端处理分页
+				showExport: true,
+				exportDataType: "all",
 				columns: [{
 						field: 'ID',
 						title: '方言ID',
 						align: 'center'
 					}, {
-						field: 'representationTex',
+						field: 'representationText',
 						title: '藏语词条',
 						align: 'center'
 					}, {
@@ -158,22 +167,22 @@
 						title: '汉语词条',
 						align: 'center'
 					}, {
-						field: 'wltranscriptionText',
-						title: '表记威利转写',
-						align: 'center'
-					},{
 						field: 'transcriptionText',
 						title: '国际音标转写',
 						align: 'center'
 						
 					},{
-						field: 'shellText',
-						title: '声韵音标转写',
+						field: 'wltranscriptionText',
+						title: '表记威利转写',
+						align: 'center'
+					},{
+						field: 'finalText',
+						title: '韵母音标转写',
 						align: 'center'
 						
 					},{
-						field: 'shellWilleText',
-						title: '声韵威利转写',
+						field: 'finalWilleText',
+						title: '韵母威利转写',
 						align: 'center'
 					}
 				]
@@ -186,18 +195,20 @@
 				toolbar: '#toolbar',                //工具按钮用哪个容器
 				striped: true,                      //是否显示行间隔色
 				singleSelect: false,
+				sidePagination: "client",
 				pagination: true, 					//分页
 				pageNumber:1,                       //初始化加载第一页，默认第一页
 				pageSize: 10,                       //每页的记录行数（*）
 				pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 				search: false, 						//显示搜索框
-				sidePagination: "server", 			//服务端处理分页
+				showExport: true,
+				exportDataType: "all",
 				columns: [{
 						field: 'ID',
 						title: '方言ID',
 						align: 'center'
 					}, {
-						field: 'representationTex',
+						field: 'representationText',
 						title: '藏语词条',
 						align: 'center'
 					}, {
@@ -205,14 +216,14 @@
 						title: '汉语词条',
 						align: 'center'
 					}, {
-						field: 'wltranscriptionText',
-						title: '表记威利转写',
-						align: 'center'
-					},{
 						field: 'transcriptionText',
 						title: '国际音标转写',
 						align: 'center'
 						
+					},{
+						field: 'wltranscriptionText',
+						title: '表记威利转写',
+						align: 'center'
 					},{
 						field: 'codaText',
 						title: '韵尾音标转写',
@@ -238,13 +249,15 @@
 				pageSize: 10,                       //每页的记录行数（*）
 				pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 				search: false, 						//显示搜索框
-				sidePagination: "server", 			//服务端处理分页
+				sidePagination: "client", 			//服务端处理分页
+				showExport: true,
+				exportDataType: "all",
 				columns: [{
 						field: 'ID',
 						title: '方言ID',
 						align: 'center'
 					}, {
-						field: 'representationTex',
+						field: 'representationText',
 						title: '藏语词条',
 						align: 'center'
 					}, {
@@ -252,14 +265,14 @@
 						title: '汉语词条',
 						align: 'center'
 					}, {
-						field: 'wltranscriptionText',
-						title: '表记威利转写',
-						align: 'center'
-					},{
 						field: 'transcriptionText',
 						title: '国际音标转写',
 						align: 'center'
 						
+					},{
+						field: 'wltranscriptionText',
+						title: '表记威利转写',
+						align: 'center'
 					},{
 						field: 'toneText',
 						title: '声调',

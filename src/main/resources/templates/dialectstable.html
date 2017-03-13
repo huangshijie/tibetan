@@ -22,27 +22,8 @@
 					<div class="row">
 						<div class="well well-white clearfix" style="padding:10px" >
 							<div class="row" style="padding:10px; text-align:center;" id="sylable-file-upload">
-									<div class="well well-white clearfix" style="padding:10px">
-										<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
-										<div>
-											<table border="1" class="mytable" style=" width: 1000px; height: 50px;">
-												<tr class="front_textOne">
-													<td>方言ID</td>
-													<td>语言点</td>
-													<td>上传日期</td>
-													<td>操作</td>
-												</tr>
-												<tr th:each="dialectRoughly: ${dialectRoughlyList}" style="font-size: 14px;">
-													<td th:text="${dialectRoughly.ID}"> </td>
-													<td th:text="${dialectRoughly.languagePoint}"> </td>
-													<td th:text="${dialectRoughly.ddtimestamp}"> </td>
-													<td> <a th:href="@{/getDialectDetialByid(id=${dialectRoughly.ID})}">查看详情</a></td>
-													
-												</tr>
-											</table>
-											<table id="dialectstable"></table>
-										</div>
-									</div>
+								<h3>方言语言点-<span th:text="${languagePoint}"></span></h3>
+								<div><table id="dialectstable"></table></div>
 							</div>
 							<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
 							</div>
@@ -75,7 +56,7 @@
 			pageSize: 10,                       //每页的记录行数（*）
 			pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 			search: false, 						//显示搜索框
-			sidePagination: "server", 			//服务端处理分页
+			sidePagination: "client",			//服务端处理分页
 			columns: [{
 					field: 'ID',
 					title: '方言ID',
@@ -87,14 +68,18 @@
 				}, {
 					field: 'ddtimestamp',
 					align: 'center',
-					title: '上传日期'
+					title: '上传日期',
+					formatter:function(value,row,index){  
+						var unixTimestamp = new Date(row.ddtimestamp) ;
+						return unixTimestamp.toLocaleString();
+					}
 				}, {
 					title: '操作',
 					field: 'id',
 					align: 'center',
 					formatter:function(value,row,index){  
-						var e = '<a href="/getDialectDetialByid?id='+ row.ID +'">查看详情</a> ';  
-						var d = '<a href="#" mce_href="#" onclick="del(\''+ row.id +'\')">删除</a> ';  
+						var e = '<a href="/getDialectDetialByid?id='+ row.ID +'&amp;languagePoint='+ row.languagePoint+'">查看详情</a> ';  
+						var d = '<a href="#">删除</a> ';  
 						return e+d;  
 					}
 				}]

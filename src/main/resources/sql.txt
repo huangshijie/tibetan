@@ -84,7 +84,7 @@
 		finalText VARCHAR(255),
 		nuclensText VARCHAR(255),
 		codaText VARCHAR(255),
-		toneText BIGINT(20),
+		toneText VARCHAR(255),
 		shellWilleText VARCHAR(255),
 		onsetWilleText VARCHAR(255),
 		finalWilleText VARCHAR(255),

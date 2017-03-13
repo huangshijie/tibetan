@@ -147,6 +147,12 @@ public class DialectService {
 										 tmp.setCodaWilleText(wilStr.substring(matchWilStr.length()+1, wilStr.length()));
 										 
 										 String transcriptionStr = transcriptionChars[i];
+										 String regEx="[^0-9]";
+										 Pattern pRegEx = Pattern.compile(regEx);  
+										 Matcher mRegEx = pRegEx.matcher(transcriptionStr);  
+										 tmp.setToneText(mRegEx.replaceAll("").trim().toString());
+										 
+										 transcriptionStr = transcriptionStr.replaceAll("\\d+","");
 										 Pattern pTran = Pattern.compile("(.*)[yɨʉɯuIʏʊeøəɵɤoɛœɜɞʌɔæɐaɶɑɒ](.*)");
 										 Matcher mTran = pTran.matcher(transcriptionStr);
 										 String matchTran = "";
