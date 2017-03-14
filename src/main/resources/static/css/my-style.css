@@ -212,4 +212,19 @@ body{
 
 .th-inner {
 	font-size: 14px !important;
+	color: #000000 !important;
+}
+
+.old-tibetan-td{
+	color: #337ab7;
+    font-size: 18px;
+    padding: 0;
+    font-weight: 600;
+}
+
+.dialect-td{
+	color: #0890bb;
+    font-size: 18px;
+    padding: 0;
+    font-weight: 600;
 }

@@ -57,7 +57,7 @@
 				exportDataType: "all",
 				columns: [{
 						field: 'ID',
-						title: '方言ID',
+						title: '音节ID',
 						align: 'center'
 					}, {
 						field: 'representationText',
@@ -69,23 +69,25 @@
 						title: '汉语词条',
 						align: 'center'
 					}, {
-						field: 'transcriptionText',
-						title: '国际音标转写',
-						align: 'center'
-						
-					},{
 						field: 'wltranscriptionText',
-						title: '表记威利转写',
+						title: '威利转写',
 						align: 'center'
 					},{
-						field: 'onsetText',
-						title: '声母音标转写',
+						field: 'transcriptionText',
+						title: '方言读音',
 						align: 'center'
 						
 					},{
 						field: 'onsetWilleText',
-						title: '声母威利转写',
-						align: 'center'
+						title: '古藏语声母',
+						align: 'center',
+						class: 'old-tibetan-td'
+					},{
+						field: 'onsetText',
+						title: '方言声母',
+						align: 'center',
+						class: 'dialect-td'
+						
 					}
 				]
 			});
@@ -107,34 +109,37 @@
 				exportDataType: "all",
 				columns: [{
 						field: 'ID',
-						title: '方言ID',
+						title: '音节ID',
 						align: 'center'
 					}, {
 						field: 'representationText',
 						title: '藏语词条',
-						align: 'center'
+						align: 'center',
+						class: 'representationTextClass'
 					}, {
 						field: 'translationText',
 						title: '汉语词条',
 						align: 'center'
-					}, {
-						field: 'transcriptionText',
-						title: '国际音标转写',
-						align: 'center'
-						
 					},{
 						field: 'wltranscriptionText',
-						title: '表记威利转写',
+						title: '威利转写',
 						align: 'center'
-					},{
-						field: 'nuclensText',
-						title: '韵核音标转写',
+					}, {
+						field: 'transcriptionText',
+						title: '方言读音',
 						align: 'center'
 						
 					},{
 						field: 'nuclensWilleText',
-						title: '韵核威利转写',
-						align: 'center'
+						title: '古藏语韵核',
+						align: 'center',
+						class: 'old-tibetan-td'
+					},{
+						field: 'nuclensText',
+						title: '方言韵核',
+						align: 'center',
+						class: 'dialect-td'
+						
 					}
 				]
 			});
@@ -156,34 +161,37 @@
 				exportDataType: "all",
 				columns: [{
 						field: 'ID',
-						title: '方言ID',
+						title: '音节ID',
 						align: 'center'
 					}, {
 						field: 'representationText',
 						title: '藏语词条',
-						align: 'center'
+						align: 'center',
+						class: 'representationTextClass'
 					}, {
 						field: 'translationText',
 						title: '汉语词条',
 						align: 'center'
-					}, {
-						field: 'transcriptionText',
-						title: '国际音标转写',
-						align: 'center'
-						
 					},{
 						field: 'wltranscriptionText',
-						title: '表记威利转写',
+						title: '威利转写',
 						align: 'center'
-					},{
-						field: 'finalText',
-						title: '韵母音标转写',
+					}, {
+						field: 'transcriptionText',
+						title: '方言读音',
 						align: 'center'
 						
 					},{
 						field: 'finalWilleText',
-						title: '韵母威利转写',
-						align: 'center'
+						title: '古藏语韵母',
+						align: 'center',
+						class: 'old-tibetan-td'
+					},{
+						field: 'finalText',
+						title: '方言韵母',
+						align: 'center',
+						class: 'dialect-td'
+						
 					}
 				]
 			});
@@ -205,34 +213,37 @@
 				exportDataType: "all",
 				columns: [{
 						field: 'ID',
-						title: '方言ID',
+						title: '音节ID',
 						align: 'center'
 					}, {
 						field: 'representationText',
 						title: '藏语词条',
-						align: 'center'
+						align: 'center',
+						class: 'representationTextClass'
 					}, {
 						field: 'translationText',
 						title: '汉语词条',
 						align: 'center'
-					}, {
-						field: 'transcriptionText',
-						title: '国际音标转写',
-						align: 'center'
-						
 					},{
 						field: 'wltranscriptionText',
-						title: '表记威利转写',
+						title: '威利转写',
 						align: 'center'
-					},{
-						field: 'codaText',
-						title: '韵尾音标转写',
+					}, {
+						field: 'transcriptionText',
+						title: '方言读音',
 						align: 'center'
 						
 					},{
 						field: 'codaWilleText',
-						title: '韵尾威利转写',
-						align: 'center'
+						title: '古藏语韵尾',
+						align: 'center',
+						class: 'old-tibetan-td'
+					},{
+						field: 'codaText',
+						title: '方言韵尾',
+						align: 'center',
+						class: 'dialect-td'
+						
 					}
 				]
 			});
@@ -254,29 +265,31 @@
 				exportDataType: "all",
 				columns: [{
 						field: 'ID',
-						title: '方言ID',
+						title: '音节ID',
 						align: 'center'
 					}, {
 						field: 'representationText',
 						title: '藏语词条',
-						align: 'center'
+						align: 'center',
+						class: 'representationTextClass'
 					}, {
 						field: 'translationText',
 						title: '汉语词条',
 						align: 'center'
+					},{
+						field: 'wltranscriptionText',
+						title: '威利转写',
+						align: 'center'
 					}, {
 						field: 'transcriptionText',
-						title: '国际音标转写',
+						title: '方言读音',
 						align: 'center'
 						
 					},{
-						field: 'wltranscriptionText',
-						title: '表记威利转写',
-						align: 'center'
-					},{
 						field: 'toneText',
-						title: '声调',
-						align: 'center'
+						title: '方言声调',
+						align: 'center',
+						class: 'dialect-td'
 						
 					}
 				]
