@@ -228,3 +228,8 @@ body{
     padding: 0;
     font-weight: 600;
 }
+
+.bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="col-"]{
+	width: 80% !important;
+    float: left !important;
+}
