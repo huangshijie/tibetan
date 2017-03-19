@@ -233,3 +233,19 @@ body{
 	width: 80% !important;
     float: left !important;
 }
+
+/**************************************************** compare ******************************************************************************/
+.container.index.compare{
+	margin-top: 50px;
+	height:500px; 
+	padding: 50px;
+	border: 1px solid #af9a87;
+    background-color: #FFf;
+    margin-top: 10px;
+    width: 98%;
+    overflow: hidden;
+    text-align: center;
+    margin: 20px;
+    background-color:#e4dcd5
+}
+

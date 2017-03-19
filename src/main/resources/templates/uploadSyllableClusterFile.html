@@ -21,128 +21,128 @@
 				
 				<div class="content" style="padding:20px;border-radius: 4px;">
 				<div class="container">
-<div class="row">
-	<div class="col-md-2">
-		<p><strong>语言点：</strong></p>
-	</div>
-	<div class="col-md-6">
-		<input type="text" class="form-control" id="languangePoint"/>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-2">
-		<p><strong>地理位置：</strong></p>
-	</div>
-	
-	<div class="col-md-10">
-		<div class="row" style="padding:10px">
-			<div class="col-md-4">
-				<select id="province" class="selectpicker show-tick form-control"><option value="NULL">==请选择==</option></select><label class="label-set-input"><strong>省</strong></label>
-			</div>
-			<div class="col-md-4">
-				<select id="city" class="selectpicker show-tick form-control"><option value="NULL">==请选择==</option></select><label class="label-set-input"><strong>市</strong></label>
-			</div>
-			<div class="col-md-4">
-				<select id="county" class="selectpicker show-tick form-control"><option value="NULL">==请选择==</option></select><label class="label-set-input"><strong>县</strong></label>
-			</div>
-		</div>
-		<div class="row" style="padding:10px">
-			<div class="col-md-4">
-				<input type="text" id="town" class="form-control input-set-label" /><label class="label-set-input"><strong>镇</strong></label>
-			</div>
-			<div class="col-md-4" style="text-align:center">
-				<input type="text" id="village" class="form-control input-set-label" /><label class="label-set-input"><strong>村</strong></label>
-			</div>
-			<div class="col-md-4" style="text-align:center">
-				<input type="text" id="detial-location" class="form-control input-set-label" style="width:100%"/>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="well well-white clearfix" style="padding:10px" >
-		<div id="collected-person-detials">
-			<div class="row" style="padding:10px">
-				<div class="col-md-2" style="text-align:center"><p><strong>姓名：</strong></p></div>
-				<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-name"></input></div>
-				<div class="col-md-2" style="text-align:center"><p><strong>出生日期：</strong></p></div>
-				<div class="col-md-4" style="text-align:center">
-<div class="form-group">
-	<div class="input-group date form_date" data-date="" data-date-format="yyyy年MM月dd日" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-		<input class="form-control" size="16" type="text" value="" id="collected-person-birthday"></input>
-		<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-	</div>
-	<input type="hidden" id="dtp_input2" value="" /><br/>
-</div>
-				</div>
-			</div>
-			<div class="row" style="padding:10px">
-				<div class="col-md-2" style="text-align:center"><p><strong>性别：</strong></p></div>
-				<div class="col-md-2" style="text-align:center">
-<select class="selectpicker show-tick form-control" id="collected-person-sex">
-	<option value="男">男</option>
-	<option value="女">女</option>
-</select>
-				</div>
-				<div class="col-md-2" style="text-align:center"><p><strong>文化程度：</strong></p></div>
-				<div class="col-md-2" style="text-align:center">
-<select class="selectpicker show-tick form-control" id="collected-person-education">
-	<option value="小学以下">小学及以下</option>
-	<option value="初中">初中</option>
-	<option value="高中">高中</option>
-	<option value="大学">大学</option>
-	<option value="研究生及以上">研究生及以上</option>
-</select>
-				</div>
-				<div class="col-md-2" style="text-align:center"><p><strong>使用语言：</strong></p></div>
-				<div class="col-md-2" style="text-align:center">
-					<input type="text" class="form-control"  id="collected-person-language" />
-				</div>
-			</div>
-			<div class="row" style="padding:10px">
-				<div class="col-md-2" style="text-align:center"><p><strong>联系电话：</strong></p></div>
-				<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-phone"/></div>
-				<div class="col-md-2" style="text-align:center"><p><strong>职业：</strong></p></div>
-				<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-occupation"/></div>
-			</div>
-			<div class="row" style="padding:10px">
-				<div class="col-md-2" style="text-align:center"><p><strong>联系地址：</strong></p></div>
-				<div class="col-md-8" style="text-align:center"><input type="text" class="form-control" id="collected-person-address"/></div>
-			</div>
-			<div class="row" style="padding:10px">
-				<div class="col-md-2" style="text-align:center"><p><strong>备注：</strong></p></div>
-				<div class="col-md-8" style="text-align:center"><textarea class="form-control" rows="3" id="collected-person-more"></textarea></div>
-			</div>
-		</div>
-		<div class="row" style="padding:10px; text-align:center;display: none;" id="sylable-file-upload">
-			<form method="POST" enctype="multipart/form-data" action="/uploadSyllableClusterFile"> 
-				<div class="well well-white clearfix" style="padding:10px">
-<div class="index search row" style="height: 60px;">
-	<div class="row">
-		<div class="col-md-3" style="text-align:center"><p><strong>上传方言调查字表: </strong></p></div>
-		<div class="col-md-6" style="text-align:center"><input type="file" name="file" style="float: right;" /></div>
-	</div>
-</div>
-<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
-<div class="row"><input type="text" name="locationDes" id="locationDes" style="float: right; visibility: hidden;"/></div>
-<div class="index search row" style="height: 60px;">
-	<div class="col-md-6"></div>
-	<div class="col-md-6">
-		<input type="submit" value="上传" style="float: left;" class="btn btn-primary btn-lg"/>
-	</div>
-</div>
-				</div>
-			</form>
-		</div>
-		<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
-		</div>
-		<div class="row" style="padding:10px; text-align:center" id="detail-collected-button">
-			<div class="col-md-6"><button type="button" class="btn btn-primary btn-lg">取消</button></div>
-			<div class="col-md-6"><button type="button" class="btn btn-primary btn-lg" id="upload-syllableClusterFile-next-button" onclick="readyToUplaod()">下一步</button></div>
-		</div>
-	</div>
-</div>
+					<div class="row">
+						<div class="col-md-2">
+							<p><strong>语言点：</strong></p>
+						</div>
+						<div class="col-md-6">
+							<input type="text" class="form-control" id="languangePoint"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<p><strong>地理位置：</strong></p>
+						</div>
+						
+						<div class="col-md-10">
+							<div class="row" style="padding:10px">
+								<div class="col-md-4">
+									<select id="province" class="selectpicker show-tick form-control"><option value="NULL">==请选择==</option></select><label class="label-set-input"><strong>省</strong></label>
+								</div>
+								<div class="col-md-4">
+									<select id="city" class="selectpicker show-tick form-control"><option value="NULL">==请选择==</option></select><label class="label-set-input"><strong>市</strong></label>
+								</div>
+								<div class="col-md-4">
+									<select id="county" class="selectpicker show-tick form-control"><option value="NULL">==请选择==</option></select><label class="label-set-input"><strong>县</strong></label>
+								</div>
+							</div>
+							<div class="row" style="padding:10px">
+								<div class="col-md-4">
+									<input type="text" id="town" class="form-control input-set-label" /><label class="label-set-input"><strong>镇</strong></label>
+								</div>
+								<div class="col-md-4" style="text-align:center">
+									<input type="text" id="village" class="form-control input-set-label" /><label class="label-set-input"><strong>村</strong></label>
+								</div>
+								<div class="col-md-4" style="text-align:center">
+									<input type="text" id="detial-location" class="form-control input-set-label" style="width:100%"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="well well-white clearfix" style="padding:10px" >
+							<div id="collected-person-detials">
+								<div class="row" style="padding:10px">
+									<div class="col-md-2" style="text-align:center"><p><strong>姓名：</strong></p></div>
+									<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-name"></input></div>
+									<div class="col-md-2" style="text-align:center"><p><strong>出生日期：</strong></p></div>
+									<div class="col-md-4" style="text-align:center">
+										<div class="form-group">
+											<div class="input-group date form_date" data-date="" data-date-format="yyyy年MM月dd日" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+												<input class="form-control" size="16" type="text" value="" id="collected-person-birthday"></input>
+												<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+											</div>
+											<input type="hidden" id="dtp_input2" value="" /><br/>
+										</div>
+									</div>
+								</div>
+								<div class="row" style="padding:10px">
+									<div class="col-md-2" style="text-align:center"><p><strong>性别：</strong></p></div>
+									<div class="col-md-2" style="text-align:center">
+										<select class="selectpicker show-tick form-control" id="collected-person-sex">
+											<option value="男">男</option>
+											<option value="女">女</option>
+										</select>
+									</div>
+									<div class="col-md-2" style="text-align:center"><p><strong>文化程度：</strong></p></div>
+									<div class="col-md-2" style="text-align:center">
+										<select class="selectpicker show-tick form-control" id="collected-person-education">
+											<option value="小学以下">小学及以下</option>
+											<option value="初中">初中</option>
+											<option value="高中">高中</option>
+											<option value="大学">大学</option>
+											<option value="研究生及以上">研究生及以上</option>
+										</select>
+									</div>
+									<div class="col-md-2" style="text-align:center"><p><strong>使用语言：</strong></p></div>
+									<div class="col-md-2" style="text-align:center">
+										<input type="text" class="form-control"  id="collected-person-language" />
+									</div>
+								</div>
+								<div class="row" style="padding:10px">
+									<div class="col-md-2" style="text-align:center"><p><strong>联系电话：</strong></p></div>
+									<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-phone"/></div>
+									<div class="col-md-2" style="text-align:center"><p><strong>职业：</strong></p></div>
+									<div class="col-md-4" style="text-align:center"><input type="text" class="form-control" id="collected-person-occupation"/></div>
+								</div>
+								<div class="row" style="padding:10px">
+									<div class="col-md-2" style="text-align:center"><p><strong>联系地址：</strong></p></div>
+									<div class="col-md-8" style="text-align:center"><input type="text" class="form-control" id="collected-person-address"/></div>
+								</div>
+								<div class="row" style="padding:10px">
+									<div class="col-md-2" style="text-align:center"><p><strong>备注：</strong></p></div>
+									<div class="col-md-8" style="text-align:center"><textarea class="form-control" rows="3" id="collected-person-more"></textarea></div>
+								</div>
+							</div>
+							<div class="row" style="padding:10px; text-align:center;display: none;" id="sylable-file-upload">
+								<form method="POST" enctype="multipart/form-data" action="/uploadSyllableClusterFile"> 
+									<div class="well well-white clearfix" style="padding:10px">
+										<div class="index search row" style="height: 60px;">
+											<div class="row">
+												<div class="col-md-3" style="text-align:center"><p><strong>上传方言调查字表: </strong></p></div>
+												<div class="col-md-6" style="text-align:center"><input type="file" name="file" style="float: right;" /></div>
+											</div>
+										</div>
+										<div class="index search row" style="height: 60px;"><span th:text="${message}"></span></div>
+										<div class="row"><input type="text" name="locationDes" id="locationDes" style="float: right; visibility: hidden;"/></div>
+										<div class="index search row" style="height: 60px;">
+											<div class="col-md-6"></div>
+											<div class="col-md-6">
+												<input type="submit" value="上传" style="float: left;" class="btn btn-primary btn-lg"/>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
+							</div>
+							<div class="row" style="padding:10px; text-align:center" id="detail-collected-button">
+								<div class="col-md-6"><button type="button" class="btn btn-primary btn-lg">取消</button></div>
+								<div class="col-md-6"><button type="button" class="btn btn-primary btn-lg" id="upload-syllableClusterFile-next-button" onclick="readyToUplaod()">下一步</button></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			</div>

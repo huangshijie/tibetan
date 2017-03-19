@@ -5,7 +5,7 @@
 	    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
-	    
+	    <link rel="stylesheet" type="text/css" href="/css/bootstrap-select.css"/>
 		<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="/js/bootstrap.js"></script>
 		<title>汉藏大辞典</title>
@@ -14,11 +14,31 @@
 		<div th:include="header :: header"></div>
 		
 		<div class="wrap" style="width: 80%; margin: 30px auto;">
-			<div class="container index search" style="margin-top: 50px;height:650px; padding: 50px">
+			<div class="container index compare">
 				<div class="navigation-strip effect2">
 					<div class="navigation">
-							<p style="text-align: center;font-weight: normal;color: #333;" class="front_headThree">方言与古藏语比较</p>
+						<p style="text-align: center;font-weight: normal;color: #333;" class="front_headThree">方言与古藏语比较</p>
 					</div>
+				</div>
+				<div class="row" style="margin-top: 50px">
+					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-2" style="text-align:center"><p><strong>选择方言：</strong></p></div>
+					<div class="col-md-2" style="text-align:center">
+						<select class="selectpicker show-tick form-control" id="collected-person-education">
+							<option value="小学以下">小学及以下</option>
+							<option value="初中">初中</option>
+							<option value="高中">高中</option>
+							<option value="大学">大学</option>
+							<option value="研究生及以上">研究生及以上</option>
+						</select>
+					</div>
+					<div class="col-md-6" style="text-align:center"></div>
+				</div>
+				<div class="row" style="margin-top: 50px">
+					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-2" style="text-align:center"><button type="button" class="btn btn-primary btn-lg" style=" width: 80%;">取消</button></div>
+					<div class="col-md-2" style="text-align:center"><button type="button" class="btn btn-primary btn-lg" style=" width: 80%;">取消</button></div>
+					<div class="col-md-6" style="text-align:center"></div>
 				</div>
 			</div>
 		</div>
@@ -27,4 +47,5 @@
 			<div th:include="footer :: footer" style="background-color:#80999a"></div>	
 		</footer>
 	</body>
+	<script type="text/javascript" src="../js/bootstrap-select.js" charset="UTF-8"></script>
 </html>
