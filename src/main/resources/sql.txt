@@ -51,6 +51,7 @@
 		profession VARCHAR(255),
 		contactAddress VARCHAR(255),
 		remarks VARCHAR(255),
+		tmpPro VARCHAR(255),
 		PRIMARY KEY (id)
 	)AUTO_INCREMENT=1;
 

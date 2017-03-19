@@ -30,6 +30,7 @@
 			t.contactAddress,
 			t.remarks
 		FROM dialectdetial t
+		WHERE t.tmpPro = 'static'
 	</select>
 	
 	<insert id="insertDialectDetial" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.DialectDetial">
@@ -50,7 +51,8 @@
 			tel,
 			profession,
 			contactAddress,
-			remarks
+			remarks,
+			tmpPro
 		)
 		VALUES(
 			#{ddtimestamp},
@@ -69,7 +71,8 @@
 			#{tel},
 			#{profession},
 			#{contactAddress},
-			#{remarks}
+			#{remarks},
+			'static'
 		)
 	</insert>
 </mapper>

@@ -64,11 +64,7 @@
 			pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 			search: false, 						//显示搜索框
 			sidePagination: "client", 			//服务端处理分页
-			columns: [{
-					field: 'ID',
-					title: '方言词条ID',
-					align: 'center'
-				}, {
+			columns: [ {
 					field: 'representationText',
 					title: '藏语词条',
 					align: 'center',
@@ -79,11 +75,11 @@
 					align: 'center'
 				}, {
 					field: 'wltranscriptionText',
-					title: '表记威利转写',
+					title: '威利转写',
 					align: 'center'
 				}, {
 					field: 'transcriptionText',
-					title: '国际音标转写',
+					title: '方言读音',
 					align: 'center'
 				}, {
 					field: 'pronunciationText',
