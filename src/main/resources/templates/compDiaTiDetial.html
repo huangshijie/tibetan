@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8"></meta>
+	    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
+	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
+	    <link rel="stylesheet" type="text/css" href="/css/bootstrap-table.css"/>
+	    
+		<title>汉藏大辞典</title>
+	</head>
+	<body>
+		<div th:include="header :: header"></div>
+		
+		<div class="wrap">
+			<div class="container index search" style="height: 100%;">
+				<div class="index search row" style="height: 60px;">
+				</div>
+				
+				<div class="content" style="padding:20px;border-radius: 4px;">
+				<div class="container">
+					<div class="row">
+						<div class="well well-white clearfix" style="padding:10px" >
+							<h3 id="comp-title"></h3>
+							<div>
+								<table id="comparetable"></table>
+							</div>
+						</div>
+						<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<footer>
+			<div th:include="footer :: footer" style="background-color:#80999a"></div>	
+		</footer>
+	</body>
+	<script type="text/javascript" src="../js/jquery-3.1.1.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../js/locales/bootstrap-table-zh-CN.js"></script>
+	<script type="text/javascript" src="../table-extensions/bootstrap-table-export.js"></script>
+	<script type="text/javascript" src="../table-extensions/tableExport.js"></script>
+	<script th:inline="javascript">
+		var $table = $('#comparetable');
+		var title = document.getElementById("comp-title");
+		var roughList = [[${compDetialList}]];
+		var did = [[${did}]];
+		var compareType = [[${comparetype}]];
+		var compareEntity = [[${compareentity}]];
+		if(compareType == "diaCompTi"){
+			if(compareEntity == "onSet"){
+				title.innerHTML = did+"方言声母与古藏语比较";
+				$table.bootstrapTable({
+					data: roughList,
+					dataType: "json",
+					toolbar: '#toolbar',                //工具按钮用哪个容器
+					striped: true,                      //是否显示行间隔色
+					singleSelect: false,
+					pagination: true, 					//分页
+					pageNumber:1,                       //初始化加载第一页，默认第一页
+					pageSize: 10,                       //每页的记录行数（*）
+					pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+					search: false, 						//显示搜索框
+					sidePagination: "client", 			//服务端处理分页
+					showExport: true,
+					exportDataType: "all",
+					columns: [{
+							field: 'onsetText',
+							title: '方言声母',
+							align: 'center'
+						}, {
+							field: 'onsetWilleText',
+							title: '古藏语声母',
+							align: 'center'
+						},  {
+							field: 'transcriptionText',
+							title: '方言读音',
+							align: 'center'
+						}, {
+							field: 'representationText',
+							title: '藏文例词',
+							align: 'center',
+							class: 'representationTextClass'
+						}, {
+							field: 'wltranscriptionText',
+							title: '例词威利转写',
+							align: 'center'
+						}, {
+							field: 'translationText',
+							title: '例词汉语释义',
+							align: 'center'
+						}
+					]
+				});
+			}
+			
+			if(compareEntity == "final"){
+				title.innerHTML = did+"方言韵母与古藏语比较";
+				$table.bootstrapTable({
+					data: roughList,
+					dataType: "json",
+					toolbar: '#toolbar',                //工具按钮用哪个容器
+					striped: true,                      //是否显示行间隔色
+					singleSelect: false,
+					pagination: true, 					//分页
+					pageNumber:1,                       //初始化加载第一页，默认第一页
+					pageSize: 10,                       //每页的记录行数（*）
+					pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+					search: false, 						//显示搜索框
+					sidePagination: "client", 			//服务端处理分页
+					showExport: true,
+					exportDataType: "all",
+					columns: [  {
+							field: 'finalText',
+							title: '方言韵母',
+							align: 'center'
+						}, {
+							field: 'finalWilleText',
+							title: '古藏语韵母',
+							align: 'center'
+						},{
+							field: 'transcriptionText',
+							title: '方言读音',
+							align: 'center'
+						}, {
+							field: 'representationText',
+							title: '藏文例词',
+							align: 'center',
+							class: 'representationTextClass'
+						}, {
+							field: 'wltranscriptionText',
+							title: '例词威利转写',
+							align: 'center'
+						}, {
+							field: 'translationText',
+							title: '例词汉语释义',
+							align: 'center'
+						}
+					]
+				});
+			}
+		}
+		
+		if(compareType == "tiCompDia"){
+			if(compareEntity == "onSetWille"){
+				title.innerHTML = "古藏语与"+did+"方言声母比较";
+				$table.bootstrapTable({
+					data: roughList,
+					dataType: "json",
+					toolbar: '#toolbar',                //工具按钮用哪个容器
+					striped: true,                      //是否显示行间隔色
+					singleSelect: false,
+					pagination: true, 					//分页
+					pageNumber:1,                       //初始化加载第一页，默认第一页
+					pageSize: 10,                       //每页的记录行数（*）
+					pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+					search: false, 						//显示搜索框
+					sidePagination: "client", 			//服务端处理分页
+					showExport: true,
+					exportDataType: "all",
+					columns: [ {
+							field: 'onsetWilleText',
+							title: '古藏语声母',
+							align: 'center'
+						}, {
+							field: 'onsetText',
+							title: '方言声母',
+							align: 'center'
+						}, {
+							field: 'transcriptionText',
+							title: '方言读音',
+							align: 'center'
+						}, {
+							field: 'representationText',
+							title: '藏文例词',
+							align: 'center',
+							class: 'representationTextClass'
+						}, {
+							field: 'wltranscriptionText',
+							title: '例词威利转写',
+							align: 'center'
+						}, {
+							field: 'translationText',
+							title: '例词汉语释义',
+							align: 'center'
+						}
+					]
+				});
+			}
+			
+			if(compareEntity == "shellWille"){
+				title.innerHTML = "古藏语与"+did+"方言韵母比较";
+				$table.bootstrapTable({
+					data: roughList,
+					dataType: "json",
+					toolbar: '#toolbar',                //工具按钮用哪个容器
+					striped: true,                      //是否显示行间隔色
+					singleSelect: false,
+					pagination: true, 					//分页
+					pageNumber:1,                       //初始化加载第一页，默认第一页
+					pageSize: 10,                       //每页的记录行数（*）
+					pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+					search: false, 						//显示搜索框
+					sidePagination: "client", 			//服务端处理分页
+					showExport: true,
+					exportDataType: "all",
+					columns: [ {
+							field: 'finalWilleText',
+							title: '古藏语韵母',
+							align: 'center'
+						}, {
+							field: 'finalText',
+							title: '方言韵母',
+							align: 'center'
+						}, {
+							field: 'transcriptionText',
+							title: '方言读音',
+							align: 'center'
+						}, {
+							field: 'representationText',
+							title: '藏文例词',
+							align: 'center',
+							class: 'representationTextClass'
+						}, {
+							field: 'wltranscriptionText',
+							title: '例词威利转写',
+							align: 'center'
+						}, {
+							field: 'translationText',
+							title: '例词汉语释义',
+							align: 'center'
+						}
+					]
+				});
+			}
+		}
+		
+	</script> 
+</html>

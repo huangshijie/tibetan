@@ -9,5 +9,7 @@ public interface DialectDetialMapper {
 	public void insertDialectDetial(DialectDetial dialectDetial);
 	
 	public ArrayList<DialectDetial> findAllDialectDetials();
+
+	public DialectDetial findDialectDetialById(long dID);
 	
 }

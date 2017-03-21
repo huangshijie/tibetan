@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8"></meta>
+	    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
+	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
+	    
+		<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.js"></script>
+		<title>汉藏大辞典</title>
+	</head>
+	<body>
+		<div th:include="header :: header"></div>
+		
+		<div class="wrap" style="width: 80%; margin: 30px auto;">
+			<div class="container index compare">
+				<div class="navigation-strip effect2">
+					<div class="navigation">
+						<p style="text-align: center;font-weight: normal;color: #333;" class="front_headThree" id="compare-homepage-title">方言与方言比较</p>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 50px">
+					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-2" style="text-align:center"><p><strong>选择方言：</strong></p></div>
+					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-2" style="text-align:center">
+						<select class="selectpicker show-tick form-control" id="dialect-select">
+							<option value="小学以下">小学及以下</option>
+							<option value="初中">初中</option>
+							<option value="高中">高中</option>
+							<option value="大学">大学</option>
+							<option value="研究生及以上">研究生及以上</option>
+						</select>
+					</div>
+					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-2" style="text-align:center"></div>
+				</div>
+				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadLocalFile">选择本地数据</button>
+				<div class="row" style="margin-top: 50px">
+					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-2" style="text-align:center"><button type="button" class="btn btn-primary btn-lg" style=" width: 100%;">声母比较</button></div>
+					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-2" style="text-align:center"><button type="button" class="btn btn-primary btn-lg" style=" width: 100%;">韵母比较</button></div>
+					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-2" style="text-align:center"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 上传本地数据 -->
+		<div class="modal fade" id="uploadLocalFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h4 class="modal-title" id="myModalLabel">选择本地数据上传</h4>
+		            </div>
+		            <form method="POST" enctype="multipart/form-data" action="/uploadLocalClusterFile">
+						<div class="modal-body">
+			            	<div class="row">
+			            		<div class="col-md-3" style="text-align:center"><p><strong>输入方言点: </strong></p></div>
+			            		<div class="col-md-6" style="text-align:center"><input /></div>
+			            	</div>
+			            	<div class="row">
+				            	<div class="col-md-3" style="text-align:center"><p><strong>选择文件: </strong></p></div>
+								<div class="col-md-6" style="text-align:center"><input type="file" name="file" style="float: right;" /></div>
+							</div>
+			       		</div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			                <button type="submit" class="btn btn-primary">确定上传</button>
+			            </div>
+		            </form>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+		<footer>
+			<div th:include="footer :: footer" style="background-color:#80999a"></div>	
+		</footer>
+	</body>
+	<script th:inline="javascript">
+		var compareType = [[${comparetype}]];
+		var dialectsList = [[${dialectsList}]];
+		var title = document.getElementById("compare-homepage-title");
+		if(compareType == "diaCompTi"){
+			title.innerHTML = "方言与古藏语比较";
+		}
+		if(compareType == "tiCompDia"){
+			title.innerHTML = "古藏语与方言比较";
+		}
+		console.log(compareType);
+		console.log(dialectsList);
+	</script>
+</html>

@@ -141,7 +141,7 @@ public class TibetanWordStructure {
 		
 	    String returnStr = "";
 	    for (int i = 0; i < transferChars.size(); i++) {
-	      returnStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)));
+	    	returnStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)));
 	    }
 	    this.setWillieTransfer(returnStr);
 	    
@@ -387,7 +387,8 @@ public class TibetanWordStructure {
 	}
 	
 	public static void main(String[] agrs){
-		TibetanWordStructure test= new TibetanWordStructure("སྐར");
+		TibetanWordStructure test= new TibetanWordStructure("རྒྱག");
 		System.out.println(test.getWillieTransfer());
+		System.out.println(test.getSubscript());
 	}
 }

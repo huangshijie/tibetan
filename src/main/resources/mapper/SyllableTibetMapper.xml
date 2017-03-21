@@ -93,4 +93,38 @@
 			#{integrated}
 		)
 	</insert>
+	
+	<select id="findSpecialSyllableTibetByDidByType" resultMap="SyllableTibet">
+		SELECT *
+		FROM syllabletibet t
+		WHERE t.DID = #{did} 
+		<if test="queryOnsetList != null">
+		AND t.onsetText IN
+			<foreach collection="queryOnsetList" item="queryType"
+				index="index" open="(" close=")" separator=",">
+				#{queryType}
+			</foreach>
+		</if>
+		<if test="queryFinalList != null">
+		AND t.shellText IN
+			<foreach collection="queryFinalList" item="queryType"
+				index="index" open="(" close=")" separator=",">
+				#{queryType}
+			</foreach>
+		</if>
+		<if test="queryOnsetWilleList != null">
+		AND t.onsetWilleText IN
+			<foreach collection="queryOnsetWilleList" item="queryType"
+				index="index" open="(" close=")" separator=",">
+				#{queryType}
+			</foreach>
+		</if>
+		<if test="queryShellWilleList != null">
+		AND t.shellWilleText IN
+			<foreach collection="queryFinalWilleList" item="queryType"
+				index="index" open="(" close=")" separator=",">
+				#{queryType}
+			</foreach>
+		</if>
+	</select>
 </mapper>
