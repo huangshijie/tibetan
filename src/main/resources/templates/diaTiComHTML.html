@@ -5,7 +5,7 @@
 	    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
-	    
+	    <link rel="stylesheet" type="text/css" href="/css/bootstrap-select.css"/>
 		<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="/js/bootstrap.js"></script>
 		<title>汉藏大辞典</title>
@@ -17,31 +17,46 @@
 			<div class="container index compare">
 				<div class="navigation-strip effect2">
 					<div class="navigation">
-						<p style="text-align: center;font-weight: normal;color: #333;" class="front_headThree" id="compare-homepage-title">方言与方言比较</p>
+						<p style="text-align: center;font-weight: normal;color: #333;" class="front_headThree" id="compare-homepage-title"></p>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 50px">
-					<div class="col-md-2" style="text-align:center"></div>
-					<div class="col-md-2" style="text-align:center"><p><strong>选择方言：</strong></p></div>
-					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-3" style="text-align:center">
+						<label>使用一下两种方式进行比较：</label>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 50px">
+					<div class="col-md-2"></div>
+					<div class="col-md-2" style="text-align:center"><label>选择数据库中已有数据：</label></div>
 					<div class="col-md-2" style="text-align:center">
 						<select class="selectpicker show-tick form-control" id="dialect-select">
-							<option value="小学以下">小学及以下</option>
-							<option value="初中">初中</option>
-							<option value="高中">高中</option>
-							<option value="大学">大学</option>
-							<option value="研究生及以上">研究生及以上</option>
+							<option value="NULL">==请选择==</option>
 						</select>
 					</div>
-					<div class="col-md-2" style="text-align:center"></div>
-					<div class="col-md-2" style="text-align:center"></div>
 				</div>
-				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadLocalFile">选择本地数据</button>
+				<div class="row">
+					<div class="col-md-2"><label>或</label></div>
+				</div>
+				<div class ="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-2" style="text-align:center"><label>选择本地数据：</label></div>
+					<div class="col-md-2" style="text-align:center">
+						<a data-toggle="modal" data-target="#uploadLocalFile">点击</a>
+					</div>
+				</div>
 				<div class="row" style="margin-top: 50px">
 					<div class="col-md-2" style="text-align:center"></div>
-					<div class="col-md-2" style="text-align:center"><button type="button" class="btn btn-primary btn-lg" style=" width: 100%;">声母比较</button></div>
+					<div class="col-md-2" style="text-align:center"><p><strong>当前已选方言：</strong></p></div>
+					<div class="col-md-2" style="text-align:center">
+						<label id="current-chosen-label" style="color: red;font-size: 24px;"></label>
+						<label id="current-chosen-id" style="visibility: hidden;"></label>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 50px">
 					<div class="col-md-2" style="text-align:center"></div>
-					<div class="col-md-2" style="text-align:center"><button type="button" class="btn btn-primary btn-lg" style=" width: 100%;">韵母比较</button></div>
+					<div class="col-md-2" style="text-align:center" id="onset-compare-div"></div>
+					<div class="col-md-2" style="text-align:center"></div>
+					<div class="col-md-2" style="text-align:center" id="final-compare-div"></div>
 					<div class="col-md-2" style="text-align:center"></div>
 					<div class="col-md-2" style="text-align:center"></div>
 				</div>
@@ -59,7 +74,8 @@
 						<div class="modal-body">
 			            	<div class="row">
 			            		<div class="col-md-3" style="text-align:center"><p><strong>输入方言点: </strong></p></div>
-			            		<div class="col-md-6" style="text-align:center"><input /></div>
+			            		<div class="col-md-6" style="text-align:center"><input type="text" name="locationDes" id="locationDes"/></div>
+			            		<input id="current-compare-type" style="visibility: hidden;" name="comparetype" />
 			            	</div>
 			            	<div class="row">
 				            	<div class="col-md-3" style="text-align:center"><p><strong>选择文件: </strong></p></div>
@@ -78,17 +94,21 @@
 			<div th:include="footer :: footer" style="background-color:#80999a"></div>	
 		</footer>
 	</body>
+	<script type="text/javascript" src="../js/bootstrap-select.js" charset="UTF-8"></script>
 	<script th:inline="javascript">
 		var compareType = [[${comparetype}]];
 		var dialectsList = [[${dialectsList}]];
+		var uploadLabel = [[${dlocation}]];
+		var uploadID = [[${did}]];
 		var title = document.getElementById("compare-homepage-title");
-		if(compareType == "diaCompTi"){
-			title.innerHTML = "方言与古藏语比较";
-		}
-		if(compareType == "tiCompDia"){
-			title.innerHTML = "古藏语与方言比较";
-		}
-		console.log(compareType);
-		console.log(dialectsList);
+		var currentLabel = document.getElementById("current-chosen-label");
+		var currentID = document.getElementById("current-chosen-id");
+		var dialectSelect = document.getElementById("dialect-select");
+		
+		var onsetDIV = document.getElementById("onset-compare-div");
+		var finalDIV = document.getElementById("final-compare-div");
+		
+		document.getElementById("current-compare-type").value = compareType;
 	</script>
+	<script type="text/javascript" src="/js/dtc-select.js"></script>
 </html>

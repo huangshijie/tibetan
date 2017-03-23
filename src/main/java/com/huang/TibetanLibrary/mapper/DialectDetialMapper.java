@@ -10,6 +10,8 @@ public interface DialectDetialMapper {
 	
 	public ArrayList<DialectDetial> findAllDialectDetials();
 
-	public DialectDetial findDialectDetialById(long dID);
+	public DialectDetial findDialectDetialById(long id);
+
+	public void insertTmpDialectDetial(DialectDetial dialectDetial);
 	
 }

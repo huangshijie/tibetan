@@ -74,7 +74,7 @@ public class CompareService {
 
 				dialectDetial.setLanguagePoint(locationDes);
 				
-				dialectDetialMapper.insertDialectDetial(dialectDetial);
+				dialectDetialMapper.insertTmpDialectDetial(dialectDetial);
 				
 				long DID = dialectDetial.getID();
 				

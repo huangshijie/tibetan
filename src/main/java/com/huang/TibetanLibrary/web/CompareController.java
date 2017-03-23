@@ -33,6 +33,28 @@ public class CompareController {
 		return "diaTiComHTML";
 	}
 	
+	@RequestMapping(value = "/getQueryListHTML",method = RequestMethod.GET)
+	public String getQueryListHTML(@RequestParam String did,@RequestParam String comparetype,
+			@RequestParam String compareentity,@RequestParam String dlocation,Model model){
+		model.addAttribute("did", did);
+		model.addAttribute("dlocation", dlocation);
+		model.addAttribute("comparetype", comparetype);
+		model.addAttribute("compareentity", compareentity);
+		if(compareentity.equals("onSet")){
+			return "onSetQueryListHTML";
+		}
+		if(compareentity.equals("final")){
+			return "finalQueryListHTML";
+		}
+		if(compareentity.equals("onSetWille")){
+			return "onSetWilleQueryListHTML";
+		}
+		if(compareentity.equals("finalWille")){
+			return "finalWilleQueryListHTML";
+		}
+		return "diaComdiaHTML";
+	}
+	
 	@RequestMapping(value = "/getDiaComdiaHTML",method = RequestMethod.GET)
 	public String getDiaComdiaHTML(Model model){
 		return "diaComdiaHTML";
@@ -49,10 +71,10 @@ public class CompareController {
 		return "compDiaTiDetial";
 	}
 	
-	@RequestMapping(value = "/uploadLocalClusterFile",method = RequestMethod.GET)
-	public String uploadLocalFile(@RequestParam("file") MultipartFile file, @RequestParam String locationDes, Model model,
+	@RequestMapping(value = "/uploadLocalClusterFile",method = RequestMethod.POST)
+	public String uploadLocalFile(@RequestParam("file") MultipartFile file, @RequestParam String locationDes, 
+			@RequestParam String comparetype, Model model,
 			HttpServletRequest request, HttpServletResponse response){
-		String comparetype = "";
 		
 		if (!file.isEmpty()) {  
             try {  
@@ -75,13 +97,12 @@ public class CompareController {
         		model.addAttribute("did", uploadDialectDetial.getID());
         		model.addAttribute("dlocation", uploadDialectDetial.getLanguagePoint());
         		model.addAttribute("dialectsList", compareService.getAllDialectsList());
-        		
+        		return "diaTiComHTML";
             }catch (Exception e){
-            	
+            	return "diaTiComHTML";
             }
+		}else{
+			return "diaTiComHTML";
 		}
-		
-
-		return "diaTiComHTML";
 	}
 }

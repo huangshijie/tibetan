@@ -33,6 +33,30 @@
 		WHERE t.tmpPro = 'static'
 	</select>
 	
+	<select id="findDialectDetialById" resultMap="DialectDetial" parameterType="long">
+		SELECT 
+			t.ID, 
+			t.ddtimestamp, 
+			t.languagePoint,
+			t.locationProvince,
+			t.locationCity,
+			t.locationCounty,
+			t.locationTown,
+			t.locationVillage,
+			t.locationDetial,
+			t.name,
+			t.birthday,
+			t.sex,
+			t.education,
+			t.usedLanguage,
+			t.tel,
+			t.profession,
+			t.contactAddress,
+			t.remarks
+		FROM dialectdetial t
+		WHERE t.ID = #{id}
+	</select>
+	
 	<insert id="insertDialectDetial" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.DialectDetial">
 		INSERT INTO dialectdetial(
 			ddtimestamp,
@@ -75,4 +99,48 @@
 			'static'
 		)
 	</insert>
+	
+	<insert id="insertTmpDialectDetial" useGeneratedKeys="true" keyProperty="ID" parameterType="com.huang.TibetanLibrary.domain.DialectDetial">
+		INSERT INTO dialectdetial(
+			ddtimestamp,
+			languagePoint,
+			locationProvince,
+			locationCity,
+			locationCounty,
+			locationTown,
+			locationVillage,
+			locationDetial,
+			name,
+			birthday,
+			sex,
+			education,
+			usedLanguage,
+			tel,
+			profession,
+			contactAddress,
+			remarks,
+			tmpPro
+		)
+		VALUES(
+			#{ddtimestamp},
+			#{languagePoint},
+			#{locationProvince},
+			#{locationCity},
+			#{locationCounty},
+			#{locationTown},
+			#{locationVillage},
+			#{locationDetial},
+			#{name},
+			#{birthday},
+			#{sex},
+			#{education},
+			#{usedLanguage},
+			#{tel},
+			#{profession},
+			#{contactAddress},
+			#{remarks},
+			'tmp'
+		)
+	</insert>
+	
 </mapper>
