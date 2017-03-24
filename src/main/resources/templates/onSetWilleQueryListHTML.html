@@ -6,22 +6,57 @@
 	    <link rel="stylesheet" type="text/css" href="/css/nivo-slider.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/my-style.css"/>
 	    <link rel="stylesheet" type="text/css" href="/css/bootstrap-select.css"/>
+	    <link rel="stylesheet" type="text/css" href="/css/checkbox/red.css"/>
+	    <link rel="stylesheet" type="text/css" href="/css/button.css"/>
 		<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="/js/bootstrap.js"></script>
+		<script type="text/javascript" src="/js/icheck.js"></script>
+		<script type="text/javascript" src="/js/util.js"></script>
 		<title>汉藏大辞典</title>
 	</head>
 	<body>
 		<div th:include="header :: header"></div>
 		<div class="wrap">
-			<div class="container index search" style="height: 100%;">
-				<div>
+			<div class="container index search" style="height: 650px;">
+				<div class="row" id="title">
 					<h1>古藏语与</h1><p id=""></p><h1>方言声母比较</h1>
 				</div>
+				<div class="row">
+					<div class="well well-white clearfix" style="padding:10px;margin: 30px;" >
+						<div class="row">
+							<div class="col-md-2"><label>指定查询条件</label></div>
+						</div>
+						<div class="row" id="checkbox-container">
+						</div>
+						<div class="row" style="margin-top:15px">
+							<div class="col-md-2"></div>
+							<div class="col-md-2"><label>当前已选择：</label></div>
+							<div class="col-md-6"><input class="form-control"/></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-1"><label>其他： </label></div>
+					<div class="col-md-6"><input class="form-control"/></div>
+					<div class="col-md-4"><button class="button">已完成查询条件选择</button></div>
+				</div>
 			</div>
+			<div class="row"><button>下一步</button></div>
 		</div>
 		<footer>
 			<div th:include="footer :: footer" style="background-color:#80999a"></div>	
 		</footer>
 	</body>
-	<script type="text/javascript" src="../js/bootstrap-select.js" charset="UTF-8"></script>
+	<script th:inline="javascript">
+		var id = [[${did}]];
+		var dlocation = [[${dlocation}]];
+		var comparetype = [[${comparetype}]];
+		var compareentity = [[${compareentity}]];
+		var data = ['ཀ(k)','ཁ(kh)','ག(g)','ང(ng)','ཅ(c)','ཆ(ch)','ཇ(j)','ཉ(ny)','ཏ(t)','ཐ(th)','ད(d)','ན(n)','པ(p)','ཕ(ph)','བ(b)','མ(m)','ཙ(ʦ)','ཚ(ʦh)','ཛ(ʣ)','ཝ(w)','ཞ(ʑ)','ཟ(z)','འ(ɦ)','ཡ(j)','ར(r)','ལ(l)','ཤ(ɕ)','ས(s)','ཧ(h)','ཨ(ʔ)']
+		var container = document.getElementById('checkbox-container');
+		var title = document.getElementById('title');
+		title.innerHTML = "<h1>古藏语与 ( "+dlocation+" ) 方言声母比较</h1>";
+		
+	</script>
+	<script type="text/javascript" src="/js/diaticomp.js"></script>
 </html>

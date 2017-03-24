@@ -249,3 +249,15 @@ body{
     background-color:#e4dcd5
 }
 
+.compare-button-pressdown{
+	color: red!important;
+	top: 5px !important;
+    -webkit-box-shadow: 0 2px 0 #bbbbbb, 0 3px 3px rgba(0, 0, 0, 0.2) !important;
+            box-shadow: 0 2px 0 #bbbbbb, 0 3px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+.compare-button-large{
+	margin: 20px !important;
+    width: 90px !important;
+    font-size: 30px !important;
+}
