@@ -12,7 +12,7 @@ if(dialectsList != null){
 if(uploadLabel != null && uploadID!=null){
 	currentLabel.innerHTML = uploadLabel;
 	currentID.innerHTML = uploadID;	
-	createUploadButton(uploadID)
+	createUploadButton(uploadID, uploadLabel)
 }
 
 if(compareType == "diaCompTi"){
@@ -27,7 +27,7 @@ $("#dialect-select").change( function (){
 	if(dialectSelect.options[index].value != "NULL"){
 		currentLabel.innerHTML = dialectSelect.options[index].text;
 		currentID.innerHTML = dialectSelect.options[index].value;
-		createUploadButton(dialectSelect.options[index].value);
+		createUploadButton(dialectSelect.options[index].value, dialectSelect.options[index].text);
 	}
 });
 

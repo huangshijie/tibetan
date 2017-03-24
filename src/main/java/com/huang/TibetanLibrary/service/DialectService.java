@@ -188,10 +188,24 @@ public class DialectService {
 										while(mTran.find()){
 											matchTran = mTran.group(1);
 										}
-										tmp.setOnsetText(transcriptionStr.substring(0, matchTran.length()));
-										tmp.setFinalText(transcriptionStr.substring(matchTran.length(), transcriptionStr.length()));
-										tmp.setNuclensText(transcriptionStr.substring(matchTran.length(), matchTran.length()+1));
-										tmp.setCodaText(transcriptionStr.substring(matchTran.length()+1, transcriptionStr.length()));
+										
+										Pattern pAddition = Pattern.compile("(.*)[̃̈ ](.*)");
+										Matcher mAddition = pAddition.matcher(transcriptionStr);
+										String matchAddition = "";
+										if(mAddition.find()){
+											matchAddition = mAddition.group(1);
+											tmp.setOnsetText(transcriptionStr.substring(0, matchTran.length()));
+											tmp.setFinalText(transcriptionStr.substring(matchAddition.length()-1, matchAddition.length()+1));
+											tmp.setNuclensText(transcriptionStr.substring(matchAddition.length()-1, matchAddition.length()+1));
+											tmp.setCodaText(transcriptionStr.substring(matchAddition.length()+1, transcriptionStr.length()));
+											
+										}else{
+											tmp.setOnsetText(transcriptionStr.substring(0, matchTran.length()));
+											tmp.setFinalText(transcriptionStr.substring(matchTran.length(), transcriptionStr.length()));
+											tmp.setNuclensText(transcriptionStr.substring(matchTran.length(), matchTran.length()+1));
+											tmp.setCodaText(transcriptionStr.substring(matchTran.length()+1, transcriptionStr.length()));
+										}
+										
 									}else{
 										tmp.setTranscriptionText("");
 										tmp.setToneText("");
@@ -242,6 +256,35 @@ public class DialectService {
 			}	
 		ArrayList<DialectDetial> result = dialectDetialMapper.findAllDialectDetials();
 		return result;
+	}
+	
+	public static void main(String[] args){
+		String transcriptionStr = "nɑ̃55";
+		String regEx="[^0-9]";
+		Pattern pRegEx = Pattern.compile(regEx);  
+		Matcher mRegEx = pRegEx.matcher(transcriptionStr);  
+		System.out.println("ToneText:"+mRegEx.replaceAll("").trim().toString());
+			
+		transcriptionStr = transcriptionStr.replaceAll("\\d+","");
+		Pattern pTran = Pattern.compile("(.*)[iyɨʉɯuIʏʊeøəɵɤoɛœɜɞʌɔæɐaɶɑɒ](.*)");
+		Matcher mTran = pTran.matcher(transcriptionStr);
+		String matchTran = "";
+		while(mTran.find()){
+			matchTran = mTran.group(1);
+		}
+		
+		Pattern pAddition = Pattern.compile("(.*)[̃̈ ](.*)");
+		Matcher mAddition = pAddition.matcher(transcriptionStr);
+		String matchAddition = "";
+		if(mAddition.find()){
+			matchAddition = mAddition.group(1);
+			System.out.println(transcriptionStr.substring(matchAddition.length()-1, matchAddition.length()+1));
+		}
+		
+		System.out.println("声母 :"+(transcriptionStr.substring(0, matchTran.length())));
+		System.out.println("韵母:"+(transcriptionStr.substring(matchAddition.length()-1, matchAddition.length()+1)));
+		System.out.println("韵核:"+(transcriptionStr.substring(matchAddition.length()-1, matchAddition.length()+1)));
+		System.out.println("韵尾:"+(transcriptionStr.substring(matchAddition.length()+1, transcriptionStr.length())));
 	}
 	
 }
