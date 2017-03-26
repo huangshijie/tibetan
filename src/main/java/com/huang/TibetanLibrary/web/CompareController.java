@@ -57,6 +57,7 @@ public class CompareController {
 	
 	@RequestMapping(value = "/getDiaComdiaHTML",method = RequestMethod.GET)
 	public String getDiaComdiaHTML(Model model){
+		model.addAttribute("dialectsList", compareService.getAllDialectsList());
 		return "diaComdiaHTML";
 	}
 	

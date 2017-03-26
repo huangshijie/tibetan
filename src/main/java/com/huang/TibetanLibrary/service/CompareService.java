@@ -22,6 +22,7 @@ import com.huang.TibetanLibrary.domain.TibetanWordStructure;
 import com.huang.TibetanLibrary.mapper.DialectDetialMapper;
 import com.huang.TibetanLibrary.mapper.SyllableClusterMapper;
 import com.huang.TibetanLibrary.mapper.SyllableTibetMapper;
+import com.huang.TibetanLibrary.util.FontUtil;
 
 @Service
 public class CompareService {
@@ -35,8 +36,29 @@ public class CompareService {
 	@Autowired
 	private SyllableClusterMapper syllableClusterMapper;
 	
-	public ArrayList<SyllableTibet> getSpecialSyllableTibetByDidByType(String did, String compareType, String compareEntity, ArrayList<String> queryTypeList){
+	public ArrayList<SyllableTibet> getSpecialSyllableTibetByDidByType(String did, String compareType, String compareEntity, ArrayList<String> queryList){
 		Map<String, Object> map = new HashMap<String, Object>();  
+		ArrayList<String> queryTypeList = new ArrayList<String>();
+		
+		for(int i = 0;i<queryList.size();i++){
+			if(!queryList.get(i).equals("")){
+				char[] orginalChars = queryList.get(i).toCharArray();
+				boolean flag = true;
+				String returnStr = "";
+			    for (int m = 0; m < orginalChars.length; m++) {
+			    	if(FontUtil.WILLIESET.get(Integer.toHexString(orginalChars[m]))!=null){
+			    		returnStr +=FontUtil.WILLIESET.get(Integer.toHexString(orginalChars[m]));
+			    		flag = false;
+			    	}
+			    }
+			    if(flag){
+			    	queryTypeList.add(queryList.get(i));
+			    }else{
+			    	queryTypeList.add(returnStr);
+			    }
+			}
+		}
+		
 	    map.put("did", did);
 	    if(compareType.equals("diaCompTi")){
 	    	if(compareEntity.equals("onSet")){

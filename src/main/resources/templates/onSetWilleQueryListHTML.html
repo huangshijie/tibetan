@@ -15,7 +15,7 @@
 	<body>
 		<div th:include="header :: header"></div>
 		<div class="wrap">
-			<div class="container index search" style="height: 650px;">
+			<div class="container index search">
 				<div class="row" id="title">
 				</div>
 				<div class="row">
@@ -32,15 +32,15 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" style="margin-top: 1rem; margin-bottom: 3rem;">
 					<div class="col-md-1"><label>其他： </label></div>
 					<div class="col-md-6"><input class="form-control" id="current-input-list-input"/></div>
 					<div class="col-md-4"><a class="button" href="#" onclick="finishSelected()">已完成查询条件选择</a></div>
 				</div>
 			</div>
-			<div class="row" style="margin-top:10px; margin-bottom:20px">
+			<div class="row" style="margin-top: 1rem; margin-bottom: 3rem;">
 				<div class="col-md-8"></div>
-				<div class="col-md-4"><input type="submit" class="button button-block button-rounded button-primary button-large" value="下一步"/></div>
+				<div class="col-md-2" id="next-button-div"></div>
 			</div>
 		</div>
 		<footer>
@@ -54,10 +54,7 @@
 		var compareentity = [[${compareentity}]];
 		var data = ['ཀ(k)','ཁ(kh)','ག(g)','ང(ng)','ཅ(c)','ཆ(ch)','ཇ(j)','ཉ(ny)','ཏ(t)','ཐ(th)','ད(d)','ན(n)','པ(p)','ཕ(ph)','བ(b)','མ(m)','ཙ(ʦ)','ཚ(ʦh)','ཛ(ʣ)','ཝ(w)','ཞ(ʑ)','ཟ(z)','འ(ɦ)','ཡ(j)','ར(r)','ལ(l)','ཤ(ɕ)','ས(s)','ཧ(h)','ཨ(ʔ)']
 		var willeData = ['k','kh','g','ng','c','ch','j','ny','t','th','d','n','p','ph','b','m','ʦ','ʦh','ʣ','w','ʑ','z','ɦ','j','r','l','ɕ','s','h','ʔ'];
-		var container = document.getElementById('checkbox-container');
 		var title = document.getElementById('title');
-		var curSelectedListLabel = document.getElementById('current-seletced-list-input');
-		var curInputListLabel = document.getElementById('current-input-list-input');
 		title.innerHTML = "<h1>古藏语与 ( "+dlocation+" ) 方言声母比较</h1>";
 		
 	</script>

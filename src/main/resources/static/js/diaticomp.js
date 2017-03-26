@@ -1,4 +1,8 @@
 var selectedList  = new Array();
+var curSelectedListLabel = document.getElementById('current-seletced-list-input');
+var curInputListLabel = document.getElementById('current-input-list-input');
+var nextDIV = document.getElementById("next-button-div");
+var container = document.getElementById('checkbox-container');
 
 initCheckBox();
 function initCheckBox(){
@@ -34,7 +38,7 @@ function addToSelectedList (item){
 	}
 	curSelectedListLabel.value = "";
 	curSelectedListLabel.value = result;
-}
+};
 
 function removeFromSelectedList (item){
 	var result = "";
@@ -50,12 +54,18 @@ function removeFromSelectedList (item){
 	}
 	curSelectedListLabel.value = "";
 	curSelectedListLabel.value = result;
-}
+};
 
 function finishSelected(){
 	curSelectedListLabel.readOnly = true;
 	curInputListLabel.readOnly = true;
-}
+	var curInputList = document.getElementById('current-input-list-input').value.split(',');
+	for(var i=0; i< selectedList.length;i++){
+		curInputList.push(willeData[selectedList[i]]);
+	}
+	var result = curInputList.toString();
+	nextDIV.innerHTML = "<a href=\"/getDiaTiComTiTable?did="+id+"&comparetype="+comparetype+"&compareentity="+compareentity+"&queryStrList="+result+"\" class=\"button button-block button-rounded button-primary button-large\">下一步</a>";
+};
 
 $('button').click(function (){
 	if(hasClass(this, 'compare-button-pressdown')){
