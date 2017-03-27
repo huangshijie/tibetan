@@ -17,7 +17,7 @@
 			<div class="container index compare">
 				<div class="navigation-strip effect2">
 					<div class="navigation">
-						<p style="text-align: center;font-weight: normal;color: #333;" class="front_headThree" id="compare-homepage-title"></p>
+						<p style="text-align: center;font-weight: normal;color: #333;" class="front_headThree" id="compare-homepage-title">方言与方言比较</p>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 50px">
@@ -25,24 +25,12 @@
 						<label>使用一下两种方式进行比较：</label>
 					</div>
 				</div>
+				<div>
+					<div class="row" style="margin-top: 50px" id="1">
+					</div>
+				</div>
 				<div class="row" style="margin-top: 50px">
-					<div class="col-md-2"></div>
-					<div class="col-md-2" style="text-align:center"><label>选择数据库中已有数据：</label></div>
-					<div class="col-md-2" style="text-align:center">
-						<select class="selectpicker show-tick form-control" id="dialect-select">
-							<option value="NULL">==请选择==</option>
-						</select>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-2"><label>或</label></div>
-				</div>
-				<div class ="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-2" style="text-align:center"><label>选择本地数据：</label></div>
-					<div class="col-md-2" style="text-align:center">
-						<a data-toggle="modal" data-target="#uploadLocalFile">点击</a>
-					</div>
+					<div><a href="#" onclick="addNewRow()" class="button">添加方言</a></div>
 				</div>
 				<div class="row" style="margin-top: 50px">
 					<div class="col-md-2" style="text-align:center"></div>
@@ -70,21 +58,21 @@
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		                <h4 class="modal-title" id="myModalLabel">选择本地数据上传</h4>
 		            </div>
-		            <form method="POST" enctype="multipart/form-data" action="/uploadLocalClusterFile">
+		            <form method="POST" enctype="multipart/form-data" id="uploadLocalClusterFileForm">
 						<div class="modal-body">
 			            	<div class="row">
 			            		<div class="col-md-3" style="text-align:center"><p><strong>输入方言点: </strong></p></div>
 			            		<div class="col-md-6" style="text-align:center"><input type="text" name="locationDes" id="locationDes"/></div>
-			            		<input id="current-compare-type" style="visibility: hidden;" name="comparetype" />
+			            		<input id="current-selected-local-id" style="visibility: hidden;" name="currentID" />
 			            	</div>
 			            	<div class="row">
 				            	<div class="col-md-3" style="text-align:center"><p><strong>选择文件: </strong></p></div>
-								<div class="col-md-6" style="text-align:center"><input type="file" name="file" style="float: right;" /></div>
+								<div class="col-md-6" style="text-align:center"><input type="file" name="file" style="float: right;" id="upload-file-input"/></div>
 							</div>
 			       		</div>
 			            <div class="modal-footer">
 			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-			                <button type="submit" class="btn btn-primary">确定上传</button>
+			                <button type="submit" class="btn btn-primary" id="confirmUpload">确定上传</button>
 			            </div>
 		            </form>
 		        </div><!-- /.modal-content -->
@@ -96,19 +84,13 @@
 	</body>
 	<script type="text/javascript" src="../js/bootstrap-select.js" charset="UTF-8"></script>
 	<script th:inline="javascript">
-		var compareType = [[${comparetype}]];
 		var dialectsList = [[${dialectsList}]];
-		var uploadLabel = [[${dlocation}]];
-		var uploadID = [[${did}]];
-		var title = document.getElementById("compare-homepage-title");
 		var currentLabel = document.getElementById("current-chosen-label");
 		var currentID = document.getElementById("current-chosen-id");
-		var dialectSelect = document.getElementById("dialect-select");
+		var dialectSelect = document.getElementById("dialect-select-1");
 		
 		var onsetDIV = document.getElementById("onset-compare-div");
 		var finalDIV = document.getElementById("final-compare-div");
-		
-		document.getElementById("current-compare-type").value = compareType;
 	</script>
-	<script type="text/javascript" src="/js/dtc-select.js"></script>
+	<script type="text/javascript" src="../js/diadiacomp.js" charset="UTF-8"></script>
 </html>

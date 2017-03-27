@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.huang.TibetanLibrary.domain.DialectDetial;
@@ -73,6 +74,7 @@ public class CompareController {
 	}
 	
 	@RequestMapping(value = "/uploadLocalClusterFile",method = RequestMethod.POST)
+	@ResponseBody
 	public String uploadLocalFile(@RequestParam("file") MultipartFile file, @RequestParam String locationDes, 
 			@RequestParam String comparetype, Model model,
 			HttpServletRequest request, HttpServletResponse response){
@@ -105,5 +107,40 @@ public class CompareController {
 		}else{
 			return "diaTiComHTML";
 		}
+	}
+	
+	@RequestMapping(value = "/uploadLocalClusterFileDia",method = RequestMethod.POST)
+	@ResponseBody
+	public String uploadLocalFileDia(@RequestParam("file") MultipartFile file, @RequestParam String locationDes, String currentID,
+			Model model, HttpServletRequest request, HttpServletResponse response){
+		System.out.println(currentID);
+		if (!file.isEmpty()) {  
+            try {  
+            	request.setCharacterEncoding("UTF-8");
+
+                byte[] bytes = file.getBytes();  
+                File fileSourcePath = new File("C:/upload"); 
+                if (!fileSourcePath.exists()) {
+                    fileSourcePath.mkdirs();
+                }
+                
+                File uploadFile = new File(fileSourcePath, file.getOriginalFilename());
+                
+                BufferedOutputStream stream =  new BufferedOutputStream(new FileOutputStream(uploadFile));  
+                stream.write(bytes);  
+                stream.close();  
+                
+                DialectDetial uploadDialectDetial = compareService.uploadLocalDialect(uploadFile.getAbsolutePath(), locationDes);
+        		model.addAttribute("did", uploadDialectDetial.getID());
+        		model.addAttribute("dlocation", uploadDialectDetial.getLanguagePoint());
+        		model.addAttribute("currentID", currentID);
+        		model.addAttribute("result", "Seccuss");
+            }catch (Exception e){
+            	model.addAttribute("result", e);
+            }
+		}else{
+			model.addAttribute("result", "File is Empty!");
+		}
+		return model.toString();
 	}
 }
