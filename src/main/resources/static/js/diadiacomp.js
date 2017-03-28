@@ -17,7 +17,7 @@ function init(){
 
 function createSelect(){
 	var select = document.createElement('select');
-	select.setAttribute('id', 'dialect-select'+curItemNum);
+	select.setAttribute('id', 'dialect-select-'+curItemNum);
 	select.setAttribute('class', 'show-tick form-control');
 	select.setAttribute('onchange', 'selectChange('+curItemNum+')');
 	var dialectOption = new Option();
@@ -57,11 +57,11 @@ function addNewRow(){
 	
 	var uploadDIV = document.createElement('div');
 	uploadDIV.setAttribute('class', 'col-md-2');
-	uploadDIV.innerHTML = "<a href=\"\" onclick=\"showModal("+curItemNum+")\">点击</a>";
+	uploadDIV.innerHTML = "<label id=\"locationID-"+curItemNum+"\" style=\"visibility: hidden;\"></label><a href=\"\" onclick=\"showModal("+curItemNum+")\" id=\"click-"+curItemNum+"\">点击</a>";
 	
 	var actionDIV = document.createElement('div');
 	actionDIV.setAttribute('class', 'col-md-2');
-	actionDIV.innerHTML = "<a href=\"#\" onclick=\"lock()\">确定</a>/<a href=\"#\" onclick=\"removeRow("+curItemNum+")\">删除</a>";
+	actionDIV.innerHTML = "<a href=\"#\" onclick=\"lock("+curItemNum+")\" id=\"confirm-"+curItemNum+"\">确定</a>/<a href=\"#\" id=\"remove-"+curItemNum+"\" onclick=\"removeRow("+curItemNum+")\">删除</a>";
 	
 	curItemNum++;
 	
@@ -79,8 +79,12 @@ function addNewRow(){
 	row.parentNode.appendChild(newRow);
 };
 
-function removeRow(curItemNum){
-	console.log(curItemNum);
+function lock(itemNum){
+	console.log(itemNum);
+}
+
+function removeRow(itemNum){
+	console.log(itemNum);
 };
 
 function showModal(item){
@@ -94,7 +98,7 @@ function showModal(item){
 function uploadLocalFile() {
     var form = $('#uploadLocalClusterFileForm')[0];
     var data = new FormData(form);
-    data.append("curItemNum", curItemNum);
+    var currentSelectedRowid = document.getElementById('current-selected-local-id').value;
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
@@ -105,9 +109,13 @@ function uploadLocalFile() {
         cache: false,
         timeout: 600000,
         success: function (data) {
-            console.log("SUCCESS : ", data);
+            var json = JSON.parse(data); 
             var label = document.getElementById('locationDes');
             var inputFile = document.getElementById('upload-file-input');
+            var locationDesID = document.getElementById('locationID-'+currentSelectedRowid);
+            var locationDesLabel = document.getElementById('click-'+currentSelectedRowid);
+            locationDesLabel.text = json.dlocation;
+            locationDesID.text = json.did;
             label.value = '';
             inputFile.value='';
             $('#uploadLocalFile').modal('hide');

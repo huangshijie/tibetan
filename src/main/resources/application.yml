@@ -28,6 +28,10 @@ spring:
     view:
       prefix: /templates/
       suffix: .html
+  http:    
+    multipart:  
+      max-file-size: 30MB  
+      max-request-Size: 30MB  
     
 mybatis: 
   mapperLocations: classpath:mapper/*.xml

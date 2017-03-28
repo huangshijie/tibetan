@@ -57,17 +57,17 @@ public class DialectController {
                 BufferedOutputStream stream =  new BufferedOutputStream(new FileOutputStream(uploadFile));  
                 stream.write(bytes);  
                 stream.close();  
+                dialectService.readSyllableClusterXlsxFile(uploadFile.getAbsolutePath(), locationDes);
                 
-                model.addAttribute("dialectRoughlyList" , dialectService.readSyllableClusterXlsxFile(uploadFile.getAbsolutePath(), locationDes));
-                return "dialectstable";
             } catch (Exception e) {  
                 model.addAttribute("message", "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());  
-                return "dialectstable";
             }  
         } else {  
             model.addAttribute("message", "You failed to upload " + file.getOriginalFilename() + " because the file was empty.");  
-            return "dialectstable";
         } 
+		ArrayList<DialectDetial> dialectRoughlyList = dialectService.getAllDialectDetialsList();
+		model.addAttribute("dialectRoughlyList" , dialectRoughlyList);
+        return "dialectstable";
 	}
 	
 	@RequestMapping(value = "/getDialectDetialByid",method = RequestMethod.GET)

@@ -156,7 +156,7 @@ public class CompareService {
 									
 									
 									//音节威利转写
-									if(i<representationTextList.size()){
+									if(i<representationTextList.size()&&!representationTextList.get(i).equals("")){
 										TibetanWordStructure tmpTWStructure = new TibetanWordStructure(representationTextList.get(i));
 										wiStr += tmpTWStructure.getWillieTransfer() + " ";
 										tmp.setWltranscriptionText(tmpTWStructure.getWillieTransfer());

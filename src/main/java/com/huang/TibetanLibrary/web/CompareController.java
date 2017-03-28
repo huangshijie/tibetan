@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,11 @@ public class CompareController {
 		model.addAttribute("comparetype", comparetype);
 		model.addAttribute("dialectsList", compareService.getAllDialectsList());
 		return "diaTiComHTML";
+	}
+	
+	@RequestMapping(value = "/getdiaCompdiaDetialHTML",method = RequestMethod.GET)
+	public String getdiaCompdiaDetialHTML(Model model){
+		return "diaCompDiaDetial";
 	}
 	
 	@RequestMapping(value = "/getQueryListHTML",method = RequestMethod.GET)
@@ -111,9 +117,9 @@ public class CompareController {
 	
 	@RequestMapping(value = "/uploadLocalClusterFileDia",method = RequestMethod.POST)
 	@ResponseBody
-	public String uploadLocalFileDia(@RequestParam("file") MultipartFile file, @RequestParam String locationDes, String currentID,
+	public String uploadLocalFileDia(@RequestParam("file") MultipartFile file, @RequestParam String locationDes,
 			Model model, HttpServletRequest request, HttpServletResponse response){
-		System.out.println(currentID);
+		JSONObject result = new JSONObject();
 		if (!file.isEmpty()) {  
             try {  
             	request.setCharacterEncoding("UTF-8");
@@ -131,16 +137,17 @@ public class CompareController {
                 stream.close();  
                 
                 DialectDetial uploadDialectDetial = compareService.uploadLocalDialect(uploadFile.getAbsolutePath(), locationDes);
-        		model.addAttribute("did", uploadDialectDetial.getID());
-        		model.addAttribute("dlocation", uploadDialectDetial.getLanguagePoint());
-        		model.addAttribute("currentID", currentID);
-        		model.addAttribute("result", "Seccuss");
+                result.put("did", uploadDialectDetial.getID());
+                result.put("dlocation", uploadDialectDetial.getLanguagePoint());
+                result.put("result", "Seccuss");
             }catch (Exception e){
             	model.addAttribute("result", e);
+            	e.printStackTrace();
             }
 		}else{
-			model.addAttribute("result", "File is Empty!");
+			
+			result.put("result", "File is Empty!");
 		}
-		return model.toString();
+		return result.toString();
 	}
 }

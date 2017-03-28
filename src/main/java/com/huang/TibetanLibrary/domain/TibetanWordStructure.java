@@ -189,7 +189,7 @@ public class TibetanWordStructure {
 					this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(1)));
 					this.setSuffix(String.valueOf(transferCharsWithoutVOWEL.get(2)));
 				}
-			}else{
+			}else if(transferCharsWithoutVOWEL.size() > 3){
 				if(exitInPrefixSet(transferCharsWithoutVOWEL.get(0))){
 					if(exitInSuperscriptSet(transferCharsWithoutVOWEL.get(1))){
 						this.setRadical(String.valueOf(transferCharsWithoutVOWEL.get(2)));
@@ -206,67 +206,72 @@ public class TibetanWordStructure {
 			}
 	    }
 		
-		
-		char[] radicalChars = this.getRadical().toCharArray();
-		int radicalNum = transferChars.indexOf(radicalChars[0]);
-		int preNum = radicalNum;
-		int suNum = transferChars.size() - radicalNum - 1;
-		
-		if(suNum == 1){
-			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
-				this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
-			}else{
-				if(exitInVowelSet(transferChars.get(radicalNum+1))){
-					this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
-				}else{
-					this.setSuffix(String.valueOf(transferChars.get(radicalNum+1)));
-				}
-			}
-		}
-		
-		if(suNum == 2){
+		if(this.getRadical()!=null){
+			char[] radicalChars = this.getRadical().toCharArray();
+			int radicalNum = transferChars.indexOf(radicalChars[0]);
+			int preNum = radicalNum;
+			int suNum = transferChars.size() - radicalNum - 1;
 			
-			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
-				String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum))) 
-											+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum+1)));
-				
-				if(findInExhaustiveSet(combinStr)){
-					if(exitInVowelSet(transferChars.get(radicalNum+2))){
-						this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
-						this.setVowelMark(String.valueOf(transferChars.get(radicalNum+2)));
+			if(suNum == 1){
+				if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
+					this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+				}else{
+					if(exitInVowelSet(transferChars.get(radicalNum+1))){
+						this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
 					}else{
-						this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
-						this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
+						this.setSuffix(String.valueOf(transferChars.get(radicalNum+1)));
 					}
-				}else{
-					this.setSuffix(String.valueOf(transferChars.get(radicalNum+1)));
-					this.setPostffix(String.valueOf(transferChars.get(radicalNum+2)));
-				}
-				
-			}else{
-				if(exitInVowelSet(transferChars.get(radicalNum+1))){
-					this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
-					this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
-				}else{
-					this.setSuffix(String.valueOf(transferChars.get(radicalNum+1)));
-					this.setPostffix(String.valueOf(transferChars.get(radicalNum+2)));
 				}
 			}
-		}
-		
-		if(suNum == 3){
-			if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
+			
+			if(suNum == 2){
 				
-				String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum))) 
-						+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum+1)));
-				
-				if(findInExhaustiveSet(combinStr)){
-					if(exitInVowelSet(transferChars.get(radicalNum+2))){
-						this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
-						this.setVowelMark(String.valueOf(transferChars.get(radicalNum+2)));
-						this.setSuffix(String.valueOf(transferChars.get(radicalNum+3)));
+				if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
+					String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum))) 
+												+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum+1)));
+					
+					if(findInExhaustiveSet(combinStr)){
+						if(exitInVowelSet(transferChars.get(radicalNum+2))){
+							this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+							this.setVowelMark(String.valueOf(transferChars.get(radicalNum+2)));
+						}else{
+							this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+							this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
+						}
 					}else{
-						this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+						this.setSuffix(String.valueOf(transferChars.get(radicalNum+1)));
+						this.setPostffix(String.valueOf(transferChars.get(radicalNum+2)));
+					}
+					
+				}else{
+					if(exitInVowelSet(transferChars.get(radicalNum+1))){
+						this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
+						this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
+					}else{
+						this.setSuffix(String.valueOf(transferChars.get(radicalNum+1)));
+						this.setPostffix(String.valueOf(transferChars.get(radicalNum+2)));
+					}
+				}
+			}
+			
+			if(suNum == 3){
+				if(exitInSubscriptSet(transferChars.get(radicalNum+1))){
+					
+					String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum))) 
+							+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum+1)));
+					
+					if(findInExhaustiveSet(combinStr)){
+						if(exitInVowelSet(transferChars.get(radicalNum+2))){
+							this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+							this.setVowelMark(String.valueOf(transferChars.get(radicalNum+2)));
+							this.setSuffix(String.valueOf(transferChars.get(radicalNum+3)));
+						}else{
+							this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+							this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
+							this.setPostffix(String.valueOf(transferChars.get(radicalNum+3)));
+						}
+					}else{
+						this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
 						this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
 						this.setPostffix(String.valueOf(transferChars.get(radicalNum+3)));
 					}
@@ -275,54 +280,51 @@ public class TibetanWordStructure {
 					this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
 					this.setPostffix(String.valueOf(transferChars.get(radicalNum+3)));
 				}
-			}else{
-				this.setVowelMark(String.valueOf(transferChars.get(radicalNum+1)));
-				this.setSuffix(String.valueOf(transferChars.get(radicalNum+2)));
-				this.setPostffix(String.valueOf(transferChars.get(radicalNum+3)));
 			}
-		}
-		
-		if(suNum == 4){
-			this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
-			this.setVowelMark(String.valueOf(transferChars.get(radicalNum+2)));
-			this.setSuffix(String.valueOf(transferChars.get(radicalNum+3)));
-			this.setPostffix(String.valueOf(transferChars.get(radicalNum+4)));
-		}
-		
-		if(preNum == 1){
-			if(exitInPrefixSet(transferChars.get(0))){
-				String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(0))) 
-						+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum)));
-				if(findInExhaustiveSet(combinStr)){
-					this.setPrefix(String.valueOf(transferChars.get(0)));
+			
+			if(suNum == 4){
+				this.setSubscript(String.valueOf(transferChars.get(radicalNum+1)));
+				this.setVowelMark(String.valueOf(transferChars.get(radicalNum+2)));
+				this.setSuffix(String.valueOf(transferChars.get(radicalNum+3)));
+				this.setPostffix(String.valueOf(transferChars.get(radicalNum+4)));
+			}
+			
+			if(preNum == 1){
+				if(exitInPrefixSet(transferChars.get(0))){
+					String combinStr = FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(0))) 
+							+ FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(radicalNum)));
+					if(findInExhaustiveSet(combinStr)){
+						this.setPrefix(String.valueOf(transferChars.get(0)));
+					}else{
+						this.setSuperscript(String.valueOf(transferChars.get(0)));
+					}
 				}else{
 					this.setSuperscript(String.valueOf(transferChars.get(0)));
 				}
-			}else{
-				this.setSuperscript(String.valueOf(transferChars.get(0)));
+			}
+			
+			if(preNum == 2){
+				this.setPrefix(String.valueOf(transferChars.get(0)));
+				this.setSuperscript(String.valueOf(transferChars.get(1)));
+			}
+			
+			if(vowelNums==0){
+			    String updateWilleTransferStr = "";
+			    for (int i = 0; i < transferChars.size(); i++) {
+			    	if(String.valueOf(transferChars.get(i)).equals(this.getRadical())){
+			    		updateWilleTransferStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)))+"a";
+			    	}else{
+			    		updateWilleTransferStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)));
+			    	}
+			    }
+			    this.setWillieTransfer(updateWilleTransferStr);
+			}
+			
+			if(vowelNums==2){
+				this.setPostffix("");
 			}
 		}
 		
-		if(preNum == 2){
-			this.setPrefix(String.valueOf(transferChars.get(0)));
-			this.setSuperscript(String.valueOf(transferChars.get(1)));
-		}
-		
-		if(vowelNums==0){
-		    String updateWilleTransferStr = "";
-		    for (int i = 0; i < transferChars.size(); i++) {
-		    	if(String.valueOf(transferChars.get(i)).equals(this.getRadical())){
-		    		updateWilleTransferStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)))+"a";
-		    	}else{
-		    		updateWilleTransferStr += FontUtil.WILLIESET.get(Integer.toHexString(transferChars.get(i)));
-		    	}
-		    }
-		    this.setWillieTransfer(updateWilleTransferStr);
-		}
-		
-		if(vowelNums==2){
-			this.setPostffix("");
-		}
 	}
 	
 	/**
