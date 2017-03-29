@@ -185,6 +185,7 @@ public class CompareService {
 								for(int i = 0; i<length ;i++){
 									SyllableTibet tmp = new SyllableTibet();
 									tmp.setDID(DID);
+									tmp.setOrignRepresentationText(tmpSyllableCluster.getRepresentationText());
 									if(length == 1){
 										tmp.setTranslationText(tmpSyllableCluster.getTranslationText()); 
 									}else{
@@ -255,7 +256,7 @@ public class CompareService {
 										tmp.setNuclensText("");
 										tmp.setCodaText("");
 									}
-										
+									tmp.setOrignWltranscriptionText(wiStr);	
 									syllableTibetList.add(tmp);
 								}
 								

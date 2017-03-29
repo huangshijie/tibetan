@@ -6,6 +6,8 @@
 		<result property="ID" column="ID" />
 		<result property="DID" column="DID" />
 		<result property="SID" column="SID" />
+		<result property="orignRepresentationText" column="orignRepresentationText" />
+		<result property="orignWltranscriptionText" column="orignWltranscriptionText" />
 		<result property="translationText" column="translationText" />
 		<result property="representationText" column="representationText" />
 		<result property="wltranscriptionText" column="wltranscriptionText" />
@@ -37,6 +39,8 @@
 			t.ID,
 			t.DID,
 			t.SID,
+			t.orignRepresentationText,
+			t.orignWltranscriptionText,
 			t.translationText,
 			t.representationText,
 			t.wltranscriptionText,
@@ -62,6 +66,8 @@
 			ID,
 			DID,
 			SID,
+			orignRepresentationText,
+			orignWltranscriptionText,
 			translationText,
 			representationText,
 			wltranscriptionText,
@@ -83,6 +89,8 @@
 			#{ID},
 			#{DID},
 			#{SID},
+			#{orignRepresentationText},
+			#{orignWltranscriptionText},
 			#{translationText},
 			#{representationText},
 			#{wltranscriptionText},
