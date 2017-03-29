@@ -64,7 +64,7 @@ function finishSelected(){
 		curInputList.push(willeData[selectedList[i]]);
 	}
 	var result = curInputList.toString();
-	nextDIV.innerHTML = "<a href=\"/getDiaTiComTiTable?did="+id+"&comparetype="+comparetype+"&compareentity="+compareentity+"&queryStrList="+result+"\" class=\"button button-block button-rounded button-primary button-large\">下一步</a>";
+	nextDIV.innerHTML = "<a href=\"/getDiaDiaComDetialTable?did="+id+"&locationDes="+dlocation+"&compareentity="+compareentity+"&queryStrList="+result+"\" class=\"button button-block button-rounded button-primary button-large\">下一步</a>";
 };
 
 $('button').click(function (){

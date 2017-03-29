@@ -24,6 +24,14 @@
 		<result property="integrated" column="integrated" />
 	</resultMap>
 	
+	<resultMap type="com.huang.TibetanLibrary.domain.SyllableTibetTmpForDiaDia" id="SyllableTibetTmpForDiaDia">
+		<result property="willeText" column="willeText" />
+		<result property="representationText" column="representationText" />
+		<result property="wltranscriptionText" column="wltranscriptionText" />
+		<result property="dialectText" column="dialectText" />
+		<result property="translationText" column="translationText" />
+	</resultMap>
+	
 	<select id="findAllSyllableTibetById" parameterType="java.lang.String" resultMap="SyllableTibet">
 		SELECT 
 			t.ID,
@@ -94,7 +102,7 @@
 		)
 	</insert>
 	
-	<select id="findSpecialSyllableTibetByDidByType" resultMap="SyllableTibet">
+	<select id="findSpecialSyllableTibetByTiDidByType" resultMap="SyllableTibet">
 		SELECT *
 		FROM syllabletibet t
 		WHERE t.DID = #{did} 
@@ -127,4 +135,49 @@
 			</foreach>
 		</if>
 	</select>
+	
+	<select id="findSpecialSyllableTibetByDiaDidByOnset" resultMap="SyllableTibetTmpForDiaDia">
+		SELECT
+			onsetWilleText as willeText,
+			representationText,
+			wltranscriptionText,
+			GROUP_CONCAT(DID, ':', onsetText, ':', transcriptionText) as dialectText,
+			translationText
+		FROM syllabletibet
+		WHERE 
+			DID IN
+			<if test="didList != null">
+				<foreach collection="didList" item="did" index="index" open="(" close=")" separator=",">
+					#{did}
+				</foreach>
+			</if>
+			AND onsetWilleText IN 
+				<foreach collection="queryList" item="queryItem" index="index" open="(" close=")" separator=",">
+					#{queryItem}
+				</foreach>
+		GROUP BY onsetWilleText, representationText, wltranscriptionText, translationText;
+	</select>
+	
+	<select id="findSpecialSyllableTibetByDiaDidByFinal" resultMap="SyllableTibetTmpForDiaDia">
+		SELECT
+			finalWilleText as willeText,
+			representationText,
+			wltranscriptionText,
+			GROUP_CONCAT(DID, ':', finalText, ':', transcriptionText) as dialectText,
+			translationText
+		FROM syllabletibet
+		WHERE 
+			DID IN
+			<if test="didList != null">
+				<foreach collection="didList" item="did" index="index" open="(" close=")" separator=",">
+					#{did}
+				</foreach>
+			</if>
+			AND finalWilleText IN 
+				<foreach collection="queryList" item="queryItem" index="index" open="(" close=")" separator=",">
+					#{queryItem}
+				</foreach>
+		GROUP BY finalWilleText, representationText, wltranscriptionText, translationText;
+	</select>
+	
 </mapper>

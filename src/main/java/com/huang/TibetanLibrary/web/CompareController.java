@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.huang.TibetanLibrary.domain.DialectDetial;
 import com.huang.TibetanLibrary.domain.SyllableTibet;
+import com.huang.TibetanLibrary.domain.SyllableTibetTmpForDiaDia;
 import com.huang.TibetanLibrary.service.CompareService;
 
 @Controller
@@ -62,6 +63,22 @@ public class CompareController {
 		return "diaComdiaHTML";
 	}
 	
+	@RequestMapping(value = "/getDiaDiaCompQueryListHTML",method = RequestMethod.GET)
+	public String getDiaDiaCompQueryListHTML(@RequestParam ArrayList<String> did,@RequestParam ArrayList<String> dlocation,
+			@RequestParam String compareentity,Model model){
+		model.addAttribute("did", did);
+		model.addAttribute("dlocation", dlocation);
+		model.addAttribute("compareentity", compareentity);
+		
+		if(compareentity.equals("onSet")){
+			return "onSetDiaDiaQueryListHTML";
+		}
+		if(compareentity.equals("final")){
+			return "finalDiaDiaQueryListHTML";
+		}
+		return "diaComdiaHTML";
+	}
+	
 	@RequestMapping(value = "/getDiaComdiaHTML",method = RequestMethod.GET)
 	public String getDiaComdiaHTML(Model model){
 		model.addAttribute("dialectsList", compareService.getAllDialectsList());
@@ -71,13 +88,24 @@ public class CompareController {
 	@RequestMapping(value = "/getDiaTiComTiTable",method = RequestMethod.GET)
 	public String getDiaTiComTiDetial(@RequestParam String did, @RequestParam String locationDes,@RequestParam String comparetype, @RequestParam String compareentity, 
 			@RequestParam ArrayList<String> queryStrList, HttpServletRequest request, HttpServletResponse response, Model model){
-		ArrayList<SyllableTibet> result = compareService.getSpecialSyllableTibetByDidByType(did,comparetype, compareentity, queryStrList);
+		ArrayList<SyllableTibet> result = compareService.getSpecialSyllableTibetByTiDidByType(did,comparetype, compareentity, queryStrList);
 		model.addAttribute("compDetialList", result);
 		model.addAttribute("did", did);
 		model.addAttribute("locationDes", locationDes);
 		model.addAttribute("comparetype", comparetype);
 		model.addAttribute("compareentity", compareentity);
 		return "compDiaTiDetial";
+	}
+	
+	@RequestMapping(value = "/getDiaDiaComDetialTable",method = RequestMethod.GET)
+	public String getDiaDiaComDetialTable(@RequestParam ArrayList<String> did, @RequestParam ArrayList<String> locationDes,@RequestParam String compareentity, 
+			@RequestParam ArrayList<String> queryStrList, HttpServletRequest request, HttpServletResponse response, Model model){
+		ArrayList<SyllableTibetTmpForDiaDia> result = compareService.getSpecialSyllableTibetByDiaDidByType(did, compareentity, queryStrList);
+		model.addAttribute("compDetialList", result);
+		model.addAttribute("did", did);
+		model.addAttribute("locationDes", locationDes);
+		model.addAttribute("compareentity", compareentity);
+		return "compDiaDiaDetial";
 	}
 	
 	@RequestMapping(value = "/uploadLocalClusterFile",method = RequestMethod.POST)

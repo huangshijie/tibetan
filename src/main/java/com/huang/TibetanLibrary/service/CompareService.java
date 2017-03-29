@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.huang.TibetanLibrary.domain.DialectDetial;
 import com.huang.TibetanLibrary.domain.SyllableCluster;
 import com.huang.TibetanLibrary.domain.SyllableTibet;
+import com.huang.TibetanLibrary.domain.SyllableTibetTmpForDiaDia;
 import com.huang.TibetanLibrary.domain.TibetanWordStructure;
 import com.huang.TibetanLibrary.mapper.DialectDetialMapper;
 import com.huang.TibetanLibrary.mapper.SyllableClusterMapper;
@@ -36,7 +37,7 @@ public class CompareService {
 	@Autowired
 	private SyllableClusterMapper syllableClusterMapper;
 	
-	public ArrayList<SyllableTibet> getSpecialSyllableTibetByDidByType(String did, String compareType, String compareEntity, ArrayList<String> queryList){
+	public ArrayList<SyllableTibet> getSpecialSyllableTibetByTiDidByType(String did, String compareType, String compareEntity, ArrayList<String> queryList){
 		Map<String, Object> map = new HashMap<String, Object>();  
 		ArrayList<String> queryTypeList = new ArrayList<String>();
 		
@@ -76,7 +77,43 @@ public class CompareService {
 	    		map.put("queryFinalWilleList", queryTypeList);  
 	    	}
 	    }
-		return syllableTibetMapper.findSpecialSyllableTibetByDidByType(map);
+		return syllableTibetMapper.findSpecialSyllableTibetByTiDidByType(map);
+	}
+	
+	public ArrayList<SyllableTibetTmpForDiaDia> getSpecialSyllableTibetByDiaDidByType(ArrayList<String> did, String compareEntity, ArrayList<String> queryStrList) {
+		Map<String, Object> map = new HashMap<String, Object>();  
+		
+		ArrayList<String> queryTypeList = new ArrayList<String>();
+		
+		for(int i = 0;i<queryStrList.size();i++){
+			if(!queryStrList.get(i).equals("")){
+				char[] orginalChars = queryStrList.get(i).toCharArray();
+				boolean flag = true;
+				String returnStr = "";
+			    for (int m = 0; m < orginalChars.length; m++) {
+			    	if(FontUtil.WILLIESET.get(Integer.toHexString(orginalChars[m]))!=null){
+			    		returnStr +=FontUtil.WILLIESET.get(Integer.toHexString(orginalChars[m]));
+			    		flag = false;
+			    	}
+			    }
+			    if(flag){
+			    	queryTypeList.add(queryStrList.get(i));
+			    }else{
+			    	queryTypeList.add(returnStr);
+			    }
+			}
+		}
+		
+		map.put("didList", did);
+		map.put("queryList", queryTypeList); 
+		ArrayList<SyllableTibetTmpForDiaDia> result = new ArrayList<SyllableTibetTmpForDiaDia>();
+		if(compareEntity.equals("onSet")){
+			result = syllableTibetMapper.findSpecialSyllableTibetByDiaDidByOnset(map);
+    	}
+    	if(compareEntity.equals("final")){
+    		result = syllableTibetMapper.findSpecialSyllableTibetByDiaDidByFinal(map);
+    	}
+    	return result;
 	}
 	
 	public ArrayList<DialectDetial> getAllDialectsList(){
@@ -260,5 +297,4 @@ public class CompareService {
 			}	
 		return result;
 	}
-
 }

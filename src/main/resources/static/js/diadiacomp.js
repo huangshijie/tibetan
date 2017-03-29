@@ -4,6 +4,9 @@ var chosenIDList = new Array();
 var chosenLabelList = new Array();
 var chosenRowNumList = new Array();
 
+var onsetDIV = document.getElementById("onset-compare-div");
+var finalDIV = document.getElementById("final-compare-div");
+
 $("#confirmUpload").click(function (event) {
     event.preventDefault();
     uploadLocalFile();
@@ -171,3 +174,11 @@ function uploadLocalFile() {
     });
 
 };
+
+function createUploadButton() {
+	var confirm = document.getElementById('add-Dia');
+	confirm.removeAttribute('onclick');
+	confirm.removeAttribute('href');
+	onsetDIV.innerHTML = "<a class=\"btn btn-primary btn-lg\" style=\" width: 100%;\" href=\"/getDiaDiaCompQueryListHTML?did="+ chosenIDList +"&dlocation="+chosenLabelList+"&compareentity=onSet\">声母比较</a>";
+	finalDIV.innerHTML = "<a class=\"btn btn-primary btn-lg\" style=\" width: 100%;\" href=\"/getDiaDiaCompQueryListHTML?did="+ chosenIDList +"&dlocation="+chosenLabelList+"&compareentity=final\">韵母比较</a>";
+}
