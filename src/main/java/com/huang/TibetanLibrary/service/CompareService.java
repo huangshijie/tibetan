@@ -256,7 +256,6 @@ public class CompareService {
 										tmp.setNuclensText("");
 										tmp.setCodaText("");
 									}
-									tmp.setOrignWltranscriptionText(wiStr);	
 									syllableTibetList.add(tmp);
 								}
 								
@@ -285,6 +284,7 @@ public class CompareService {
 								for(int i = 0; i<syllableTibetList.size(); i++){
 									SyllableTibet tmp = syllableTibetList.get(i);
 									tmp.setSID(SID);
+									tmp.setOrignWltranscriptionText(tmpSyllableCluster.getWltranscriptionText());
 									syllableTibetMapper.insertSingleSyllableTibet(tmp);
 								}
 							}
