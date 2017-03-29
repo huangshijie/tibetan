@@ -48,11 +48,12 @@
 		var title = document.getElementById("comp-title");
 		var roughList = [[${compDetialList}]];
 		var did = [[${did}]];
+		var locationDes = [[${locationDes}]];
 		var compareType = [[${comparetype}]];
 		var compareEntity = [[${compareentity}]];
 		if(compareType == "diaCompTi"){
 			if(compareEntity == "onSet"){
-				title.innerHTML = did+"方言声母与古藏语比较";
+				title.innerHTML = "( "+ locationDes+" )方言声母与古藏语比较";
 				$table.bootstrapTable({
 					data: roughList,
 					dataType: "json",
@@ -98,7 +99,7 @@
 			}
 			
 			if(compareEntity == "final"){
-				title.innerHTML = did+"方言韵母与古藏语比较";
+				title.innerHTML = "( "+ locationDes+" )方言韵母与古藏语比较";
 				$table.bootstrapTable({
 					data: roughList,
 					dataType: "json",
@@ -146,7 +147,7 @@
 		
 		if(compareType == "tiCompDia"){
 			if(compareEntity == "onSetWille"){
-				title.innerHTML = "古藏语与"+did+"方言声母比较";
+				title.innerHTML = "古藏语与( "+locationDes+" )方言声母比较";
 				$table.bootstrapTable({
 					data: roughList,
 					dataType: "json",
@@ -192,7 +193,7 @@
 			}
 			
 			if(compareEntity == "shellWille"){
-				title.innerHTML = "古藏语与"+did+"方言韵母比较";
+				title.innerHTML = "古藏语与( "+locationDes+" )方言韵母比较";
 				$table.bootstrapTable({
 					data: roughList,
 					dataType: "json",

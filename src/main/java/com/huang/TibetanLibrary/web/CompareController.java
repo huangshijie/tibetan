@@ -69,11 +69,12 @@ public class CompareController {
 	}
 	
 	@RequestMapping(value = "/getDiaTiComTiTable",method = RequestMethod.GET)
-	public String getDiaTiComTiDetial(@RequestParam String did, @RequestParam String comparetype, @RequestParam String compareentity, 
+	public String getDiaTiComTiDetial(@RequestParam String did, @RequestParam String locationDes,@RequestParam String comparetype, @RequestParam String compareentity, 
 			@RequestParam ArrayList<String> queryStrList, HttpServletRequest request, HttpServletResponse response, Model model){
 		ArrayList<SyllableTibet> result = compareService.getSpecialSyllableTibetByDidByType(did,comparetype, compareentity, queryStrList);
 		model.addAttribute("compDetialList", result);
 		model.addAttribute("did", did);
+		model.addAttribute("locationDes", locationDes);
 		model.addAttribute("comparetype", comparetype);
 		model.addAttribute("compareentity", compareentity);
 		return "compDiaTiDetial";
