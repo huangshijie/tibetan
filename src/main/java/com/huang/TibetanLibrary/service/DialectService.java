@@ -243,7 +243,8 @@ public class DialectService {
 								for(int i = 0; i<syllableTibetList.size(); i++){
 									SyllableTibet tmp = syllableTibetList.get(i);
 									tmp.setSID(SID);
-									tmp.setOrignWltranscriptionText(tmpSyllableCluster.getWltranscriptionText());	
+									tmp.setOrignWltranscriptionText(tmpSyllableCluster.getWltranscriptionText());
+									tmp.setOrignTranscriptionText(tmpSyllableCluster.getTranscriptionText());
 									syllableTibetMapper.insertSingleSyllableTibet(tmp);
 								}
 							}

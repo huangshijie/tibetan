@@ -7,6 +7,7 @@ public class SyllableTibet {
 	
 	private String orignRepresentationText; 		//原藏语词条（表记）
 	private String orignWltranscriptionText; 		//原表记威利转写
+	private String orignTranscriptionText;			//原国际音标转写（读音）
 	
 	private String translationText; 		//汉语词条 
 	private String representationText; 		//藏语词条（表记）
@@ -45,6 +46,12 @@ public class SyllableTibet {
 	}
 	public void setSID(long sID) {
 		SID = sID;
+	}
+	public String getOrignTranscriptionText() {
+		return orignTranscriptionText;
+	}
+	public void setOrignTranscriptionText(String orignTranscriptionText) {
+		this.orignTranscriptionText = orignTranscriptionText;
 	}
 	public String getTranslationText() {
 		return translationText;

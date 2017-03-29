@@ -285,6 +285,7 @@ public class CompareService {
 									SyllableTibet tmp = syllableTibetList.get(i);
 									tmp.setSID(SID);
 									tmp.setOrignWltranscriptionText(tmpSyllableCluster.getWltranscriptionText());
+									tmp.setOrignTranscriptionText(tmpSyllableCluster.getTranscriptionText());
 									syllableTibetMapper.insertSingleSyllableTibet(tmp);
 								}
 							}

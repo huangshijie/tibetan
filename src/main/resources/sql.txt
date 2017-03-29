@@ -78,6 +78,7 @@
 		SID BIGINT(20) NOT NULL,
 		orignWltranscriptionText VARCHAR(255),
 		orignRepresentationText VARCHAR(255),
+		orignTranslationText VARCHAR(255),
 		translationText VARCHAR(255),
 		representationText VARCHAR(255),
 		wltranscriptionText VARCHAR(255),

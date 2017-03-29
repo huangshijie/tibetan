@@ -8,6 +8,7 @@
 		<result property="SID" column="SID" />
 		<result property="orignRepresentationText" column="orignRepresentationText" />
 		<result property="orignWltranscriptionText" column="orignWltranscriptionText" />
+		<result property="orignTranscriptionText" column="orignTranscriptionText" />
 		<result property="translationText" column="translationText" />
 		<result property="representationText" column="representationText" />
 		<result property="wltranscriptionText" column="wltranscriptionText" />
@@ -41,6 +42,7 @@
 			t.SID,
 			t.orignRepresentationText,
 			t.orignWltranscriptionText,
+			t.orignTranscriptionText,
 			t.translationText,
 			t.representationText,
 			t.wltranscriptionText,
@@ -68,6 +70,7 @@
 			SID,
 			orignRepresentationText,
 			orignWltranscriptionText,
+			orignTranscriptionText,
 			translationText,
 			representationText,
 			wltranscriptionText,
@@ -91,6 +94,7 @@
 			#{SID},
 			#{orignRepresentationText},
 			#{orignWltranscriptionText},
+			#{orignTranscriptionText},
 			#{translationText},
 			#{representationText},
 			#{wltranscriptionText},
