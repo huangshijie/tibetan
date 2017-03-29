@@ -1,5 +1,8 @@
 init();
 var curItemNum;
+var chosenIDList = new Array();
+var chosenLabelList = new Array();
+var chosenRowNumList = new Array();
 
 $("#confirmUpload").click(function (event) {
     event.preventDefault();
@@ -80,12 +83,54 @@ function addNewRow(){
 };
 
 function lock(itemNum){
-	console.log(itemNum);
+	var select =  document.getElementById("dialect-select-"+itemNum);
+	var link = document.getElementById("click-"+itemNum);
+	var confirm = document.getElementById('confirm-'+itemNum);
+	var locationID = document.getElementById('locationID-'+itemNum);
+	var selectIndex = document.getElementById('dialect-select-'+itemNum).selectedIndex;
+	var chosenLabel = document.getElementById('current-chosen-label');
+	if(locationID.text != null || select.options[selectIndex].value != 'NULL'){
+		link.removeAttribute('href');  
+		link.removeAttribute('onclick');
+		confirm.removeAttribute('onclick');
+		confirm.removeAttribute('href');  
+		select.setAttribute("disabled","disabled"); 
+		if(locationID.text != null){
+			chosenIDList.push(locationID.text);
+			chosenLabelList.push(document.getElementById('click-'+itemNum).text);
+			chosenRowNumList.push(itemNum);
+			chosenLabel.innerText = chosenLabelList.toString();
+		}
+		if(select.options[selectIndex].value != 'NULL'){
+			chosenIDList.push(select.options[selectIndex].value);
+			chosenLabelList.push(select.options[selectIndex].text);
+			chosenRowNumList.push(itemNum);
+			chosenLabel.innerText = chosenLabelList.toString();
+		}
+	}
 }
 
 function removeRow(itemNum){
-	console.log(itemNum);
+	if(contains(chosenRowNumList, itemNum)){
+		var index = chosenRowNumList.indexOf(itemNum);
+		chosenRowNumList.splice(index,1);
+		chosenIDList.splice(index,1);
+		chosenLabelList.splice(index,1);
+		var deleteRow = document.getElementById(itemNum);
+		if (deleteRow != null)
+			deleteRow.parentNode.removeChild(deleteRow);
+	}
 };
+
+function contains(arr, obj) {  
+    var i = arr.length;  
+    while (i--) {  
+        if (arr[i] === obj) {  
+            return true;  
+        }  
+    }  
+    return false;  
+} 
 
 function showModal(item){
 	event.preventDefault();

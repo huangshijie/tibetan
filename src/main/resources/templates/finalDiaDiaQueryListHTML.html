@@ -25,7 +25,7 @@
 						</div>
 						<div class="row" id="checkbox-container">
 						</div>
-						<div class="row" style="margin-top:15px">
+						<div class="row" style="margin-top:15px; margin-bottom:20px">
 							<div class="col-md-2"></div>
 							<div class="col-md-2"><label>当前已选择：</label></div>
 							<div class="col-md-6"><input class="form-control" id="current-seletced-list-input"/></div>
@@ -38,7 +38,7 @@
 					<div class="col-md-4"><a class="button" href="#" onclick="finishSelected()">已完成查询条件选择</a></div>
 				</div>
 			</div>
-			<div class="row" style="margin-top: 1rem; margin-bottom: 3rem;">
+			<div class="row" style="margin-top:10px; margin-bottom:50px">
 				<div class="col-md-8"></div>
 				<div class="col-md-2" id="next-button-div"></div>
 			</div>
@@ -52,11 +52,11 @@
 		var dlocation = [[${dlocation}]];
 		var comparetype = [[${comparetype}]];
 		var compareentity = [[${compareentity}]];
-		var data = ['ཀ(k)','ཁ(kh)','ག(g)','ང(ng)','ཅ(c)','ཆ(ch)','ཇ(j)','ཉ(ny)','ཏ(t)','ཐ(th)','ད(d)','ན(n)','པ(p)','ཕ(ph)','བ(b)','མ(m)','ཙ(ʦ)','ཚ(ʦh)','ཛ(ʣ)','ཝ(w)','ཞ(ʑ)','ཟ(z)','འ(ɦ)','ཡ(j)','ར(r)','ལ(l)','ཤ(ɕ)','ས(s)','ཧ(h)','ཨ(ʔ)']
-		var willeData = ['k','kh','g','ng','c','ch','j','ny','t','th','d','n','p','ph','b','m','ʦ','ʦh','ʣ','w','ʑ','z','ɦ','j','r','l','ɕ','s','h','ʔ'];
+		var data = ['ི(i)','ུ(u)','ེ(e)','ོ(o)','ཨ(a)','ག(kh)','ང(ng)','ད(d)','ན(n)','བ(b)','མ(m)','འ(v)','ར(r)','ལ(l)','ས(s)','ྭ(w)'];
+		var willeData = ['i','u','e','o','a','kh','ng','d','n','b','m','v','r','l','s','w'];
 		var title = document.getElementById('title');
-		title.innerHTML = "<h1> ( "+dlocation+" ) 方言与古藏语声母比较</h1>";
+		title.innerHTML = "<h1> ( "+dlocation+" ) 方言与古藏语韵母比较</h1>";
 		
 	</script>
-	<script type="text/javascript" src="/js/diaticomp.js"></script>
+	<script type="text/javascript" src="/js/diadiacompquery.js"></script>
 </html>
