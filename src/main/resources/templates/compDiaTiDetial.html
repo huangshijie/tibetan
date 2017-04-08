@@ -18,19 +18,22 @@
 				</div>
 				
 				<div class="content" style="padding:20px;border-radius: 4px;">
-				<div class="container">
-					<div class="row">
-						<div class="well well-white clearfix" style="padding:10px" >
-							<h3 id="comp-title"></h3>
-							<div>
-								<table id="comparetable"></table>
+					<div class="container">
+						<div class="row">
+							<div class="well well-white clearfix" style="padding:10px" >
+								<h3 id="comp-title"></h3>
+								<div>
+									<table id="comparetable"></table>
+								</div>
+								<div>
+									<a href="" id="back-to-up">返回上一层</a>
+								</div>
 							</div>
-						</div>
-						<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
+							<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 		<footer>
@@ -51,9 +54,10 @@
 		var locationDes = [[${locationDes}]];
 		var compareType = [[${comparetype}]];
 		var compareEntity = [[${compareentity}]];
+		var backButton = document.getElementById('back-to-up');
 		if(compareType == "diaCompTi"){
 			if(compareEntity == "onSet"){
-				title.innerHTML = "( "+ locationDes+" )方言声母与古藏语比较";
+				title.innerHTML = "( "+ locationDes+" )与古藏语声母比较";
 				$table.bootstrapTable({
 					data: roughList,
 					dataType: "json",
@@ -92,14 +96,20 @@
 						}, {
 							field: 'translationText',
 							title: '例词汉语释义',
-							align: 'center'
+							align: 'center',
+							formatter:function(value,row,index){ 
+								console.log(value);
+								console.log(index);
+								console.log(row.translationText);
+								return e+d;  
+							}
 						}
 					]
 				});
 			}
 			
 			if(compareEntity == "final"){
-				title.innerHTML = "( "+ locationDes+" )方言韵母与古藏语比较";
+				title.innerHTML = "( "+ locationDes+" )与古藏语韵母比较";
 				$table.bootstrapTable({
 					data: roughList,
 					dataType: "json",
@@ -138,7 +148,12 @@
 						},{
 							field: 'translationText',
 							title: '例词汉语释义',
-							align: 'center'
+							align: 'center',
+							formatter:function(value,row,index){ 
+								var str = value;
+								var pattern =new RegExp("\\((.| )+?\\)","igm");
+								return str.replace(str.match(pattern).toString(), '');
+							}
 						}
 					]
 				});
@@ -147,7 +162,7 @@
 		
 		if(compareType == "tiCompDia"){
 			if(compareEntity == "onSetWille"){
-				title.innerHTML = "古藏语与( "+locationDes+" )方言声母比较";
+				title.innerHTML = "古藏语与( "+locationDes+" )声母比较";
 				$table.bootstrapTable({
 					data: roughList,
 					dataType: "json",
@@ -192,8 +207,8 @@
 				});
 			}
 			
-			if(compareEntity == "shellWille"){
-				title.innerHTML = "古藏语与( "+locationDes+" )方言韵母比较";
+			if(compareEntity == "finalWille"){
+				title.innerHTML = "古藏语与( "+locationDes+" )韵母比较";
 				$table.bootstrapTable({
 					data: roughList,
 					dataType: "json",
@@ -240,4 +255,5 @@
 		}
 		
 	</script> 
+	<script type="text/javascript" src="../js/compDiaTia.js"></script>
 </html>

@@ -126,7 +126,7 @@
 			</foreach>
 		</if>
 		<if test="queryFinalList != null">
-		AND t.shellText IN
+		AND t.finalText IN
 			<foreach collection="queryFinalList" item="queryType"
 				index="index" open="(" close=")" separator=",">
 				#{queryType}
@@ -139,8 +139,8 @@
 				#{queryType}
 			</foreach>
 		</if>
-		<if test="queryShellWilleList != null">
-		AND t.shellWilleText IN
+		<if test="queryFinalWilleList != null">
+		AND t.finalWilleText IN
 			<foreach collection="queryFinalWilleList" item="queryType"
 				index="index" open="(" close=")" separator=",">
 				#{queryType}
