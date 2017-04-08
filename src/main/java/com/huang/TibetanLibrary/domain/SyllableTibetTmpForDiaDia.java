@@ -3,8 +3,8 @@ package com.huang.TibetanLibrary.domain;
 public class SyllableTibetTmpForDiaDia {
 	
 	private String willeText;
-	private String representationText;
-	private String wltranscriptionText;
+	private String orignRepresentationText;
+	private String orignWltranscriptionText;
 	private String dialectText;
 	private String translationText;
 	
@@ -14,17 +14,17 @@ public class SyllableTibetTmpForDiaDia {
 	public void setWilleText(String willeText) {
 		this.willeText = willeText;
 	}
-	public String getRepresentationText() {
-		return representationText;
+	public String getOrignRepresentationText() {
+		return orignRepresentationText;
 	}
-	public void setRepresentationText(String representationText) {
-		this.representationText = representationText;
+	public void setOrignRepresentationText(String orignRepresentationText) {
+		this.orignRepresentationText = orignRepresentationText;
 	}
-	public String getWltranscriptionText() {
-		return wltranscriptionText;
+	public String getOrignWltranscriptionText() {
+		return orignWltranscriptionText;
 	}
-	public void setWltranscriptionText(String wltranscriptionText) {
-		this.wltranscriptionText = wltranscriptionText;
+	public void setOrignWltranscriptionText(String orignWltranscriptionText) {
+		this.orignWltranscriptionText = orignWltranscriptionText;
 	}
 	public String getDialectText() {
 		return dialectText;

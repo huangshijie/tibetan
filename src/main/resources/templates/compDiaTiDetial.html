@@ -98,10 +98,14 @@
 							title: '例词汉语释义',
 							align: 'center',
 							formatter:function(value,row,index){ 
-								console.log(value);
-								console.log(index);
-								console.log(row.translationText);
-								return e+d;  
+								var str = value;
+								var pattern =new RegExp("\\((.| )+?\\)","igm");
+								if(str.match(pattern)!=null){
+									result = str.replace(str.match(pattern).toString(), '');
+								}else{
+									result = str;
+								}
+								return result;
 							}
 						}
 					]
@@ -152,7 +156,12 @@
 							formatter:function(value,row,index){ 
 								var str = value;
 								var pattern =new RegExp("\\((.| )+?\\)","igm");
-								return str.replace(str.match(pattern).toString(), '');
+								if(str.match(pattern)!=null){
+									result = str.replace(str.match(pattern).toString(), '');
+								}else{
+									result = str;
+								}
+								return result;
 							}
 						}
 					]
@@ -201,7 +210,17 @@
 						},{
 							field: 'translationText',
 							title: '例词汉语释义',
-							align: 'center'
+							align: 'center',
+							formatter:function(value,row,index){ 
+								var str = value;
+								var pattern =new RegExp("\\((.| )+?\\)","igm");
+								if(str.match(pattern)!=null){
+									result = str.replace(str.match(pattern).toString(), '');
+								}else{
+									result = str;
+								}
+								return result;
+							}
 						}
 					]
 				});
@@ -247,7 +266,17 @@
 						},{
 							field: 'translationText',
 							title: '例词汉语释义',
-							align: 'center'
+							align: 'center',
+							formatter:function(value,row,index){ 
+								var str = value;
+								var pattern =new RegExp("\\((.| )+?\\)","igm");
+								if(str.match(pattern)!=null){
+									result = str.replace(str.match(pattern).toString(), '');
+								}else{
+									result = str;
+								}
+								return result;
+							}
 						}
 					]
 				});
