@@ -29,8 +29,8 @@
 	
 	<resultMap type="com.huang.TibetanLibrary.domain.SyllableTibetTmpForDiaDia" id="SyllableTibetTmpForDiaDia">
 		<result property="willeText" column="willeText" />
-		<result property="representationText" column="representationText" />
-		<result property="wltranscriptionText" column="wltranscriptionText" />
+		<result property="orignRepresentationText" column="orignRepresentationText" />
+		<result property="orignWltranscriptionText" column="orignWltranscriptionText" />
 		<result property="dialectText" column="dialectText" />
 		<result property="translationText" column="translationText" />
 	</resultMap>
@@ -126,7 +126,7 @@
 			</foreach>
 		</if>
 		<if test="queryFinalList != null">
-		AND t.shellText IN
+		AND t.finalText IN
 			<foreach collection="queryFinalList" item="queryType"
 				index="index" open="(" close=")" separator=",">
 				#{queryType}
@@ -139,8 +139,8 @@
 				#{queryType}
 			</foreach>
 		</if>
-		<if test="queryShellWilleList != null">
-		AND t.shellWilleText IN
+		<if test="queryFinalWilleList != null">
+		AND t.finalWilleText IN
 			<foreach collection="queryFinalWilleList" item="queryType"
 				index="index" open="(" close=")" separator=",">
 				#{queryType}
@@ -151,8 +151,8 @@
 	<select id="findSpecialSyllableTibetByDiaDidByOnset" resultMap="SyllableTibetTmpForDiaDia">
 		SELECT
 			onsetWilleText as willeText,
-			representationText,
-			wltranscriptionText,
+			orignRepresentationText,
+			orignWltranscriptionText,
 			GROUP_CONCAT(DID, ':', onsetText, ':', transcriptionText) as dialectText,
 			translationText
 		FROM syllabletibet
@@ -167,14 +167,14 @@
 				<foreach collection="queryList" item="queryItem" index="index" open="(" close=")" separator=",">
 					#{queryItem}
 				</foreach>
-		GROUP BY onsetWilleText, representationText, wltranscriptionText, translationText;
+		GROUP BY onsetWilleText, orignRepresentationText, orignWltranscriptionText, translationText;
 	</select>
 	
 	<select id="findSpecialSyllableTibetByDiaDidByFinal" resultMap="SyllableTibetTmpForDiaDia">
 		SELECT
 			finalWilleText as willeText,
-			representationText,
-			wltranscriptionText,
+			orignRepresentationText,
+			orignWltranscriptionText,
 			GROUP_CONCAT(DID, ':', finalText, ':', transcriptionText) as dialectText,
 			translationText
 		FROM syllabletibet
@@ -189,7 +189,7 @@
 				<foreach collection="queryList" item="queryItem" index="index" open="(" close=")" separator=",">
 					#{queryItem}
 				</foreach>
-		GROUP BY finalWilleText, representationText, wltranscriptionText, translationText;
+		GROUP BY finalWilleText, orignRepresentationText, orignWltranscriptionText, translationText;
 	</select>
 	
 </mapper>

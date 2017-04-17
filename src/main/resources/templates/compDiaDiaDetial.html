@@ -24,6 +24,9 @@
 							<h3 id="comp-title"></h3>
 							<div>
 								<table id="comparetable"></table>
+								<div>
+									<a href="" id="back-to-up">返回上一层</a>
+								</div>
 							</div>
 						</div>
 						<div class="row" style="padding:10px; text-align:center" id="detail-message-alert">
@@ -51,7 +54,7 @@
 		var locationDes = [[${locationDes}]];
 		var compareEntity = [[${compareentity}]];
 		if(compareEntity == "onSet"){
-			title.innerHTML = "( "+ locationDes+" )方言声母与古藏语比较";
+			title.innerHTML = "( "+ locationDes+" )与古藏语声母比较";
 			$table.bootstrapTable({
 				data: roughList,
 				dataType: "json",
@@ -71,12 +74,12 @@
 						title: '古藏语声母',
 						align: 'center'
 					}, {
-						field: 'representationText',
+						field: 'orignRepresentationText',
 						title: '藏文例词',
 						align: 'center',
 						class: 'representationTextClass'
 					},  {
-						field: 'wltranscriptionText',
+						field: 'orignWltranscriptionText',
 						title: '例词威利转写',
 						align: 'center'
 					}, {
@@ -86,14 +89,24 @@
 					}, {
 						field: 'translationText',
 						title: '例词汉语释义',
-						align: 'center'
+						align: 'center',
+						formatter:function(value,row,index){ 
+							var str = value;
+							var pattern =new RegExp("\\((.| )+?\\)","igm");
+							if(str.match(pattern)!=null){
+								result = str.replace(str.match(pattern).toString(), '');
+							}else{
+								result = str;
+							}
+							return result;
+						}
 					}
 				]
 			});
 		}
 		
 		if(compareEntity == "final"){
-			title.innerHTML = "( "+ locationDes+" )方言韵母与古藏语比较";
+			title.innerHTML = "( "+ locationDes+" )与古藏语韵母比较";
 			$table.bootstrapTable({
 				data: roughList,
 				dataType: "json",
@@ -113,12 +126,12 @@
 						title: '古藏语韵母',
 						align: 'center'
 					}, {
-						field: 'representationText',
+						field: 'orignRepresentationText',
 						title: '藏文例词',
 						align: 'center',
 						class: 'representationTextClass'
 					}, {
-						field: 'wltranscriptionText',
+						field: 'orignWltranscriptionText',
 						title: '例词威利转写',
 						align: 'center'
 					}, {
@@ -128,11 +141,23 @@
 					}, {
 						field: 'translationText',
 						title: '例词汉语释义',
-						align: 'center'
+						align: 'center',
+						formatter:function(value,row,index){ 
+							var str = value;
+							var pattern =new RegExp("\\((.| )+?\\)","igm");
+							var result;
+							if(str.match(pattern)!=null){
+								result = str.replace(str.match(pattern).toString(), '');
+							}else{
+								result = str;
+							}
+							return result;
+						}
 					}
 				]
 			});
 		}
 		
 	</script> 
+	<script type="text/javascript" src="../js/compDiaDia.js"></script>
 </html>
