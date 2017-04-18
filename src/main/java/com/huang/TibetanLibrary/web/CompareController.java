@@ -113,7 +113,7 @@ public class CompareController {
 	public String uploadLocalFile(@RequestParam("file") MultipartFile file, @RequestParam String locationDes, 
 			@RequestParam String comparetype, Model model,
 			HttpServletRequest request, HttpServletResponse response){
-		
+		JSONObject result = new JSONObject();
 		if (!file.isEmpty()) {  
             try {  
             	request.setCharacterEncoding("UTF-8");
@@ -131,17 +131,19 @@ public class CompareController {
                 stream.close();  
                 
                 DialectDetial uploadDialectDetial = compareService.uploadLocalDialect(uploadFile.getAbsolutePath(), locationDes);
-        		model.addAttribute("comparetype", comparetype);
-        		model.addAttribute("did", uploadDialectDetial.getID());
-        		model.addAttribute("dlocation", uploadDialectDetial.getLanguagePoint());
-        		model.addAttribute("dialectsList", compareService.getAllDialectsList());
-        		return "diaTiComHTML";
+        		result.put("did", uploadDialectDetial.getID());
+                result.put("dlocation", uploadDialectDetial.getLanguagePoint());
+                result.put("comparetype", comparetype);
+                result.put("result", "Seccuss");
             }catch (Exception e){
-            	return "diaTiComHTML";
+            	model.addAttribute("result", e);
+            	e.printStackTrace();
             }
 		}else{
-			return "diaTiComHTML";
+			
+			result.put("result", "File is Empty!");
 		}
+		return result.toString();
 	}
 	
 	@RequestMapping(value = "/uploadLocalClusterFileDia",method = RequestMethod.POST)

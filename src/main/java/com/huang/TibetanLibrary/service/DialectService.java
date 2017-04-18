@@ -110,13 +110,11 @@ public class DialectService {
 									if(String.valueOf(orginalChars[i]).equals("་")||String.valueOf(orginalChars[i]).equals("།")){
 										representationTextList.add(returnStr);
 										returnStr = "";
-										syllablesCount++;
 									}else{
 										returnStr += orginalChars[i];
 									}
 								}
 								if(returnStr != ""){
-									syllablesCount++;
 									representationTextList.add(returnStr);
 								}
 								
@@ -124,7 +122,9 @@ public class DialectService {
 								int length = 0;
 								if(representationTextList.size() >= transcriptionChars.length){
 									length = representationTextList.size();
+									syllablesCount = representationTextList.size();
 								}else{
+									syllablesCount = transcriptionChars.length;
 									length = transcriptionChars.length;
 								}
 								for(int i = 0; i<length ;i++){

@@ -19,6 +19,9 @@ function selectChange(item){
 function init(){
 	curItemNum = 1;
 	addNewRow();
+	for(var i=0;i<curItemNum;i++){
+		$('#dialect-select-'+i).selectpicker('refresh');
+	}
 };
 
 function createSelect(){
@@ -30,15 +33,6 @@ function createSelect(){
 	dialectOption.value = 'NULL';
 	dialectOption.text = '==请选择==';
 	select.options.add(dialectOption);
-	if(dialectsList != null){
-		for(var i= 0; i< dialectsList.length;i++){
-			var dialectOption = new Option();
-			dialectOption.value = dialectsList[i].ID;
-			dialectOption.text = dialectsList[i].languagePoint;
-			select.options.add(dialectOption);
-		}
-		$('#dialect-select'+curItemNum).selectpicker('refresh');
-	}
 	return select;
 };
 
@@ -52,6 +46,15 @@ function addNewRow(){
 	var select = createSelect();
 	selectDIV.setAttribute('class', 'col-md-2');
 	selectDIV.appendChild(select);
+	
+	if(dialectsList != null){
+		for(var i= 0; i< dialectsList.length;i++){
+			var dialectOption = new Option();
+			dialectOption.value = dialectsList[i].ID;
+			dialectOption.text = dialectsList[i].languagePoint;
+			select.options.add(dialectOption);
+		}
+	}
 	
 	var orDIV = document.createElement('div');
 	orDIV.setAttribute('class', 'col-md-2');

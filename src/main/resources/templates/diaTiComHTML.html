@@ -29,9 +29,11 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-2" style="text-align:center"><label>选择数据库中已有数据：</label></div>
 					<div class="col-md-2" style="text-align:center">
-						<select class="selectpicker show-tick form-control" id="dialect-select">
-							<option value="NULL">==请选择==</option>
-						</select>
+						<div>
+							<select class="selectpicker show-tick form-control" id="dialect-select">
+								<option value="NULL">==请选择==</option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -41,7 +43,7 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-2" style="text-align:center"><label>选择本地数据：</label></div>
 					<div class="col-md-2" style="text-align:center">
-						<a data-toggle="modal" data-target="#uploadLocalFile">点击</a>
+						<a data-toggle="modal" data-target="#uploadLocalFile" id="click-upload-link">点击</a>
 					</div>
 				</div>
 				<div class="row" style="margin-top: 50px">
@@ -70,7 +72,7 @@
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		                <h4 class="modal-title" id="myModalLabel">选择本地数据上传</h4>
 		            </div>
-		            <form method="POST" enctype="multipart/form-data" action="/uploadLocalClusterFile">
+		            <form method="POST" enctype="multipart/form-data" id="uploadLocalClusterFileForm">
 						<div class="modal-body">
 			            	<div class="row">
 			            		<div class="col-md-3" style="text-align:center"><p><strong>输入方言点: </strong></p></div>
@@ -79,12 +81,12 @@
 			            	</div>
 			            	<div class="row">
 				            	<div class="col-md-3" style="text-align:center"><p><strong>选择文件: </strong></p></div>
-								<div class="col-md-6" style="text-align:center"><input type="file" name="file" style="float: right;" /></div>
+								<div class="col-md-6" style="text-align:center"><input type="file" name="file" style="float: right;" id="upload-file-input"/></div>
 							</div>
 			       		</div>
 			            <div class="modal-footer">
 			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-			                <button type="submit" class="btn btn-primary">确定上传</button>
+			                <button type="submit" class="btn btn-primary" id="confirmUpload">确定上传</button>
 			            </div>
 		            </form>
 		        </div><!-- /.modal-content -->

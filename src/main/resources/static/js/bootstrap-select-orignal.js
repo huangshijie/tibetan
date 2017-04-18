@@ -1,26 +1,3 @@
-/*!
- * Bootstrap-select v1.12.2 (http://silviomoreto.github.io/bootstrap-select)
- *
- * Copyright 2013-2017 bootstrap-select
- * Licensed under MIT (https://github.com/silviomoreto/bootstrap-select/blob/master/LICENSE)
- */
-
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module unless amdModuleId is set
-    define(["jquery"], function (a0) {
-      return (factory(a0));
-    });
-  } else if (typeof module === 'object' && module.exports) {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory(require("jquery"));
-  } else {
-    factory(root["jQuery"]);
-  }
-}(this, function (jQuery) {
-
 (function ($) {
   'use strict';
 
@@ -375,16 +352,7 @@
     mobile: false,
     selectOnTab: false,
     dropdownAlignRight: false,
-    windowPadding: 0,
-
-    //add page
-    paginationButton: true,
-    pageUpText: '上一页',
-    pageDownText: '下一页',
-    perPageNum: 5,
-    currentPageNum: 1,
-    totalPageNum: 0,
-    totalList: []
+    windowPadding: 0
   };
 
   Selectpicker.prototype = {
@@ -402,12 +370,6 @@
       this.liObj = {};
       this.multiple = this.$element.prop('multiple');
       this.autofocus = this.$element.prop('autofocus');
-
-      //add Page
-      this.options.totalList = this.createLi();
-      
-      this.options.totalPageNum = this.options.totalList.length%this.options.perPageNum == 0 ? this.options.totalList.length/this.options.perPageNum : parseInt(this.options.totalList.length/this.options.perPageNum) + 1; 
-
       this.$newElement = this.createView();
       this.$element
         .after(this.$newElement)
@@ -416,11 +378,6 @@
       this.$menu = this.$newElement.children('.dropdown-menu');
       this.$menuInner = this.$menu.children('.inner');
       this.$searchbox = this.$menu.find('input');
-
-      //add Page
-      this.$jumpToUpPage = this.$menu.find('#pageUpButton');
-      this.$jumpToDownPage = this.$menu.find('#pageDownButton');
-      this.$pageNum = this.$menu.find('#pageNum');
 
       this.$element.removeClass('bs-select-hidden');
 
@@ -527,16 +484,6 @@
       '</div>' +
       '</div>'
           : '';
-
-      //add page new pagination element
-      var paginationbutton = this.options.paginationButton ?
-      '<div style="margin-top: 0.5rem;">'+
-      '<div class="col-md-4"><a id="pageUpButton" class="bootstrap-page-disable-button">'+this.options.pageUpText+'</a></div>'+
-      '<div class="col-md-4"><p id="pageNum">'+this.options.currentPageNum+'/'+this.options.totalPageNum+'</p></div>'+
-      '<div class="col-md-4"><a id="pageDownButton" class="bootstrap-page-active-button">'+this.options.pageDownText+'</a></div>'+
-      '</div>'
-        : '';
-
       var drop =
           '<div class="btn-group bootstrap-select' + showTick + inputGroup + '">' +
           '<button type="button" class="' + this.options.styleBase + ' dropdown-toggle" data-toggle="dropdown"' + autofocus + ' role="button">' +
@@ -552,7 +499,6 @@
           '<ul class="dropdown-menu inner" role="listbox" aria-expanded="false">' +
           '</ul>' +
           donebutton +
-          paginationbutton +
           '</div>' +
           '</div>';
 
@@ -562,11 +508,8 @@
     createView: function () {
       var $drop = this.createDropdown(),
           li = this.createLi();
-      //
-      //$drop.find('ul')[0].innerHTML = li;
-      //add page
-      
-      $drop.find('ul')[0].innerHTML = li.slice((this.options.currentPageNum - 1)*this.options.perPageNum,this.options.perPageNum).join('');
+
+      $drop.find('ul')[0].innerHTML = li;
       return $drop;
     },
 
@@ -574,13 +517,6 @@
       // rebuild
       var li = this.createLi();
       this.$menuInner[0].innerHTML = li;
-    },
-
-    //add page
-    reloadLiByPageNum: function () {
-      var li = this.options.totalList.slice((this.options.currentPageNum - 1)*this.options.perPageNum,this.options.currentPageNum*this.options.perPageNum).join('');
-      this.$menuInner[0].innerHTML = li;
-      this.$pageNum[0].textContent = this.options.currentPageNum+'/'+this.options.totalPageNum;
     },
 
     createLi: function () {
@@ -765,9 +701,7 @@
         this.$element.find('option').eq(0).prop('selected', true).attr('selected', 'selected');
       }
 
-      //return _li.join('');
-      //add page
-      return _li;
+      return _li.join('');
     },
 
     findLis: function () {
@@ -1304,9 +1238,9 @@
             triggerChange = true;
 
         // Don't close on multi choice menu
-        //if (that.multiple && that.options.maxOptions !== 1) {
+        if (that.multiple && that.options.maxOptions !== 1) {
           e.stopPropagation();
-        //}
+        }
 
         e.preventDefault();
 
@@ -1455,38 +1389,6 @@
         that.render(false);
         that.$element.trigger('changed.bs.select', changed_arguments);
         changed_arguments = null;
-      });
-
-      //add page
-      this.$jumpToUpPage.on('click', function (e) {
-        if(that.options.currentPageNum > 1){
-          that.options.currentPageNum--;
-          that.reloadLiByPageNum();
-
-          that.$jumpToDownPage.removeClass('bootstrap-page-disable-button');
-          that.$jumpToDownPage.addClass('bootstrap-page-active-button');
-        } 
-        if(that.options.currentPageNum == 1){
-          that.$jumpToUpPage.removeClass('bootstrap-page-active-button');
-          that.$jumpToUpPage.addClass('bootstrap-page-disable-button');
-        }
-        e.stopPropagation();
-      });
-
-      this.$jumpToDownPage.on('click', function (e) {
-        if(that.options.currentPageNum <= that.options.totalPageNum-1){
-          that.options.currentPageNum++;
-          that.reloadLiByPageNum();
-
-          that.$jumpToUpPage.removeClass('bootstrap-page-disable-button');
-          that.$jumpToUpPage.addClass('bootstrap-page-active-button');
-        }
-
-        if(that.options.currentPageNum == that.options.totalPageNum){
-          that.$jumpToDownPage.removeClass('bootstrap-page-active-button');
-          that.$jumpToDownPage.addClass('bootstrap-page-disable-button');
-        }
-        e.stopPropagation();
       });
     },
 
@@ -1887,8 +1789,7 @@
         .off('.bs.select')
         .removeData('selectpicker')
         .removeClass('bs-select-hidden selectpicker');
-    },
-
+    }
   };
 
   // SELECTPICKER PLUGIN DEFINITION
@@ -1921,13 +1822,13 @@
           }
         }
 
-//        if (typeof _option == 'string') {
-//          if (data[_option] instanceof Function) {
-//            value = data[_option].apply(data, args);
-//          } else {
-//            value = data.options[_option];
-//          }
-//        }
+        if (typeof _option == 'string') {
+          if (data[_option] instanceof Function) {
+            value = data[_option].apply(data, args);
+          } else {
+            value = data.options[_option];
+          }
+        }
       }
     });
 
@@ -1966,6 +1867,3 @@
     })
   });
 })(jQuery);
-
-
-}));

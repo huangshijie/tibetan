@@ -217,8 +217,13 @@ public class CompareService {
 										}
 										tmp.setOnsetWilleText(wilStr.substring(0, matchWilStr.length()));
 										tmp.setFinalWilleText(wilStr.substring(matchWilStr.length(), wilStr.length()));
-										tmp.setNuclensWilleText(wilStr.substring(matchWilStr.length(), matchWilStr.length()+1));
-										tmp.setCodaWilleText(wilStr.substring(matchWilStr.length()+1, wilStr.length()));
+										if(matchWilStr.length()+1 > wilStr.length()){
+											tmp.setNuclensWilleText("");
+											tmp.setCodaWilleText("");
+										}else{
+											tmp.setNuclensWilleText(wilStr.substring(matchWilStr.length(), matchWilStr.length()+1));
+											tmp.setCodaWilleText(wilStr.substring(matchWilStr.length()+1, wilStr.length()));
+										}
 									}else{
 										tmp.setWltranscriptionText("");
 										tmp.setRepresentationText("");
@@ -244,10 +249,35 @@ public class CompareService {
 										while(mTran.find()){
 											matchTran = mTran.group(1);
 										}
-										tmp.setOnsetText(transcriptionStr.substring(0, matchTran.length()));
-										tmp.setFinalText(transcriptionStr.substring(matchTran.length(), transcriptionStr.length()));
-										tmp.setNuclensText(transcriptionStr.substring(matchTran.length(), matchTran.length()+1));
-										tmp.setCodaText(transcriptionStr.substring(matchTran.length()+1, transcriptionStr.length()));
+										
+										Pattern pAddition = Pattern.compile("(.*)[̃̈ ](.*)");
+										Matcher mAddition = pAddition.matcher(transcriptionStr);
+										String matchAddition = "";
+										if(mAddition.find()){
+											matchAddition = mAddition.group(1);
+											tmp.setOnsetText(transcriptionStr.substring(0, matchTran.length()));
+											if(matchAddition.length()+1 > transcriptionStr.length()){
+												tmp.setFinalText("");
+												tmp.setNuclensText("");
+												tmp.setCodaText("");
+											}else{
+												tmp.setFinalText(transcriptionStr.substring(matchAddition.length()-1, matchAddition.length()+1));
+												tmp.setNuclensText(transcriptionStr.substring(matchAddition.length()-1, matchAddition.length()+1));
+												tmp.setCodaText(transcriptionStr.substring(matchAddition.length()+1, transcriptionStr.length()));
+											}
+											
+										}else{
+											tmp.setOnsetText(transcriptionStr.substring(0, matchTran.length()));
+											tmp.setFinalText(transcriptionStr.substring(matchTran.length(), transcriptionStr.length()));
+											if(matchTran.length()+1 > transcriptionStr.length()){
+												tmp.setNuclensText("");
+												tmp.setCodaText("");
+											}else{
+												tmp.setNuclensText(transcriptionStr.substring(matchTran.length(), matchTran.length()+1));
+												tmp.setCodaText(transcriptionStr.substring(matchTran.length()+1, transcriptionStr.length()));
+											}
+										}
+										
 									}else{
 										tmp.setTranscriptionText("");
 										tmp.setToneText("");
@@ -296,7 +326,10 @@ public class CompareService {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
 		return result;
 	}
 }

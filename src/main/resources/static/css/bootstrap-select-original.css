@@ -134,7 +134,7 @@ select.selectpicker {
   width: 100%;
 }
 .bootstrap-select.btn-group .dropdown-menu {
-  min-width: 220px;
+  min-width: 100%;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -296,17 +296,5 @@ select.selectpicker {
   margin-bottom: 0;
   width: 100%;
   float: none;
-}
-
-/************** Pagination ***************/
-.bootstrap-page-active-button{
-  text-decoration:none;
-  cursor:pointer;
-}
-
-.bootstrap-page-disable-button{
-  text-decoration:none;
-  cursor:pointer;
-  color: #abb3b3;
 }
 /*# sourceMappingURL=bootstrap-select.css.map */
