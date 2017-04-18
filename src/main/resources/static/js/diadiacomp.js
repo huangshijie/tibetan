@@ -19,9 +19,6 @@ function selectChange(item){
 function init(){
 	curItemNum = 1;
 	addNewRow();
-	for(var i=0;i<curItemNum;i++){
-		$('#dialect-select-'+i).selectpicker('refresh');
-	}
 };
 
 function createSelect(){
@@ -86,6 +83,10 @@ function addNewRow(){
 	row.appendChild(uploadDIV);
 	row.appendChild(actionDIV);
 	row.parentNode.appendChild(newRow);
+	
+	for(var i=0;i<curItemNum;i++){
+		$('#dialect-select-'+i).selectpicker('refresh');
+	}
 };
 
 function lock(itemNum){
