@@ -42,7 +42,7 @@
 	</body>
 	<script type="text/javascript" src="../js/jquery-3.1.1.min.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<script type="text/javascript" src="../js/bootstrap-table.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-table-for-diadiacomp.js"></script>
 	<script type="text/javascript" src="../js/locales/bootstrap-table-zh-CN.js"></script>
 	<script type="text/javascript" src="../table-extensions/bootstrap-table-export.js"></script>
 	<script type="text/javascript" src="../table-extensions/tableExport.js"></script>
@@ -53,111 +53,6 @@
 		var did = [[${did}]];
 		var locationDes = [[${locationDes}]];
 		var compareEntity = [[${compareentity}]];
-		if(compareEntity == "onSet"){
-			title.innerHTML = "( "+ locationDes+" )与古藏语声母比较";
-			$table.bootstrapTable({
-				data: roughList,
-				dataType: "json",
-				toolbar: '#toolbar',                //工具按钮用哪个容器
-				striped: true,                      //是否显示行间隔色
-				singleSelect: false,
-				pagination: true, 					//分页
-				pageNumber:1,                       //初始化加载第一页，默认第一页
-				pageSize: 10,                       //每页的记录行数（*）
-				pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-				search: false, 						//显示搜索框
-				sidePagination: "client", 			//服务端处理分页
-				showExport: true,
-				exportDataType: "all",
-				columns: [{
-						field: 'willeText',
-						title: '古藏语声母',
-						align: 'center'
-					}, {
-						field: 'orignRepresentationText',
-						title: '藏文例词',
-						align: 'center',
-						class: 'representationTextClass'
-					},  {
-						field: 'orignWltranscriptionText',
-						title: '例词威利转写',
-						align: 'center'
-					}, {
-						field: 'dialectText',
-						title: '方言比较',
-						align: 'center'						
-					}, {
-						field: 'translationText',
-						title: '例词汉语释义',
-						align: 'center',
-						formatter:function(value,row,index){ 
-							var str = value;
-							var pattern =new RegExp("\\((.| )+?\\)","igm");
-							if(str.match(pattern)!=null){
-								result = str.replace(str.match(pattern).toString(), '');
-							}else{
-								result = str;
-							}
-							return result;
-						}
-					}
-				]
-			});
-		}
-		
-		if(compareEntity == "final"){
-			title.innerHTML = "( "+ locationDes+" )与古藏语韵母比较";
-			$table.bootstrapTable({
-				data: roughList,
-				dataType: "json",
-				toolbar: '#toolbar',                //工具按钮用哪个容器
-				striped: true,                      //是否显示行间隔色
-				singleSelect: false,
-				pagination: true, 					//分页
-				pageNumber:1,                       //初始化加载第一页，默认第一页
-				pageSize: 10,                       //每页的记录行数（*）
-				pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-				search: false, 						//显示搜索框
-				sidePagination: "client", 			//服务端处理分页
-				showExport: true,
-				exportDataType: "all",
-				columns: [  {
-						field: 'willeText',
-						title: '古藏语韵母',
-						align: 'center'
-					}, {
-						field: 'orignRepresentationText',
-						title: '藏文例词',
-						align: 'center',
-						class: 'representationTextClass'
-					}, {
-						field: 'orignWltranscriptionText',
-						title: '例词威利转写',
-						align: 'center'
-					}, {
-						field: 'dialectText',
-						title: '方言比较',
-						align: 'center'
-					}, {
-						field: 'translationText',
-						title: '例词汉语释义',
-						align: 'center',
-						formatter:function(value,row,index){ 
-							var str = value;
-							var pattern =new RegExp("\\((.| )+?\\)","igm");
-							var result;
-							if(str.match(pattern)!=null){
-								result = str.replace(str.match(pattern).toString(), '');
-							}else{
-								result = str;
-							}
-							return result;
-						}
-					}
-				]
-			});
-		}
-		
 	</script> 
 	<script type="text/javascript" src="../js/compDiaDia.js"></script>
 </html>
