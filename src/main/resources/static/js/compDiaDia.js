@@ -8,7 +8,7 @@
 			columnSplitFieldArray.push(columSplitField+"-"+"ti"+"-"+did[i]);
 		}
 		if(compareEntity == "onSet"){
-			title.innerHTML = "( "+ locationDes+" )与古藏语声母比较";
+			title.innerHTML = "( "+ locationDes+" )声母比较";
 			$table.bootstrapTable({
 				data: roughList,
 				dataType: "json",
@@ -63,7 +63,7 @@
 		}
 		
 		if(compareEntity == "final"){
-			title.innerHTML = "( "+ locationDes+" )与古藏语韵母比较";
+			title.innerHTML = "( "+ locationDes+" )韵母比较";
 			$table.bootstrapTable({
 				data: roughList,
 				dataType: "json",
