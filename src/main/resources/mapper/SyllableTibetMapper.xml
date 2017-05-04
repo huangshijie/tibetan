@@ -153,7 +153,7 @@
 			onsetWilleText as willeText,
 			orignRepresentationText,
 			orignWltranscriptionText,
-			GROUP_CONCAT(DID, ':', onsetText, ':', orignTranscriptionText) as dialectText,
+			GROUP_CONCAT(convert(DID,char), ':', onsetText, ':', orignTranscriptionText) as dialectText,
 			translationText
 		FROM syllabletibet
 		WHERE 
@@ -175,7 +175,7 @@
 			finalWilleText as willeText,
 			orignRepresentationText,
 			orignWltranscriptionText,
-			GROUP_CONCAT(DID, ':', finalText, ':', orignTranscriptionText) as dialectText,
+			GROUP_CONCAT(convert(DID,char), ':', finalText, ':', orignTranscriptionText) as dialectText,
 			translationText
 		FROM syllabletibet
 		WHERE 
